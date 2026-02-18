@@ -1,6 +1,6 @@
 # Parkhaus-Sim
 Programm Entwurf für Programmieren 1
 ## Team Mitglieder:
-- Julius Faustman
+- Julius Faustmann
 - Esther Birngruber
 - Nikolai Schlosser
