@@ -1,30 +1,27 @@
 
-Inputs: per Terminal konfigurierbar
-    - Anzahl der Stellplätze
-    - Max. Parkdauer (für alle gültig)
-    - Simulationsdauer (Zeitschritte)
-    - Ankunftswahrscheinlichkeit Fahrzeuge in %
-    - Seed für Zufallszahlen
+Inputs: bei Programmstart per Terminal konfigurierbar
+    - Anzahl der Stellplätze (int oder short)
+    - Max. Parkdauer (für alle gültig) (int)
+    - Simulationsdauer (Zeitschritte) (int)
+    - Ankunftswahrscheinlichkeit Fahrzeuge in % (int)
+    - Seed für Zufallszahlen (int)
     !(Abfangen von Ungültigen Eingaben beachten)!
 
-Aufbau Parkhaus:
-    - Anzahl Stellplätze (constant), zwei Zustände: leer, belegt
+Aufbau Parkhaus: (array[Anzahl Stellplätze] bei leer = 0, bei belegt = struct vom Auto)
+    - Anzahl Stellplätze (constant), zwei Zustände: leer, belegt (char, boolean)
     - Verwaltung aktuell parkender Fahrzeuge
 
-Aufbau Fahrzeuge:
-    - persönliche ID
-    - verbleibende Parkdauer
-    - Zeitpunkt der Einfahrt
-    - zufällige Parkdauer (beachte max. Parkdauer)
+Aufbau Fahrzeuge: (struct)
+    - persönliche ID (int oder short)
+    - verbleibende Parkdauer (int)
+    - Zeitpunkt der Einfahrt (int)
+    - zufällige Parkdauer (beachte max. Parkdauer) (int)
 
-Voraussetzung parken:
+Voraussetzung Parken:
     - Einparken nur bei freien Stellplätzen
-    - bei keinen freien Stellplätzen -> Warteschlange vor dem Parkhaus
+    - bei keinen freien Stellplätzen -> Warteschlange vor dem Parkhaus (Queue) 
     - Fahrzeuge verlassen Parkhaus nach Ablauf der Parkdauer oder nach max. Parkdauer
 
 Ausgabe:
     - pro Zeitschritt min. 5 Statistiken und am Ende der Simulation
     - Ausgabe per Terminal und als .txt Datei
-
-
-
