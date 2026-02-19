@@ -7,7 +7,7 @@ Inputs: bei Programmstart per Terminal konfigurierbar
     - Seed für Zufallszahlen (int)
     !(Abfangen von Ungültigen Eingaben beachten)!
 
-Aufbau Parkhaus: (array[Anzahl Stellplätze] bei leer = 0, bei belegt = struct vom Auto)
+Aufbau Parkhaus: (struct Fahrzeug *Parkhaus[Anzahl Stellplätze] bei leer = NULL, bei belegt = *struct Fahrzeug)
     - Anzahl Stellplätze (constant), zwei Zustände: leer, belegt (char, boolean)
     - Verwaltung aktuell parkender Fahrzeuge
 
