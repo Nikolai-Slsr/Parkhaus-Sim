@@ -1,0 +1,30 @@
+
+Inputs: per Terminal konfigurierbar
+    - Anzahl der Stellplätze
+    - Max. Parkdauer (für alle gültig)
+    - Simulationsdauer (Zeitschritte)
+    - Ankunftswahrscheinlichkeit Fahrzeuge in %
+    - Seed für Zufallszahlen
+    !(Abfangen von Ungültigen Eingaben beachten)!
+
+Aufbau Parkhaus:
+    - Anzahl Stellplätze (constant), zwei Zustände: leer, belegt
+    - Verwaltung aktuell parkender Fahrzeuge
+
+Aufbau Fahrzeuge:
+    - persönliche ID
+    - verbleibende Parkdauer
+    - Zeitpunkt der Einfahrt
+    - zufällige Parkdauer (beachte max. Parkdauer)
+
+Voraussetzung parken:
+    - Einparken nur bei freien Stellplätzen
+    - bei keinen freien Stellplätzen -> Warteschlange vor dem Parkhaus
+    - Fahrzeuge verlassen Parkhaus nach Ablauf der Parkdauer oder nach max. Parkdauer
+
+Ausgabe:
+    - pro Zeitschritt min. 5 Statistiken und am Ende der Simulation
+    - Ausgabe per Terminal und als .txt Datei
+
+
+
