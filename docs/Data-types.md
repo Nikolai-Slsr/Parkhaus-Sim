@@ -6,7 +6,7 @@ Ein NULL-Pointer repräsentiert einen leeren Stellplatz und ein Fahrzeug-Pointer
 
 - parkhaus[] (fahrzeug Pointer)
 ## Warteschlange
-Die Warteschlange wird mithilfe einer verketteten Liste implementiert. Da aber mit einer normalen verketteten Liste das Einfügen an der letzten Stelle nur in \(O(n)\) möglich wäre, soll neben dem Pointer auf das erste Element auch ein Pointer auf das letzte Element gespeichert werden. So kann ein neues Auto auch in \(O(1)\) hinzugefügt werden.
+Die Warteschlange wird mit hilfe einer Verkettenen Liste implementiert, da aber mit einer normalen Verketteten Liste das Einfügen an der Letzten Stelle nur in O(n) möglich wäre soll neben dem Pointer auf das erste Element auch ein Pointer auf das Letzte Element gespeichert werden so kann ein neues Auto auch in O(1) hinzugefügt werden.
 
 ### Die Nodes
 Die Nodes sind Structs mit folgendem Aufbau:

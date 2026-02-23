@@ -21,7 +21,8 @@
 - Linked List mit Referenz auf first und last.
 - Dynamische Speicherallokation
 - Dynamische Größe
-- Nodes haben einen eigenen Struct, in dem eine Referenz auf das nächste Element und ein Fahrzeug-Struct gespeichert werden.
+- Nodes sind eigene Structs, in dem eine Referenz auf das nächste Element und ein Fahrzeug-Struct gespeichert werden.
+
 ## Voraussetzung Parken:
 - Einparken nur bei freien Stellplätzen
 - bei keinen freien Stellplätzen -> Warteschlange vor dem Parkhaus (Queue) 
