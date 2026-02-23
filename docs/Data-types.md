@@ -6,7 +6,7 @@ Ein NULL-Pointer repräsentiert einen leeren Stellplatz und ein Fahrzeug-Pointer
 
 - struct Fahrzeug *Parkhaus[Anzahl Stellplätze] - bei leer = NULL, bei belegt = *struct Fahrzeug
 ## Warteschlange
-Die Warteschlange wird mithilfe einer verketteten Liste implementiert.
+Die Warteschlange wird mit Hilfe einer verketteten Liste implementiert.
  Da aber mit einer normalen verketteten Liste das Einfügen an der letzten Stelle nur in O(n) möglich wäre,
  soll neben dem Pointer auf das erste Element auch ein Pointer auf das letzte Element gespeichert werden. So kann ein neues Auto auch in O(1) hinzugefügt werden.
 ### Die Nodes
@@ -15,9 +15,9 @@ Node:
 - nextNode (node Pointer)
 - aktuelles_auto (fahrzeug Pointer)
 
-Die Verkettet List wird in einem extra C File implementiert.
+Die verkettete Liste wird in einem extra C File implementiert.
 ## Fahrzeug
-Die Fahrzeuge werden mit einem Struct representiert, welches nach folgendem Schema aufgebaut ist:
+Die Fahrzeuge werden mit einem Struct repräsentiert, welches nach folgendem Schema aufgebaut ist:
 - persönliche ID (int) 
 - verbleibende Parkdauer (int)
 - Zeitpunkt der Einfahrt (int) 
