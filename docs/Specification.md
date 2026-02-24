@@ -14,7 +14,8 @@
 ## Aufbau Fahrzeuge: (struct) 
 - persönliche ID (int oder short)
 - verbleibende Parkdauer (int)
-- Zeitpunkt der Einfahrt (int)
+- Zeitpunkt der Einfahrt ins Parkhaus(int)
+- Zeitpunkt der Ankunft (int) (Wird gebraucht, um die Wartezeit zu berechnen)
 - zufällige Parkdauer (beachte max. Parkdauer) (int)
 
 ## Aufbau Warteschlange:
