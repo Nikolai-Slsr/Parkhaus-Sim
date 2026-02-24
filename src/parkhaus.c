@@ -1,49 +1,62 @@
-include vehicle.h
-include bool.h
+/*
+INCLUDE vehicle.h
+INCLUDE bool.h
 
-Vehicle init(int Anzahl_Parkplätze){
-    Parkhaus = Array des typ struct vehicle [Anzahl_Parkplätze]
-    Fill Array with NULL
-    return *Array;
-}
+FUNCTION init(Anzahl_Parkplätze) //Initialisieren eines Parkhaus Arrays mit Anzahl der Parkplätze welches mit NULL Pointern gefüllt ist
 
-bool isFull(array Parkhaus){
-    for(ANZAHL_PARKPLÄTZE){
-        IF(Parkhaus[i] == NULL){ //check für jeden Platz ob kein Auto drinne ist(NULL), 
+    CREATE *Array TYPE struct vehicle SIZE Anzahl_Parkplätze
+    Fill Array with NULL // entweder mit calloc initialisieren oder per for Schleife
+    return Parkhaus;
+
+END FUNCTION
+
+FUNCTION isFull(Parkhaus) //Checken ob das Parkhaus noch freie Plätze hat. Gibt True oder False zurück
+    FOR i = 0 TO (Anzahl_Parkplätze - 1) DO
+        IF (Parkhaus[i] == NULL) THENcheck für jeden Platz ob kein Auto drinne ist(NULL), 
             return false;        // wenn ein Platz nicht belegt ist gebe false zurück
-        }
-    }
-    return true;                 //wenn alle durch sind und kein NULL gefunden wurde dann ist es voll
-}
+        END IF
+    END FOR
 
-int remove_finished_Cars(array *Parkhaus){ //geht jeden Platz eines arrays Parkhaus durch und entfernt alle Autos die ihre Parkdauer überschritten haben, gibt ein int mit der Anzahl der entfernten Autos zurück
-    int removed_Cars = 0;
-    for(ANZAHL_PARKPLÄTZE){
-        IF(Parkhaus[i]->random_park_duration >= time - Parkhaus[i]->time_of_arrival){
-            Parkhaus[i] = NULL;
-            removed_CARS++;
-        }
-    }
-    return removed_Cars;
+    return true;  //wenn alle durch sind und kein NULL gefunden wurde dann ist es voll
+END FUNCTION
 
-}
+FUNCTION remove_finished_Cars(*Parkhaus) //geht jeden Platz eines arrays Parkhaus durch und entfernt alle Autos die ihre Parkdauer überschritten haben, gibt die Anzahl der entfernten Autos zurück
+    removed_Cars = 0
+    FOR i = 0 TO (Anzahl_Parkplätze - 1) DO
+        IF(random_park_duration OF Car AT Parkhaus[i] >= current_time - time_of_arrival OF Car AT Parkhaus[i]) THEN
+            Parkhaus[i] = NULL
+            removed_Cars = removed_Cars + 1
+        END IF
+    END FOR
+    return removed_Cars
 
-FUNCTION Park_Car(array *Parkhaus, Vehicle Car){
-    for(ANZAHL_PARKPLÄTZE){
-        IF(Parkhaus[i] == NULL){
+END FUNCTION
+
+FUNCTION Park_Car(*Parkhaus, Car) //Speichert ein gegebenes Car im ersten freien Platz des Arrays und gibt die Zeit die das Auto in der Queue war zurück
+
+    FOR i = 0 TO (Anzahl_Parkplätze - 1) DO
+        IF(Parkhaus[i] == NULL) THEN
             Parkhaus[i] = Car;
-            return AUTO_EINGEPARKT;
-        }
-    }
-    return ERROR_KEIN_PLATZ_GEFUNDEN
-}
+            waitTime = current_time - Time_of_arrival OF Car;
+            return waitTime
+        END IF
+    END FOR
 
-int get_Used_Spots(){
-    int counter = 0;
-    for(ANZAHL_PARKPLÄTZE){
-        IF(Parkhaus[i] != NULL){
-            counter ++;
-        }
-    }
-    return counter;
-}
+    return ERROR_KEIN_PLATZ_FREI
+
+END FUNCTION
+
+FUNCTION get_Used_Spots(Parkhaus) //ermittelt die Anzahl der belegten Plätze eines gegebenen Parkhaus
+
+    used_spaces = 0;
+
+    FOR i = 0 TO (Anzahl_Parkplätze - 1) DO
+        IF(Parkhaus[i] != NULL) THEN
+            used_spaces = used_spaces + 1
+        END IF
+    END FOR
+
+    return used_spaces
+
+END FUNCTION
+*/
