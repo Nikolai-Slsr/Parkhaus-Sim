@@ -2,8 +2,7 @@
 include include/queue.h
 include stdlib.h
 
-vehicle and queue structs are defined in the header file, so we can use them here without redefining them
-
+vehicle, node and queue structs are defined in the header file, so we can use them here without redefining them
 
 vehicle queue init(){
     allocate memory for a new queue
@@ -25,13 +24,19 @@ int enqueue(*queue queue, int id, int parking_time, int current_time){
     set time_of_arrival to current_time
     set random_park_duration to parking_time
 
+    allocate memory for a node to store the vehicle
+    if memory allocation fails:
+        return 0 to indicate failure
+    set the node's vehicle pointer to the new vehicle
+    set the node's next pointer to NULL
+
     if the queue is empty:
-        set firstCar and lastCar to the new vehicle
+        set firstCar and lastCar to the new node
         increment size
         return 1 to indicate success
     else:
-        set lastCar's next pointer to the new vehicle
-        update lastCar to the new vehicle
+        set lastCar's next pointer to the new node
+        update lastCar to the new node
         increment size
         return 1 to indicate success
 }
@@ -40,14 +45,16 @@ int dequeue(*queue){
         return 0 
 
     if queue.length is 1:
-        free the memory of the only vehicle in the queue
-        set firstCar and lastCar to NULL
+        free the memory of the vehicle in the node
+        free the memory of the node -> has to be done seperately because the vehicle is in the node and won't be freed if we free the node first
         decrement size
+        set firstCar and lastCar to NULL
         return 1
     else:
-        save a pointer to the first vehicle
-        update queue.firstCar to point to the second vehicle in the queue
-        free the memory of the removed vehicle
+        save a pointer to the first node (the one to be removed)
+        update queue.firstCar to point to the second node in the queue
+        free the memory of the vehicle in the node
+        free the memory of the node -> has to be done seperately because the vehicle is in the node and won't be freed if we free the node first
         decrement size
         return 1
 }
@@ -56,8 +63,8 @@ int print_queue(*queue, int current_time){
     if the queue is empty:
         return 0
     else:
-        initialize a pointer to the first vehicle
-        while the pointer is not NULL:
+        initialize a pointer to the first node
+        while the current_node is not NULL:
             print the vehicle's id and current waiting time (current_time - time_of_arrival)
             move the pointer to the next vehicle in the queue
         return 1

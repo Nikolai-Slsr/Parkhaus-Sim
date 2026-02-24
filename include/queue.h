@@ -1,8 +1,8 @@
 /* queue.h
 
 struct queue:
-* firstCar: (*vehicle) pointer to the first car in the queue
-* lastCar: (*vehicle) additional pointer to the last car in the queue to make adding cars more efficient {O(1) instead of O(n)}
+* first_node: (*node) pointer to the first node in the queue
+* last_node: (*node) additional pointer to the last node(by extention the car) in the queue to make adding cars more efficient {O(1) instead of O(n)}
 * size: (int) store the number of cars in the queue because this information is accessed often
 
 struct vehicle:
@@ -11,6 +11,10 @@ struct vehicle:
 * time_of_entry (int) Zeitpunkt, zu dem das Fahrzeug in das Parkhaus einfährt
 * time_of_arrival (int) (Wird gebraucht, um die Wartezeit zu berechnen)
 * random_park_duration (int) (beachte max. Parkdauer)
+
+struct node:
+* vehicle: (*vehicle) pointer to the vehicle stored in this node
+* next: (*node) pointer to the next node in the queue
 
 queue init() returns an empty queue
 
