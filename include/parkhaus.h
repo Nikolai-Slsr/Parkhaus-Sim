@@ -1,11 +1,11 @@
 /*
-intnit Parkaus mit der größe der Parkhauses
+init Parkaus mit der größe der Parkhauses
 
-removefinishedCars
+remove_finished_Cars
 
-parkCar (Auto parkt ein)
+park_Car (Auto parkt ein)
 
-isFull
+is_Full
 
-getUsedSpots
+get_Used_Spots
 */
