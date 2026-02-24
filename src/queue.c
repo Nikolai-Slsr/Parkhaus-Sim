@@ -5,6 +5,8 @@ include <stdlib.h>
 
 vehicle queue init(){
     allocate memory for a new queue
+    if memory allocation fails:
+        return NULL to indicate failure
     set firstCar and lastCar to NULL
     set size to 0
     return the initialized queue
@@ -13,6 +15,8 @@ vehicle queue init(){
 int enqueue(*queue queue, int id, int parking_time, int current_time){
 
     allocate memory for a new vehicle
+    if memory allocation fails:
+        return 0 to indicate failure
     set vehicle_id to id
     set time_of_entry to -1 to show it hasn't entered the parking lot yet
     set remaining_parktime to parking_time
@@ -44,4 +48,14 @@ int dequeue(*queue){
         return 1
 }
 
+int print_queue(*queue){
+    if the queue is empty:
+        return 0
+    else:
+        initialize a pointer to the first vehicle
+        while the pointer is not NULL:
+            print the vehicle's id and remaining parking time
+            move the pointer to the next vehicle in the queue
+        return 1
+}
 */
