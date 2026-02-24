@@ -27,5 +27,7 @@ int dequeue(*queue) removes the first vehicle, returns 1 if a car was removed an
 
 int print_queue(*queue, int current_time) prints the queue for debugging purposes; returns 1 if successful, 0 if empty
 
+int free_queue(**queue) frees all memory allocated for the queue and its vehicles; returns 1 if successful, 0 if the queue was already empty
+    uses a double pointer to set the original queue pointer to NULL after freeing the memory, to avoid potential issues with dangling pointers
 (getLength wird nicht benötigt, da die Länge der Queue in der Queue-Struktur gespeichert wird; somit ist die Laufzeit O(1) anstatt O(n) wie bei einer Implementierung ohne size-Variable)
 */

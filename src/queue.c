@@ -69,4 +69,20 @@ int print_queue(*queue, int current_time){
             move the pointer to the next vehicle in the queue
         return 1
 }
+
+int free_queue(**queue){
+    if the queue is empty:
+        return 0
+    else:
+        initialize a pointer to the first node
+        while the current_node is not NULL:
+            save a pointer to the next node
+            free the memory of the vehicle in the current node
+            free the memory of the current node
+            move to the next node using the saved pointer
+        free the memory of the queue itself
+        set the original queue pointer to NULL to avoid dangling pointers -> this is why we use a double pointer other wise the pinter to the original queue would still point to the now freed memory, wich could cause a segmentation fault if we try to access it after freeing the memory
+        return 1
+}
+
 */
