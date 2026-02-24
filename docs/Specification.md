@@ -1,3 +1,4 @@
+# Specifications
 
 ## Inputs: bei Programmstart per Terminal konfigurierbar
 - Anzahl der Stellplätze (int oder short)
