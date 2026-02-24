@@ -21,7 +21,7 @@ Instead, it creates a new vehicle struct internally and adds it to the queue.
 
 int dequeue(*queue) removes the first vehicle, returns 1 if a car was removed and 0 if the specified queue was empty
 
-int print_queue(*queue) prints the queue for debugging purposes; returns 1 if successful, 0 if empty
+int print_queue(*queue, int current_time) prints the queue for debugging purposes; returns 1 if successful, 0 if empty
 
 (getLength wird nicht benötigt, da die Länge der Queue in der Queue-Struktur gespeichert wird; somit ist die Laufzeit O(1) anstatt O(n) wie bei einer Implementierung ohne size-Variable)
 */

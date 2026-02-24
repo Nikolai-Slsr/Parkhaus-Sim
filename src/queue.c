@@ -1,6 +1,8 @@
 /*
 include include/queue.h
-include <stdlib.h>
+include stdlib.h
+
+vehicle and queue structs are defined in the header file, so we can use them here without redefining them
 
 
 vehicle queue init(){
@@ -25,6 +27,8 @@ int enqueue(*queue queue, int id, int parking_time, int current_time){
 
     if the queue is empty:
         set firstCar and lastCar to the new vehicle
+        increment size
+        return 1 to indicate success
     else:
         set lastCar's next pointer to the new vehicle
         update lastCar to the new vehicle
@@ -48,7 +52,7 @@ int dequeue(*queue){
         return 1
 }
 
-int print_queue(*queue){
+int print_queue(*queue, int current_time){
     if the queue is empty:
         return 0
     else:
