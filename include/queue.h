@@ -5,13 +5,6 @@ struct queue:
 * last_node: (*node) additional pointer to the last node(by extention the car) in the queue to make adding cars more efficient {O(1) instead of O(n)}
 * size: (int) store the number of cars in the queue because this information is accessed often
 
-struct vehicle:
-* vehicle_id (int) unique identifier for the vehicle
-* remaining_parktime (int) this is specified by the instructions but actually it's redundant information because we can calculate this from
-* time_of_entry (int) Zeitpunkt, zu dem das Fahrzeug in das Parkhaus einfährt
-* time_of_arrival (int) (Wird gebraucht, um die Wartezeit zu berechnen)
-* random_park_duration (int) (beachte max. Parkdauer)
-
 struct node:
 * vehicle: (*vehicle) pointer to the vehicle stored in this node
 * next: (*node) pointer to the next node in the queue

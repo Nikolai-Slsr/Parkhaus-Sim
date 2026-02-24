@@ -1,8 +1,10 @@
 /*
 include include/queue.h
 include stdlib.h
+include include/vehicle.h
 
-vehicle, node and queue structs are defined in the header file, so we can use them here without redefining them
+node and queue structs are defined in include/queue.h, so we can use them here without redefining them
+vehicle struct is defined in include/vehicle.h, so we can use it here also
 
 vehicle queue init(){
     allocate memory for a new queue
