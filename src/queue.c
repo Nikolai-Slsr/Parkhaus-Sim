@@ -54,7 +54,7 @@ int print_queue(*queue){
     else:
         initialize a pointer to the first vehicle
         while the pointer is not NULL:
-            print the vehicle's id and remaining parking time
+            print the vehicle's id and current waiting time (current_time - time_of_arrival)
             move the pointer to the next vehicle in the queue
         return 1
 }
