@@ -19,12 +19,12 @@ struct node:
 /**
  * @brief Initializes an empty queue.
  *
- * This function initializes an empty queue and returns a pointer to it.
+ * This function initializes an empty queue in the Heap and returns a pointer to it.
  *
  * 
  * @return            A pointer to the initialized queue.
  */
-struct queue init();
+struct queue *init();
 
 /**
  * @brief Adds a vehicle to the end of the queue.
@@ -34,16 +34,16 @@ struct queue init();
  * This function doesn't accept a vehicle struct directly, to have more control over memory management and to avoid potential issues with incorrectly (not stored in the Heap) initialized vehicle structs being passed to the function.
  * Instead, it creates a new vehicle struct internally and adds it to the queue.
  *
- * @param[out] queue  A pointer to the queue to which the vehicle will be added.
- * @param[in] id     The ID of the vehicle to be added.
- * @param[in] parking_time The parking time of the vehicle to be added.
- * @param[in] current_time The current time when the vehicle is added to the queue.
- * @return            Explanation of return value
+ * @param[in,out] queue         A pointer to the queue to which the vehicle will be added.
+ * @param[in]     id            he ID of the vehicle to be added.
+ * @param[in]     parking_time  The parking time of the vehicle to be added.
+ * @param[in]     current_time  The current time when the vehicle is added to the queue.
+ * @return                      Explanation of return value
  */
 int enqueue(struct queue *queue, int id, int parking_time, int current_time);
 
 /**
- * @brief Removes the first node(vehicele) from the queue.
+ * @brief Removes the first node(vehicle) from the queue.
  *
  *
  * @param[out]  queue  A pointer to the queue from which the vehicle will be removed.
@@ -58,7 +58,7 @@ int dequeue(struct queue *queue);
  *
  * @param[in]  queue  A pointer to the queue to be printed.
  * 
- * @return             returns 1 if a car was removed and 0 if the specified queue was empty
+ * @return            returns 1 if successful, 0 if the specified queue was empty
  */
 int print_queue(struct queue *queue);
 
@@ -70,11 +70,11 @@ int print_queue(struct queue *queue);
  * 
  * @param[out]  queue  A double pointer to the queue to be freed (will be changed to NULL after freeing the memory).
  * 
- * 
  * @return             returns 1 if successful, 0 if the queue was already NULL
  */
 int free_queue(struct queue **queue);
 
-//(getLength wird nicht benötigt, da die Länge der Queue in der Queue-Struktur gespeichert wird; somit ist die Laufzeit O(1) anstatt O(n) wie bei einer Implementierung ohne size-Variable)
+// get_length() wont be needed because we have the size variable in the queue struct, which is updated every time a car is added or removed from the queue,
+// so we can just access that variable to get the current length of the queue without having to traverse it every time we want to know how many cars are in the queue, which would be inefficient (O(n)) compared to just accessing the size variable (O(1)).
 
-#endif /* QUEUE_H */
+#endif 
