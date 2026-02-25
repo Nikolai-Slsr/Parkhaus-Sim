@@ -29,7 +29,6 @@ FUNCTION printRuntimeStats (current_time, parked_cars, cars_in, cars_out, length
             "Letzte Wartezeit:"         last_wait_time
 }
 
-
 FUNCTION printFinalStats (stats){
     PRINT:
             "Simulationsdauer:"                 SIMULATION_TIME
