@@ -74,7 +74,5 @@ int print_queue(struct queue *queue);
  */
 int free_queue(struct queue **queue);
 
-// get_length() wont be needed because we have the size variable in the queue struct, which is updated every time a car is added or removed from the queue,
-// so we can just access that variable to get the current length of the queue without having to traverse it every time we want to know how many cars are in the queue, which would be inefficient (O(n)) compared to just accessing the size variable (O(1)).
-
+// get_length() is not nessesary because it can be acessed directly: queue->size in O(1)
 #endif 
