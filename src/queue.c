@@ -61,13 +61,13 @@ int dequeue(*queue){
         return 1
 }
 
-int print_queue(*queue, int current_time){
+int print_queue(*queue queue){
     if the queue is empty:
         return 0
     else:
         initialize a pointer to the first node
         while the current_node is not NULL:
-            print the vehicle's id and current waiting time (current_time - time_of_arrival)
+            print the vehicle's id and the positon in the queue
             move the pointer to the next vehicle in the queue
         return 1
 }
