@@ -23,7 +23,7 @@ int enqueue(*queue queue, int id, int parking_time, int current_time){
         RETURN 0 to indicate failure
     END IF
     set vehicle_id to id
-    set time_of_entry to -1 to show it hasn't entered the parking lot yet
+    set time_of_entry to -1 -> to show it hasn't entered the parking lot yet
     set remaining_parktime to parking_time
     set time_of_arrival to current_time
     set random_park_duration to parking_time
@@ -39,7 +39,7 @@ int enqueue(*queue queue, int id, int parking_time, int current_time){
         set firstCar and lastCar to the new node
         increment size
         RETURN 1 to indicate success
-    ELSE:
+    ELSE
         set lastCar's next pointer to the new node
         update lastCar to the new node
         increment size
@@ -57,7 +57,7 @@ int dequeue(*queue){
         decrement size
         set firstCar and lastCar to NULL
         RETURN 1
-    ELSE:
+    ELSE
         save a pointer to the first node (the one to be removed)
         update queue.firstCar to point to the second node in the queue
         free the memory of the vehicle in the node
@@ -70,7 +70,7 @@ int dequeue(*queue){
 int print_queue(*queue queue){
     IF the queue is empty THEN
         RETURN 0
-    ELSE:
+    ELSE
         initialize a pointer to the first node
         WHILE: the current_node is not NULL DO
             print the vehicle's id and the positon in the queue
@@ -83,7 +83,7 @@ int print_queue(*queue queue){
 int free_queue(**queue){
     IF the queue is empty THEN
         RETURN 0
-    ELSE:
+    ELSE
         initialize a pointer to the first node
         WHILE: the current_node is not NULL DO
             save a pointer to the next node
@@ -92,7 +92,7 @@ int free_queue(**queue){
             move to the next node using the saved pointer
         END WHILE
         free the memory of the queue itself
-        set the original queue pointer to NULL - to avoid dangling pointers -> this is why we use a double pointer other wise the pinter to the original queue would still point to the now freed memory, wich could cause a segmentation fault IF we try to access it after freeing the memory
+        set the original queue pointer to NULL -> to avoid dangling pointers -> this is why we use a double pointer other wise the pinter to the original queue would still point to the now freed memory, wich could cause a segmentation fault IF we try to access it after freeing the memory
         RETURN 1
     END IF
 }
