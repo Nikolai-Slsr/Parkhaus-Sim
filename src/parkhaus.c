@@ -21,18 +21,18 @@ FUNCTION isFull(Parkhaus) //Checken ob das Parkhaus noch freie Plätze hat. Gibt
 END FUNCTION
 
 FUNCTION remove_finished_Cars(*Parkhaus) //geht jeden Platz eines arrays Parkhaus durch und entfernt alle Autos die ihre Parkdauer überschritten haben, gibt die Anzahl der entfernten Autos zurück
-    removed_Cars = 0
+    num_removed_Cars = 0
     FOR i = 0 TO (Anzahl_Parkplätze - 1) DO
         IF(random_park_duration OF Car AT Parkhaus[i] >= current_time - time_of_arrival OF Car AT Parkhaus[i]) THEN
             Parkhaus[i] = NULL
-            removed_Cars = removed_Cars + 1
+            num_removed_Cars = num_removed_Cars + 1
         END IF
     END FOR
-    return removed_Cars
+    return num_removed_Cars
 
 END FUNCTION
 
-FUNCTION Park_Car(*Parkhaus, Car) //Speichert ein gegebenes Car im ersten freien Platz des Arrays und gibt die Zeit die das Auto in der Queue war zurück
+FUNCTION park_Car(*Parkhaus, Car) //Speichert ein gegebenes Car im ersten freien Platz des Arrays und gibt die Zeit die das Auto in der Queue war zurück
 
     FOR i = 0 TO (Anzahl_Parkplätze - 1) DO
         IF(Parkhaus[i] == NULL) THEN
