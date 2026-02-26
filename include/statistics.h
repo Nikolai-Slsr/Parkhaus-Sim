@@ -6,13 +6,13 @@
  * @brief stores statistic values
  */
 typedef struct {
-    int max_wait_time
-    int sum_parkhaus_auslastung
-    int sum_length_queue
-    int max_length_queue
-    int sum_wait_time
-    int all_cars_in
-    int all_cars_out
+    int max_wait_time                   //maximum wait time for a car before it could park
+    int sum_parkhaus_auslastung         //sum of occupancy of the parking garage. Needed for calculations of average
+    int sum_length_queue                //sum of queue length to calclulate average queue length
+    int max_length_queue                //maximum queue length
+    int sum_wait_time                   //sum of all waiting times of the cars in queue to calculate average
+    int all_cars_in                     //sum of all cars that drove into the garage
+    int all_cars_out                    //sum of all cars that left the garage
 }stats;
 
 
@@ -53,6 +53,37 @@ void updateStats(stats *pstats, int parked_cars, int cars_in, int cars_out, int 
 void printRuntimeStats(int current_time, int parked_cars, int cars_in, int cars_out, int length_queue, int car_in_queue, int last_wait_time);
 
 /**
+ * @brief       creates file to write runnning time stats into it
+ * 
+ * this function creates a new file in which the running time statistics can be written into
+ * the file is stored 
+ */
+void createRunnningTimeStatsFile();
+
+/**
+ * @brief       writes running statistics to file
+ * 
+ * this function gets all the running statistic parameters and writes them into a file
+ * after each timestep. all running statistics will be written into one file
+ * 
+ * @param[in]   current_time        current simulation time step since start of the simulation
+ * @param[in]   parked_cars         Number of currently parked cars
+ * @param[in]   cars_in             Number of cars that entered the parking garage during the current time step
+ * @param[in]   cars_out            Number of cars that left the parking garage during the current time step
+ * @param[in]   length_queue        Current number of cars waiting in the queue
+ * @param[in]   car_in_queue        Number of newly arrived cars added to the queue during this time step
+ * @param[in]   last_wait_time      Waiting time of the car that parked during this time step
+ * 
+ * @return      this function does not return a value
+ */
+void writeRunningTimeStatsToFile(int current_time, int parked_cars, int cars_in, int cars_out, int length_queue, int car_in_queue, int last_wait_time);
+
+/**
+ * @brief   closes running time statistics file
+ */
+void closeRunnningTimeStatsFile();
+
+/**
  * @brief       prints final statistics
  * 
  * this function takes the statistics parameters that were saved in the struct stats and prints the final statistics in the terminal
@@ -75,6 +106,6 @@ void printFinalStats(const stats *pstats);
  * 
  * return       this function does not return a value
  */
-writeStatsToFile(const stats *pstats);
+void writeFinalStatsToFile(const stats *pstats);
 
 #endif 
