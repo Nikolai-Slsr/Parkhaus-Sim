@@ -1,12 +1,13 @@
-/*
-include include/queue.h
-include stdlib.h
-include include/vehicle.h
 
+#include "../include/queue.h"
+#include <stdlib.h>
+#include "../include/vehicle.h"
+/*
 node and queue structs are defined in include/queue.h, so we can use them here without redefining them
 vehicle struct is defined in include/vehicle.h, so we can use it here also
-
-vehicle queue init(){
+*/
+struct queue *init(){
+    /*
     allocate memory for a new queue
     IF memory allocation fails THEN
         RETURN NULL to indicate failure
@@ -14,10 +15,11 @@ vehicle queue init(){
     set firstCar and lastCar to NULL
     set size to 0
     RETURN the initialized queue
+    */
 }
 
-int enqueue(*queue queue, int id, int parking_time, int current_time){
-
+int enqueue(struct queue *queue, int id, int parking_time, int current_time){
+    /*
     allocate memory for a new vehicle
     IF memory allocation fails THEN
         RETURN -1 to indicate failure
@@ -45,8 +47,10 @@ int enqueue(*queue queue, int id, int parking_time, int current_time){
         increment size
         RETURN 0 to indicate success
     END IF
+    */
 }
-int dequeue(*queue){
+int dequeue(struct queue *queue){
+    /*
         IF the queue.length is 0 THEN
             RETURN -1 
         END IF
@@ -65,9 +69,11 @@ int dequeue(*queue){
         decrement size
         RETURN 0
     END IF
+    */
 }
 
-int print_queue(*queue queue){
+int print_queue(struct queue *queue){
+    /*
     IF the queue is empty THEN
         RETURN -1
     ELSE
@@ -78,9 +84,11 @@ int print_queue(*queue queue){
         END WHILE
         RETURN 0
     END IF
+    */
 }
 
-int free_queue(**queue){
+int free_queue(struct queue **queue){
+    /*
     IF the queue is empty THEN
         RETURN -1
     ELSE
@@ -95,6 +103,5 @@ int free_queue(**queue){
         set the original queue pointer to NULL -> to avoid dangling pointers -> this is why we use a double pointer other wise the pinter to the original queue would still point to the now freed memory, wich could cause a segmentation fault IF we try to access it after freeing the memory
         RETURN 0
     END IF
+    */
 }
-
-*/

@@ -3,18 +3,16 @@
 
 #include "vehicle.h"
 
-/* queue.h
+struct node {
+    struct vehicle *vehicle; //pointer to the vehicle stored in this node
+    struct node *next; //pointer to the next node in the queue
+};
 
-struct queue:
-* first_node: (*node) pointer to the first node in the queue
-* last_node: (*node) additional pointer to the last node(by extention the car) in the queue to make adding cars more efficient {O(1) instead of O(n)}
-* size: (int) store the number of cars in the queue because this information is accessed often
-
-struct node:
-* vehicle: (*vehicle) pointer to the vehicle stored in this node
-* next: (*node) pointer to the next node in the queue
-
-*/
+struct queue {
+    struct node *first_node; //pointer to the first node in the queue
+    struct node *last_node; //additional pointer to the last node(by extention the car) in the queue to make adding cars more efficient {O(1) instead of O(n)}
+    int size; //store the number of cars in the queue because this information is accessed often
+};
 
 /**
  * @brief Initializes an empty queue.
