@@ -35,7 +35,7 @@ struct queue *init();
  * Instead, it creates a new vehicle struct internally and adds it to the queue.
  *
  * @param[in,out] queue         A pointer to the queue to which the vehicle will be added.
- * @param[in]     id            he ID of the vehicle to be added.
+ * @param[in]     id            The ID of the vehicle to be added.
  * @param[in]     parking_time  The parking time of the vehicle to be added.
  * @param[in]     current_time  The current time when the vehicle is added to the queue.
  * @return                      returns 0 if the vehicle was successfully added to the queue, or -1 
@@ -45,6 +45,7 @@ int enqueue(struct queue *queue, int id, int parking_time, int current_time);
 /**
  * @brief Removes the first node(vehicle) from the queue.
  *
+ * Removes the first node(vehicle) from the specified queue and frees the memory allocated for it.
  *
  * @param[out]  queue  A pointer to the queue from which the vehicle will be removed.
  * 
@@ -55,7 +56,8 @@ int dequeue(struct queue *queue);
 /**
  * @brief Prints the queue for debugging purposes.
  *
- *
+ * Prints the vehicke_id and postion in the queue.
+ * 
  * @param[in]  queue  A pointer to the queue to be printed.
  * 
  * @return            returns 0 if successful, -1 if the specified queue was empty
