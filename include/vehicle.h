@@ -1,5 +1,5 @@
-#ifndef QUEUE_H
-#define QUEUE_H
+#ifndef VEHICLE_H
+#define VEHICLE_H
 
 
 struct vehicle
