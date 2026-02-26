@@ -29,7 +29,7 @@ struct queue *init();
 /**
  * @brief Adds a vehicle to the end of the queue.
  *
- * Adds a vehicle with the specified parameters to the end of the specified queue and returns 1 if successful, 0 if failed.
+ * Adds a vehicle with the specified parameters to the end of the specified queue and returns 0 if successful, -1 if failed.
  * 
  * This function doesn't accept a vehicle struct directly, to have more control over memory management and to avoid potential issues with incorrectly (not stored in the Heap) initialized vehicle structs being passed to the function.
  * Instead, it creates a new vehicle struct internally and adds it to the queue.
@@ -38,7 +38,7 @@ struct queue *init();
  * @param[in]     id            he ID of the vehicle to be added.
  * @param[in]     parking_time  The parking time of the vehicle to be added.
  * @param[in]     current_time  The current time when the vehicle is added to the queue.
- * @return                      Explanation of return value
+ * @return                      returns 0 if the vehicle was successfully added to the queue, or -1 
  */
 int enqueue(struct queue *queue, int id, int parking_time, int current_time);
 
@@ -48,7 +48,7 @@ int enqueue(struct queue *queue, int id, int parking_time, int current_time);
  *
  * @param[out]  queue  A pointer to the queue from which the vehicle will be removed.
  * 
- * @return             returns 1 if a car was removed and 0 if the specified queue was empty
+ * @return             returns 0 if a car was removed and -1 if the specified queue was empty
  */
 int dequeue(struct queue *queue);
 
@@ -58,7 +58,7 @@ int dequeue(struct queue *queue);
  *
  * @param[in]  queue  A pointer to the queue to be printed.
  * 
- * @return            returns 1 if successful, 0 if the specified queue was empty
+ * @return            returns 0 if successful, -1 if the specified queue was empty
  */
 int print_queue(struct queue *queue);
 
@@ -70,7 +70,7 @@ int print_queue(struct queue *queue);
  * 
  * @param[out]  queue  A double pointer to the queue to be freed (will be changed to NULL after freeing the memory).
  * 
- * @return             returns 1 if successful, 0 if the queue was already NULL
+ * @return             returns 0 if successful, -1 if the queue was already NULL
  */
 int free_queue(struct queue **queue);
 
