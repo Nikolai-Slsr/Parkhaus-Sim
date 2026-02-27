@@ -2,18 +2,18 @@
 INCLUDE "vehicle.h"
 INCLUDE "parkhaus.h"
 
-FUNCTION struct vehicle *init_parkhaus(int Anzahl_Parkplätze)
-    CREATE *Array TYPE struct vehicle SIZE Anzahl_Parkplätze + 1 
-    Fill Array with NULL              //either using calloc or with a for loop
+FUNCTION struct vehicle *init(int Anzahl_Parkplätze)
+    CREATE *pArray TYPE struct vehicle SIZE Anzahl_Parkplätze + 1 
+    Fill pArray with NULL              //either using calloc or with a for loop
     CREATE struct vehicle with vehicle_id of -1 and name "End_Point"
-    save "End_Point" at the last Index of Parkhaus
-    return *Parkhaus;
+    save "End_Point" at the last Index of pParkhaus
+    return *pParkhaus;
 
 END FUNCTION
 
-FUNCTION int isFull(const struct vehicle *Parkhaus[])
-    WHILE (Variable of Parkhaus at Index[i] is not "End_Point" or is NULL) THEN //checks if the variable saved at Index[i] is not the End_Point or is NULL 
-        IF (Parkhaus[i] == NULL) THEN //check if no Car is present 
+FUNCTION int isFull(const struct vehicle *pParkhaus[])
+    WHILE (Variable of pParkhaus at Index[i] is not "End_Point" or is NULL) THEN //checks if the variable saved at Index[i] is not the End_Point or is NULL 
+        IF (pParkhaus[i] == NULL) THEN //check if no Car is present 
             return -1       //if one is NULL then it is not full
         END IF
         i = i + 1
@@ -22,16 +22,16 @@ FUNCTION int isFull(const struct vehicle *Parkhaus[])
     return 0  //if no NULL was found then it is full
 END FUNCTION
 
-FUNCTION int remove_finished_Cars(struct vehicle *Parkhaus[], int current_time)
-    IF Parkhaus == NULL THEN
+FUNCTION int remove_finished_Cars(struct vehicle *pParkhaus[], int current_time)
+    IF pParkhaus == NULL THEN
         return -1
     END IF
     num_removed_Cars = 0
     i = 0
-    WHILE (Variable of Parkhaus at Index[i] is not "End_Point" or is NULL) THEN
-        IF(Parkhaus[i] != NULL)
-            IF(random_park_duration OF Car AT Parkhaus[i] >= current_time - (time_of_entry OF Car AT Parkhaus[i])) THEN
-                Parkhaus[i] = NULL 
+    WHILE (Variable of pParkhaus at Index[i] is not "End_Point" or is NULL) THEN
+        IF(pParkhaus[i] != NULL)
+            IF(random_park_duration OF Car AT pParkhaus[i] >= current_time - (time_of_entry OF Car AT pParkhaus[i])) THEN
+                pParkhaus[i] = NULL 
                 num_removed_Cars = num_removed_Cars + 1
             END IF
         END IF
@@ -41,14 +41,14 @@ FUNCTION int remove_finished_Cars(struct vehicle *Parkhaus[], int current_time)
 
 END FUNCTION
 
-FUNCTION int park_Car(struct vehicle *Parkhaus[], struct Vehicle Car)
-    IF Parkhaus == NULL THEN
+FUNCTION int park_Car(struct vehicle *pParkhaus[], struct Vehicle pCar)
+    IF pParkhaus == NULL THEN
         return -1
     END IF
-    WHILE (Variable of Parkhaus at Index[i] is not "End_Point" or is NULL) THEN
-        IF(Parkhaus[i] == NULL) THEN
-            Parkhaus[i] = Car;
-            waitTime = current_time - Time_of_arrival OF Car;
+    WHILE (Variable of pParkhaus at Index[i] is not "End_Point" or is NULL) THEN
+        IF(pParkhaus[i] == NULL) THEN
+            pParkhaus[i] = pCar;
+            waitTime = current_time - Time_of_arrival OF pCar;
             return waitTime
         END IF
     END WHILE
@@ -57,14 +57,14 @@ FUNCTION int park_Car(struct vehicle *Parkhaus[], struct Vehicle Car)
 
 END FUNCTION
 
-FUNCTION int get_Used_Spots(const struct vehicle *Parkhaus[])
-    IF Parkhaus == NULL THEN
+FUNCTION int get_Used_Spots(const struct vehicle *pParkhaus[])
+    IF pParkhaus == NULL THEN
         return -1
     END IF
     used_spaces = 0
 
-    WHILE (Variable of Parkhaus at Index[i] is not "End_Point" or is NULL) THEN
-        IF(Parkhaus[i] != NULL) THEN
+    WHILE (Variable of pParkhaus at Index[i] is not "End_Point" or is NULL) THEN
+        IF(pParkhaus[i] != NULL) THEN
             used_spaces = used_spaces + 1
         END IF
     END WHILE
