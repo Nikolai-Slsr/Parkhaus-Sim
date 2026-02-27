@@ -11,8 +11,9 @@ typedef struct {
     int sum_length_queue;                //sum of queue length to calclulate average queue length
     int max_length_queue;                //maximum queue length
     int sum_wait_time;                   //sum of all waiting times of the cars in queue to calculate average
-    int all_cars_in;                     //sum of all cars that drove into the garage
-    int all_cars_out;                    //sum of all cars that left the garage
+    int sum_cars_in;                     //sum of all cars that drove into the garage
+    int sum_cars_out;                    //sum of all cars that left the garage
+
     int current_time;                    //current simulation time step since start of the simulation
     int parked_cars;                     //Number of currently parked cars
     int cars_in;                         //Number of cars that entered the parking garage during the current time step
@@ -35,7 +36,7 @@ typedef struct {
  * @param[in]   cars_in             Number of cars that entered the parking garage during the current time step
  * @param[in]   cars_out            Number of cars that left the parking garage during the current time step
  * @param[in]   length_queue        Current number of cars waiting in the queue
- * @param[in]   last_wait_time = 0  Waiting time of the car that parked during this time step, 0 if no car drove into Parkhaus
+ * @param[in]   last_wait_time      Waiting time of the car that parked during this time step, 0 if no car drove into Parkhaus
  * @param[in]   current_time        current simulation time step since start of the simulation
  * @param[in]   car_in_queue        Number of newly arrived cars added to the queue during this time step
  * 
@@ -58,7 +59,7 @@ void printRuntimeStats(const stats *pstats);
 /**
  * @brief       creates file to write runnning time stats into it
  * 
- * this function creates a new file in which the running time statistics can be written into
+ * this function creates a new .txt file in which the running time statistics can be written into
  * the file is stored 
  */
 void createRunnningTimeStatsFile();

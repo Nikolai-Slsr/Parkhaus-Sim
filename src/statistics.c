@@ -58,9 +58,10 @@ FUNCTION createRunnningTimeStatsFile(){
 
     IF FILE filename IS NULL
         PRINT "Error: Could not create file" filename
+    ELSE
+        PRINT "Created file: " filename
     END IF
-
-    PRINT "Created file: " filename
+    
 }
 
 FUNCTION writeRunningTimeStatsToFile(const stats *pstats){
