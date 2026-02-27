@@ -22,7 +22,7 @@ struct queue {
  * 
  * @return            A pointer to the initialized queue.
  */
-struct queue *init();
+struct queue *init_queue();
 
 /**
  * @brief Adds a vehicle to the end of the queue.

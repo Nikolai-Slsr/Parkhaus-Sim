@@ -2,7 +2,7 @@
 INCLUDE "vehicle.h"
 INCLUDE "parkhaus.h"
 
-FUNCTION struct vehicle *init(int Anzahl_Parkplätze)
+FUNCTION struct vehicle *init_parkhaus(int Anzahl_Parkplätze)
     CREATE *Array TYPE struct vehicle SIZE Anzahl_Parkplätze + 1 
     Fill Array with NULL              //either using calloc or with a for loop
     CREATE struct vehicle with vehicle_id of -1 and name "End_Point"

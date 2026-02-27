@@ -11,7 +11,7 @@
  * 
  * @return *Parkhaus(struct vehicle array) Pointer to the created array
 */
-struct vehicle* init(int Anzahl_Parkplätze);
+struct vehicle* init_parkhaus(int Anzahl_Parkplätze);
 
 /** 
  * @brief Checks whether the given parking garage has free spaces

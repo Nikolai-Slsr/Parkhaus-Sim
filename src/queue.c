@@ -6,7 +6,7 @@
 node and queue structs are defined in include/queue.h, so we can use them here without redefining them
 vehicle struct is defined in include/vehicle.h, so we can use it here also
 
-FUNKTION struct queue *init()
+FUNKTION struct queue *init_queue()
     allocate memory for a new queue
     IF memory allocation fails THEN
         RETURN NULL to indicate failure
