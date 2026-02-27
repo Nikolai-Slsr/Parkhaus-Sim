@@ -6,7 +6,7 @@
 node and queue structs are defined in include/queue.h, so we can use them here without redefining them
 vehicle struct is defined in include/vehicle.h, so we can use it here also
 
-FUNKTION struct queue *init_queue()
+FUNKTION queue *init_queue()
     allocate memory for a new queue
     IF memory allocation fails THEN
         RETURN NULL to indicate failure
@@ -16,7 +16,7 @@ FUNKTION struct queue *init_queue()
     RETURN the initialized queue pointer
 END FUNKTION
 
-FUNKTION int enqueue(struct queue *queue, int id, int parking_time, int current_time)
+FUNKTION int enqueue(queue *queue, int id, int parking_time, int current_time)
     if the queue pointer is NULL THEN
         RETURN -1 to indicate failure
     END IF
@@ -52,7 +52,7 @@ FUNKTION int enqueue(struct queue *queue, int id, int parking_time, int current_
     END IF
 END FUNKTION
 
-FUNKTION struct vehicle *dequeue(struct queue *queue)
+FUNKTION struct vehicle *dequeue(queue *queue)
     IF the queue->size is 0 OR queue ist NULL THEN
         RETURN -1
     END IF
@@ -73,7 +73,7 @@ FUNKTION struct vehicle *dequeue(struct queue *queue)
     END IF
 END FUNKTION
 
-FUNKTION int print_queue(struct queue *queue)
+FUNKTION int print_queue(queue *queue)
     IF the queue is empty or NULL THEN
         RETURN -1
     ELSE
@@ -86,7 +86,7 @@ FUNKTION int print_queue(struct queue *queue)
     END IF
 END FUNKTION
 
-FUNKTION int free_queue(struct queue **queue)
+FUNKTION int free_queue(queue **queue)
     IF the queue pointer is NULL THEN
         RETURN -1 to indicate failure
     END IF

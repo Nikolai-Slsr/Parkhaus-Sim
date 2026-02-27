@@ -3,16 +3,16 @@
 
 #include "vehicle.h"
 
-struct node {
+typedef struct node {
     struct vehicle *vehicle; //pointer to the vehicle stored in this node
     struct node *next; //pointer to the next node in the queue
-};
+} node;
 
-struct queue {
-    struct node *first_node; //pointer to the first node in the queue
-    struct node *last_node; //additional pointer to the last node(by extention the car) in the queue to make adding cars more efficient {O(1) instead of O(n)}
+typedef struct queue {
+    node *first_node; //pointer to the first node in the queue
+    node *last_node; //additional pointer to the last node(by extention the car) in the queue to make adding cars more efficient {O(1) instead of O(n)}
     int size; //store the number of cars in the queue because this information is accessed often
-};
+} queue;
 
 /**
  * @brief Initializes an empty queue.
@@ -22,7 +22,7 @@ struct queue {
  * 
  * @return            A pointer to the initialized queue.
  */
-struct queue *init_queue();
+queue *init_queue();
 
 /**
  * @brief Adds a vehicle to the end of the queue.
@@ -38,7 +38,7 @@ struct queue *init_queue();
  * @param[in]     current_time  The current time when the vehicle is added to the queue.
  * @return                      returns 0 if the vehicle was successfully added to the queue, or -1 
  */
-int enqueue(struct queue *queue, int id, int parking_time, int current_time);
+int enqueue(queue *queue, int id, int parking_time, int current_time);
 
 /**
  * @brief Removes the first node(vehicle) from the queue.
@@ -49,7 +49,7 @@ int enqueue(struct queue *queue, int id, int parking_time, int current_time);
  * 
  * @return             returns a pointer to the removed vehicle, or NULL if the queue was empty or if the queue pointer was NULL.
  */
-struct vehicle *dequeue(struct queue *queue);
+struct vehicle *dequeue(queue *queue);
 
 /**
  * @brief Prints the queue for debugging purposes.
@@ -60,7 +60,7 @@ struct vehicle *dequeue(struct queue *queue);
  * 
  * @return            returns 0 if successful, -1 if the specified queue was empty
  */
-int print_queue(struct queue *queue);
+int print_queue(queue *queue);
 
 /**
  * @brief Frees all memory allocated for the queue and its vehicles.
@@ -72,7 +72,7 @@ int print_queue(struct queue *queue);
  * 
  * @return             returns 0 if successful, -1 if the queue was already NULL
  */
-int free_queue(struct queue **queue);
+int free_queue(queue **queue);
 
 // get_length() is not nessesary because it can be acessed directly: queue->size in O(1)
 #endif 
