@@ -20,8 +20,13 @@ struct queue *init(){
 
 int enqueue(struct queue *queue, int id, int parking_time, int current_time){
     /*
+
+    if the queue pointer is NULL THEN
+        RETURN -1 to indicate failure
+    END IF
+
     allocate memory for a new vehicle
-    IF memory allocation fails THEN
+    IF memory allocation for vehicle fails THEN
         RETURN -1 to indicate failure
     END IF
     set vehicle_id to id
@@ -31,7 +36,9 @@ int enqueue(struct queue *queue, int id, int parking_time, int current_time){
     set random_park_duration to parking_time
 
     allocate memory for a node to store the vehicle
-    IF memory allocation fails THEN
+
+    IF memory allocation for node fails THEN
+        Free the memory allocated for the vehicle to avoid memory leaks
         RETURN -1 to indicate failure
     END IF
     set the node's vehicle pointer to the new vehicle
@@ -51,7 +58,7 @@ int enqueue(struct queue *queue, int id, int parking_time, int current_time){
 }
 int dequeue(struct queue *queue){
     /*
-        IF the queue.length is 0 THEN
+        IF the queue->size is 0 OR queue ist NULL THEN
             RETURN -1 
         END IF
 
