@@ -4,10 +4,6 @@
 
 
 /**
- * PSEUDOCODE:
- * 
- * static FILE *running_stats_file
- * 
  * FUNCTION updateStats (stats *pstats, int parked_cars, int cars_in, int cars_out, int length_queue, int last_wait_time, int current_time, int car_in_queue){
     IF last_wait_time > pstats -> max_wait_time{
         pstats -> max_wait_time = last_wait_time
@@ -15,8 +11,8 @@
     IF length_queue > pstats -> max_length_queue {
         pstats -> max_length_queue = length_queue
     }
-    pstats -> all_cars_in += cars_in
-    pstats -> all_cars_out += cars_out
+    pstats -> sum_cars_in += cars_in
+    pstats -> sum_cars_out += cars_out
     
     pstats -> sum_parkhaus_auslastung += parked_cars
     pstats -> sum_length_queue += length_queue
@@ -44,23 +40,29 @@ FUNCTION printRuntimeStats (const stats *pstats){
             "Letzte Wartezeit:"         pstats -> last_wait_time
 }
 
-FUNCTION createRunnningTimeStatsFile(){
+FUNCTION createRunnningTimeStatsFile(stats *pstats){
     char filename [50];
     int counter = 1;
 
-    WHILE file already exists
-        counter++
-        filename = "running_stats_" counter ".txt"
+    WHILE (1)
+        filename = "running_stats_" + counter + ".txt"
+
+        IF file filename DOES NOT EXIST
+            BREAK
+        END IF
+
+        counter ++
     END WHILE
 
-    CREATE FILE with the name filename
-    OPEN FILE filename for writing
+    OPEN filename FOR WRITING
+    SAVE file pointer in pstats->running_stats_file
 
-    IF FILE filename IS NULL
-        PRINT "Error: Could not create file" filename
+    IF file pointer IS NULL
+        PRINT error
+        EXIT program
     END IF
 
-    PRINT "Created file: " filename
+    PRINT "Created file:" filename
 }
 
 FUNCTION writeRunningTimeStatsToFile(const stats *pstats){
@@ -75,8 +77,11 @@ FUNCTION writeRunningTimeStatsToFile(const stats *pstats){
     }
 }
 
-FUNCTION closeRunnningTimeStatsFile(){
-    CLOSE open File
+FUNCTION closeRunnningTimeStatsFile(stats *pstats){
+    IF pstats->running_stats_file IS NOT NULL
+        CLOSE pstats->running_stats_file
+        SET pstats->running_stats_file TO NULL
+    END IF
 }
 
 FUNCTION printFinalStats (const stats *pstats){
@@ -85,8 +90,8 @@ FUNCTION printFinalStats (const stats *pstats){
             "Auslastung Parkhaus Ø:"            pstats->sum_parkhaus_auslastung/SIMULATION_TIME
             "Länge Warteschlange Ø:"            pstats->sum_length_queue/SIMULATION_TIME
             "Max. Länge Warteschlange:"         pstats->max_length_queue
-            "Wartezeit Ø:"                      pstats->sum_wait_time/pstats->all_cars_in
-            "ges. Anzahl Fahrzeuge rein/raus:"  pstats->all_cars_in " / " pstats->all_cars_out
+            "Wartezeit Ø:"                      pstats->sum_wait_time/pstats->sum_cars_in
+            "ges. Anzahl Fahrzeuge rein/raus:"  pstats->sum_cars_in " / " pstats->sum_cars_out
 }
 
 FUNCTION writeFinalStatsToFile (const stats *pstats){
@@ -105,8 +110,8 @@ FUNCTION writeFinalStatsToFile (const stats *pstats){
             "Auslastung Parkhaus Ø:"            pstats->sum_parkhaus_auslastung/SIMULATION_TIME
             "Länge Warteschlange Ø:"            pstats->sum_length_queue/SIMULATION_TIME
             "Max. Länge Warteschlange:"         pstats->max_length_queue
-            "Wartezeit Ø:"                      pstats->sum_wait_time/pstats->all_cars_in
-            "ges. Anzahl Fahrzeuge rein/raus:"  pstats->all_cars_in " / " pstats->all_cars_out
+            "Wartezeit Ø:"                      pstats->sum_wait_time/pstats->sum_cars_in
+            "ges. Anzahl Fahrzeuge rein/raus:"  pstats->sum_cars_in " / " pstats->sum_cars_out
     CLOSE file
 }
  */

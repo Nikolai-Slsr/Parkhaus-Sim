@@ -6,13 +6,16 @@
  * @brief stores statistic values
  */
 typedef struct {
+    FILE *running_stats_file;            //pointer to a FILE
+
     int max_wait_time;                   //maximum wait time for a car before it could park
     int sum_parkhaus_auslastung;         //sum of occupancy of the parking garage. Needed for calculations of average
     int sum_length_queue;                //sum of queue length to calclulate average queue length
     int max_length_queue;                //maximum queue length
     int sum_wait_time;                   //sum of all waiting times of the cars in queue to calculate average
-    int all_cars_in;                     //sum of all cars that drove into the garage
-    int all_cars_out;                    //sum of all cars that left the garage
+    int sum_cars_in;                     //sum of all cars that drove into the garage
+    int sum_cars_out;                    //sum of all cars that left the garage
+
     int current_time;                    //current simulation time step since start of the simulation
     int parked_cars;                     //Number of currently parked cars
     int cars_in;                         //Number of cars that entered the parking garage during the current time step
@@ -61,7 +64,7 @@ void printRuntimeStats(const stats *pstats);
  * this function creates a new file in which the running time statistics can be written into
  * the file is stored 
  */
-void createRunnningTimeStatsFile();
+void createRunnningTimeStatsFile(stats *pstats);
 
 /**
  * @brief       writes running statistics to file
