@@ -1,7 +1,12 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
 
-
+/**
+ * @brief Represents a vehicele in the simulation
+ *
+ * Stores all time and identification data needed for the queue, entry and parking duration.
+ * 
+ */
 struct vehicle
 {
     int vehicle_id; //unique identifier for the vehicle
