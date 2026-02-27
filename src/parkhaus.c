@@ -41,14 +41,14 @@ FUNCTION int remove_finished_Cars(struct vehicle *pParkhaus[], int current_time)
 
 END FUNCTION
 
-FUNCTION int park_Car(struct vehicle *pParkhaus[], struct Vehicle pCar)
+FUNCTION int park_Car(struct vehicle *pParkhaus[], struct Vehicle *pCar)
     IF pParkhaus == NULL THEN
         return -1
     END IF
     WHILE (Variable of pParkhaus at Index[i] is not "End_Point" or is NULL) THEN
         IF(pParkhaus[i] == NULL) THEN
-            pParkhaus[i] = pCar;
-            waitTime = current_time - Time_of_arrival OF pCar;
+            pParkhaus[i] = *pCar;
+            waitTime = current_time - Time_of_arrival OF *pCar;
             return waitTime
         END IF
     END WHILE
