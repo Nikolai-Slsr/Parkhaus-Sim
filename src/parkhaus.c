@@ -14,12 +14,12 @@ END FUNCTION
 int isFull(struct vehicle Parkhaus[])
     WHILE (Variable of Parkhaus at Index[i] is not "End_Point" or is NULL) THEN //checks if the variable saved at Index[i] is not the End_Point or is NULL 
         IF (Parkhaus[i] == NULL) THEN //check if no Car is present 
-            return false;        //if one is NULL then it is not full
+            return -1       //if one is NULL then it is not full
         END IF
         i = i + 1
     END WHILE
 
-    return true;  //if no NULL was found then it is full
+    return 0  //if no NULL was found then it is full
 END FUNCTION
 
 int remove_finished_Cars(struct vehicle *Parkhaus[], current_time)
