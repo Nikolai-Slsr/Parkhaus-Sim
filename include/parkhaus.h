@@ -41,9 +41,11 @@ arrival time of the car in the parking garage. The number of removed cars is sto
 
 @param[in] struct vehicle *Parkhaus[] Pointer to the array to be processed 
 
+@param[in] int current_time Time since Simulation begin
+
 @return num_removed_Cars returns the number of cars removed during this run
 */
-int remove_finished_Cars(struct vehicle *Parkhaus[]);
+int remove_finished_Cars(struct vehicle *Parkhaus[], int current_time);
 
 /**------------------------------------------------------------------------------------------------
  
