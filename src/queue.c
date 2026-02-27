@@ -14,7 +14,7 @@ struct queue *init(){
     END IF
     set firstCar and lastCar to NULL
     set size to 0
-    RETURN the initialized queue
+    RETURN the initialized queue pointer
     */
 }
 
@@ -45,7 +45,7 @@ int enqueue(struct queue *queue, int id, int parking_time, int current_time){
     set the node's next pointer to NULL
 
     IF the queue is empty THEN
-        set firstCar and lastCar to the new node
+        set first_node and last_node to the new node
         increment size
         RETURN 0 to indicate success
     ELSE
@@ -56,32 +56,32 @@ int enqueue(struct queue *queue, int id, int parking_time, int current_time){
     END IF
     */
 }
-int dequeue(struct queue *queue){
+struct vehicle *dequeue(struct queue *queue){
     /*
         IF the queue->size is 0 OR queue ist NULL THEN
             RETURN -1 
         END IF
 
-    IF queue.length is 1 THEN
-        free the memory of the vehicle in the node
-        free the memory of the node -> has to be done seperately because the vehicle is in the node and won't be freed IF we free the node first
+    IF queue->length is 1 THEN
+        save pointer to vehicle in the first node
+        free the memory of the node
         decrement size
         set firstCar and lastCar to NULL
-        RETURN 0
+        RETURN pointer to saved vehicle
     ELSE
+        save pointer to vehicle in the first node
         save a pointer to the first node (the one to be removed)
-        update queue.firstCar to point to the second node in the queue
-        free the memory of the vehicle in the node
-        free the memory of the node -> has to be done seperately because the vehicle is in the node and won't be freed IF we free the node first
+        update queue->firstCar to point to the second node in the queue
+        free the memory of the node
         decrement size
-        RETURN 0
+        RETURN pointer to saved vehicle
     END IF
     */
 }
 
 int print_queue(struct queue *queue){
     /*
-    IF the queue is empty THEN
+    IF the queue is empty or NULL THEN
         RETURN -1
     ELSE
         initialize a pointer to the first node
@@ -105,13 +105,13 @@ int free_queue(struct queue **queue){
     ELSE
         initialize a pointer to the first node
         WHILE: the current_node is not NULL DO
-            save a pointer to the next node
+            save a tmp pointer to the next node
             free the memory of the vehicle in the current node
             free the memory of the current node
-            move to the next node using the saved pointer
+            move to the next node using the tmp pointer
         END WHILE
         free the memory of the queue itself
-        set the original queue pointer to NULL -> to avoid dangling pointers -> this is why we use a double pointer other wise the pinter to the original queue would still point to the now freed memory, wich could cause a segmentation fault IF we try to access it after freeing the memory
+        set the original queue pointer to NULL //to avoid dangling pointers; this is why we use a double pointer other wise the pinter to the original queue would still point to the now freed memory, wich could cause a segmentation fault IF we try to access it after freeing the memory
         RETURN 0
     END IF
     */
