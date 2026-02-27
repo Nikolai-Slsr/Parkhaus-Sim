@@ -1,4 +1,4 @@
-#include "../include/sim_param.h"
+#include "../include/sim_parameters.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
