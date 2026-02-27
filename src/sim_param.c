@@ -5,6 +5,19 @@
 
 /*
 FUNCTION sim_parameters *get_inputs(){
+
+
+    //This Funktion is vert repetative all Inputs follow the same pattern:
+        - get the input form user
+        - convert the input to the correct type
+        - check if the conversion was successful and if the value is valid
+        - check if the value is in the vadid range
+        - if any of the checks fail, free the allocated sim_parameters struct to avoid memory leaks
+        - if it makes sense print an error message
+
+
+
+
     sim_parameters = allocate memory for a sim_parameters struct
     IF memory allocation fails THEN
         RETURN NULL to indicate failure
