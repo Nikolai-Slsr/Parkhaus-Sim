@@ -8,21 +8,21 @@
 typedef struct {
     FILE *running_stats_file;            //pointer to a FILE
 
-    int max_wait_time;                   //maximum wait time for a car before it could park
-    int sum_parkhaus_auslastung;         //sum of occupancy of the parking garage. Needed for calculations of average
-    int sum_length_queue;                //sum of queue length to calclulate average queue length
-    int max_length_queue;                //maximum queue length
-    int sum_wait_time;                   //sum of all waiting times of the cars in queue to calculate average
-    int sum_cars_in;                     //sum of all cars that drove into the garage
-    int sum_cars_out;                    //sum of all cars that left the garage
+    unsigned int max_wait_time;                   //maximum wait time for a car before it could park
+    unsigned long long sum_parkhaus_auslastung;   //sum of occupancy of the parking garage. Needed for calculations of average
+    unsigned long long sum_length_queue;          //sum of queue length to calclulate average queue length
+    unsigned int max_length_queue;                //maximum queue length
+    unsigned long long sum_wait_time;             //sum of all waiting times of the cars in queue to calculate average
+    unsigned int sum_cars_in;                     //sum of all cars that drove into the garage
+    unsigned int sum_cars_out;                    //sum of all cars that left the garage
 
-    int current_time;                    //current simulation time step since start of the simulation
-    int parked_cars;                     //Number of currently parked cars
-    int cars_in;                         //Number of cars that entered the parking garage during the current time step
-    int cars_out;                        //Number of cars that left the parking garage during the current time step
-    int length_queue;                    //Current number of cars waiting in the queue
-    int car_in_queue;                    //Number of newly arrived cars added to the queue during this time step
-    int last_wait_time;                  //Waiting time of the car that parked during this time step
+    unsigned int current_time;                    //current simulation time step since start of the simulation
+    unsigned int parked_cars;                     //Number of currently parked cars
+    unsigned int cars_in;                         //Number of cars that entered the parking garage during the current time step
+    unsigned int cars_out;                        //Number of cars that left the parking garage during the current time step
+    unsigned int length_queue;                    //Current number of cars waiting in the queue
+    unsigned int car_in_queue;                    //Number of newly arrived cars added to the queue during this time step
+    unsigned int last_wait_time;                  //Waiting time of the car that parked during this time step
 
 }stats;
 
@@ -44,7 +44,7 @@ typedef struct {
  * 
  * @return       this function does not return a value
  */
-void updateStats(stats *pstats, int parked_cars, int cars_in, int cars_out, int length_queue, int last_wait_time, int current_time, int car_in_queue);
+void updateStats(stats *pstats, unsigned int parked_cars, unsigned int cars_in, unsigned int cars_out, unsigned int length_queue, unsigned int last_wait_time, unsigned int current_time, unsigned int car_in_queue);
 
 
 /**

@@ -4,7 +4,7 @@
 
 
 /**
- * FUNCTION updateStats (stats *pstats, int parked_cars, int cars_in, int cars_out, int length_queue, int last_wait_time, int current_time, int car_in_queue){
+ * FUNCTION updateStats (stats *pstats, unsigned int parked_cars, unsigned int cars_in, unsigned int cars_out, unsigned int length_queue, unsigned int last_wait_time, unsigned int current_time, unsigned int car_in_queue){
     IF last_wait_time > pstats -> max_wait_time{
         pstats -> max_wait_time = last_wait_time
     }
@@ -17,7 +17,7 @@
     pstats -> sum_parkhaus_auslastung += parked_cars
     pstats -> sum_length_queue += length_queue
    IF last_wait_time > 0{
-    sum_wait_time += last_wait_time
+    pstats -> sum_wait_time += last_wait_time
    }
 
     pstats -> current_time = current_time
@@ -90,7 +90,7 @@ FUNCTION printFinalStats (const stats *pstats){
             "Auslastung Parkhaus Ø:"            pstats->sum_parkhaus_auslastung/SIMULATION_TIME
             "Länge Warteschlange Ø:"            pstats->sum_length_queue/SIMULATION_TIME
             "Max. Länge Warteschlange:"         pstats->max_length_queue
-            "Wartezeit Ø:"                      pstats->sum_wait_time/pstats->sum_cars_in
+            "Wartezeit Ø:"                      IF pstats->sum_cars_in > 0 {pstats->sum_wait_time/pstats->sum_cars_in} ELSE 0
             "ges. Anzahl Fahrzeuge rein/raus:"  pstats->sum_cars_in " / " pstats->sum_cars_out
 }
 
