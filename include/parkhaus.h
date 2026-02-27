@@ -25,7 +25,7 @@ struct vehicle* init(int Anzahl_Parkplätze);
  * 
  * @return 0/-1 Returns 0 for true (is full) or -1 for false (is not full)
 */
-int is_Full(struct vehicle Parkhaus[]);
+int is_Full(const struct vehicle *Parkhaus[]);
     
 /**
  * @brief Removes all cars that have exceeded their maximum parking duration
@@ -69,6 +69,6 @@ int park_Car(struct vehicle *Parkhaus[], struct vehicle *Car);
  * 
  * @return used_spaces Number of occupied spaces
 */
-int get_Used_Spots(struct vehicle Parkhaus[]);
+int get_Used_Spots(const struct vehicle *Parkhaus[]);
 
 #endif

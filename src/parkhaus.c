@@ -11,7 +11,7 @@ struct vehicle *init(int Anzahl_Parkplätze)
 
 END FUNCTION
 
-int isFull(struct vehicle Parkhaus[])
+int isFull(const struct vehicle *Parkhaus[])
     WHILE (Variable of Parkhaus at Index[i] is not "End_Point" or is NULL) THEN //checks if the variable saved at Index[i] is not the End_Point or is NULL 
         IF (Parkhaus[i] == NULL) THEN //check if no Car is present 
             return -1       //if one is NULL then it is not full
@@ -22,12 +22,15 @@ int isFull(struct vehicle Parkhaus[])
     return 0  //if no NULL was found then it is full
 END FUNCTION
 
-int remove_finished_Cars(struct vehicle *Parkhaus[], current_time)
+int remove_finished_Cars(struct vehicle *Parkhaus[], int current_time)
+    IF Parkhaus == NULL THEN
+        return -1
+    END IF
     num_removed_Cars = 0
     i = 0
     WHILE (Variable of Parkhaus at Index[i] is not "End_Point" or is NULL) THEN
         IF(Parkhaus[i] != NULL)
-            IF(random_park_duration OF Car AT Parkhaus[i] >= current_time - time_of_entry OF Car AT Parkhaus[i]) THEN
+            IF(random_park_duration OF Car AT Parkhaus[i] >= current_time - (time_of_entry OF Car AT Parkhaus[i])) THEN
                 Parkhaus[i] = NULL 
                 num_removed_Cars = num_removed_Cars + 1
             END IF
@@ -39,7 +42,9 @@ int remove_finished_Cars(struct vehicle *Parkhaus[], current_time)
 END FUNCTION
 
 int park_Car(struct vehicle *Parkhaus[], struct Vehicle Car)
-
+    IF Parkhaus == NULL THEN
+        return -1
+    END IF
     WHILE (Variable of Parkhaus at Index[i] is not "End_Point" or is NULL) THEN
         IF(Parkhaus[i] == NULL) THEN
             Parkhaus[i] = Car;
@@ -48,12 +53,14 @@ int park_Car(struct vehicle *Parkhaus[], struct Vehicle Car)
         END IF
     END WHILE
 
-    return ERROR_KEIN_PLATZ_FREI
+    return -1 //if no free slot was found then return -1 to indicate failure
 
 END FUNCTION
 
-int get_Used_Spots(struct vehicle Parkhaus[])
-
+int get_Used_Spots(const struct vehicle *Parkhaus[])
+    IF Parkhaus == NULL THEN
+        return -1
+    END IF
     used_spaces = 0
 
     WHILE (Variable of Parkhaus at Index[i] is not "End_Point" or is NULL) THEN
