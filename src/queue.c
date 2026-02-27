@@ -1,13 +1,12 @@
-
+/*
 #include "../include/queue.h"
 #include <stdlib.h>
 #include "../include/vehicle.h"
-/*
+
 node and queue structs are defined in include/queue.h, so we can use them here without redefining them
 vehicle struct is defined in include/vehicle.h, so we can use it here also
-*/
-struct queue *init(){
-    /*
+
+FUNKTION struct queue *init()
     allocate memory for a new queue
     IF memory allocation fails THEN
         RETURN NULL to indicate failure
@@ -15,12 +14,9 @@ struct queue *init(){
     set firstCar and lastCar to NULL
     set size to 0
     RETURN the initialized queue pointer
-    */
-}
+END FUNKTION
 
-int enqueue(struct queue *queue, int id, int parking_time, int current_time){
-    /*
-
+FUNKTION int enqueue(struct queue *queue, int id, int parking_time, int current_time)
     if the queue pointer is NULL THEN
         RETURN -1 to indicate failure
     END IF
@@ -54,13 +50,12 @@ int enqueue(struct queue *queue, int id, int parking_time, int current_time){
         increment size
         RETURN 0 to indicate success
     END IF
-    */
-}
-struct vehicle *dequeue(struct queue *queue){
-    /*
-        IF the queue->size is 0 OR queue ist NULL THEN
-            RETURN -1 
-        END IF
+END FUNKTION
+
+FUNKTION struct vehicle *dequeue(struct queue *queue)
+    IF the queue->size is 0 OR queue ist NULL THEN
+        RETURN -1
+    END IF
 
     IF queue->length is 1 THEN
         save pointer to vehicle in the first node
@@ -76,11 +71,9 @@ struct vehicle *dequeue(struct queue *queue){
         decrement size
         RETURN pointer to saved vehicle
     END IF
-    */
-}
+END FUNKTION
 
-int print_queue(struct queue *queue){
-    /*
+FUNKTION int print_queue(struct queue *queue)
     IF the queue is empty or NULL THEN
         RETURN -1
     ELSE
@@ -91,11 +84,9 @@ int print_queue(struct queue *queue){
         END WHILE
         RETURN 0
     END IF
-    */
-}
+END FUNKTION
 
-int free_queue(struct queue **queue){
-    /*
+FUNKTION int free_queue(struct queue **queue)
     IF the queue pointer is NULL THEN
         RETURN -1 to indicate failure
     END IF
@@ -114,5 +105,5 @@ int free_queue(struct queue **queue){
         set the original queue pointer to NULL //to avoid dangling pointers; this is why we use a double pointer other wise the pinter to the original queue would still point to the now freed memory, wich could cause a segmentation fault IF we try to access it after freeing the memory
         RETURN 0
     END IF
-    */
-}
+END FUNKTION
+*/
