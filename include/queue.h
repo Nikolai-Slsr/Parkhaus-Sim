@@ -47,14 +47,14 @@ int enqueue(struct queue *queue, int id, int parking_time, int current_time);
  *
  * @param[out]  queue  A pointer to the queue from which the vehicle will be removed.
  * 
- * @return             returns 0 if a car was removed and -1 if the specified queue was empty
+ * @return             returns a pointer to the removed vehicle, or NULL if the queue was empty or if the queue pointer was NULL.
  */
-int dequeue(struct queue *queue);
+struct vehicle *dequeue(struct queue *queue);
 
 /**
  * @brief Prints the queue for debugging purposes.
  *
- * Prints the vehicke_id and postion in the queue.
+ * Prints the vehicle_id and postion in the queue.
  * 
  * @param[in]  queue  A pointer to the queue to be printed.
  * 
