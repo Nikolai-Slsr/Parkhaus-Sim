@@ -2,7 +2,7 @@
 INCLUDE "vehicle.h"
 INCLUDE "parkhaus.h"
 
-struct vehicle *init(int Anzahl_Parkplätze)
+FUNCTION struct vehicle *init(int Anzahl_Parkplätze)
     CREATE *Array TYPE struct vehicle SIZE Anzahl_Parkplätze + 1 
     Fill Array with NULL              //either using calloc or with a for loop
     CREATE struct vehicle with vehicle_id of -1 and name "End_Point"
@@ -11,7 +11,7 @@ struct vehicle *init(int Anzahl_Parkplätze)
 
 END FUNCTION
 
-int isFull(const struct vehicle *Parkhaus[])
+FUNCTION int isFull(const struct vehicle *Parkhaus[])
     WHILE (Variable of Parkhaus at Index[i] is not "End_Point" or is NULL) THEN //checks if the variable saved at Index[i] is not the End_Point or is NULL 
         IF (Parkhaus[i] == NULL) THEN //check if no Car is present 
             return -1       //if one is NULL then it is not full
@@ -22,7 +22,7 @@ int isFull(const struct vehicle *Parkhaus[])
     return 0  //if no NULL was found then it is full
 END FUNCTION
 
-int remove_finished_Cars(struct vehicle *Parkhaus[], int current_time)
+FUNCTION int remove_finished_Cars(struct vehicle *Parkhaus[], int current_time)
     IF Parkhaus == NULL THEN
         return -1
     END IF
@@ -41,7 +41,7 @@ int remove_finished_Cars(struct vehicle *Parkhaus[], int current_time)
 
 END FUNCTION
 
-int park_Car(struct vehicle *Parkhaus[], struct Vehicle Car)
+FUNCTION int park_Car(struct vehicle *Parkhaus[], struct Vehicle Car)
     IF Parkhaus == NULL THEN
         return -1
     END IF
@@ -57,7 +57,7 @@ int park_Car(struct vehicle *Parkhaus[], struct Vehicle Car)
 
 END FUNCTION
 
-int get_Used_Spots(const struct vehicle *Parkhaus[])
+FUNCTION int get_Used_Spots(const struct vehicle *Parkhaus[])
     IF Parkhaus == NULL THEN
         return -1
     END IF
