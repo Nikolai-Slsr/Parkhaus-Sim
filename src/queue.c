@@ -96,8 +96,12 @@ int print_queue(struct queue *queue){
 
 int free_queue(struct queue **queue){
     /*
-    IF the queue is empty THEN
-        RETURN -1
+    IF the queue pointer is NULL THEN
+        RETURN -1 to indicate failure
+    END IF
+    IF queue->size = 0 THEN
+        free the memory of the queue itself
+        RETURN 0
     ELSE
         initialize a pointer to the first node
         WHILE: the current_node is not NULL DO
