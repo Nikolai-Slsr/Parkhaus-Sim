@@ -9,10 +9,10 @@ typedef struct {
     FILE *running_stats_file;                     //pointer to a FILE
 
     unsigned int max_wait_time;                   //maximum wait time for a car before it could park
-    unsigned long long sum_parkhaus_auslastung;   //sum of occupancy of the parking garage. Needed for calculations of average
-    unsigned long long sum_length_queue;          //sum of queue length to calclulate average queue length
+    unsigned int sum_parkhaus_auslastung;   //sum of occupancy of the parking garage. Needed for calculations of average
+    unsigned int sum_length_queue;          //sum of queue length to calclulate average queue length
     unsigned int max_length_queue;                //maximum queue length
-    unsigned long long sum_wait_time;             //sum of all waiting times of the cars in queue to calculate average
+    unsigned int sum_wait_time;             //sum of all waiting times of the cars in queue to calculate average
     unsigned int sum_cars_in;                     //sum of all cars that drove into the garage
     unsigned int sum_cars_out;                    //sum of all cars that left the garage
 
