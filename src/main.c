@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 /*
-FUNKTION main(int argc, char *argv[]){
+FUNKTION int main(int argc, char *argv[]){
     //inputs
     sim_parameters *inputs = get_inputs()
     
@@ -64,6 +64,7 @@ FUNKTION main(int argc, char *argv[]){
     writeFinalStatsToFile(statistics)
 
     closeRunnningTimeStatsFile(statistics) //close the statistics file
-
+    
+    RETURN 0
 }
 */
