@@ -21,17 +21,17 @@ FUNKTION int main(int argc, char *argv[]){
 
     // initialize queue, parkhaus and statistics struct
     queue *parking_queue = init_queue()
-    IF parking_queue is NULL THEN
+    IF parking_queue is NULL THEN // check if the queue was initialized successfully
         PRINT "Error initializing the parking queue. \n"
         RETURN 1
     END IF
 
     vehicle *parkhaus = init_parkhaus(inputs->max_parking_spaces)
-    IF parkhaus is NULL THEN
+    IF parkhaus is NULL THEN // check if the parkhaus was initialized successfully
         PRINT "Error initializing the parking garage. \n"
         RETURN 1
     END IF
-    
+
     stats *statistics;
 
     fill the statistics struct with the initial values 
@@ -50,10 +50,11 @@ FUNKTION int main(int argc, char *argv[]){
             PRINT "Error removing finished cars from the parkhaus. \n"
         END IF
 
-        generate a random number between 0 and 1 
+        generate random_number between 0 and 1 //use % to cap the output to 10000 and then divide by 10000.0 to get a number between 0 and 1
         set added_vehicle_to_queue to 0 // only 0 or 1, because only one car can arrive in one time step
-        IF the random number is smaller OR equal to the arrival probability THEN
-            enqueue(parking_queue, current_time, (random parking time between 1 and max_parking_time), current_time)
+        IF random_number <= inputs->arrival_probability THEN
+            generate random_park_time between 1 and inputs->max_parking_time // use % to cap the output to max_parking_time and then add 1 to get a number between 1 and max_parking_time
+            enqueue(parking_queue, current_time, random_park_time, current_time)
             set added_vehicle_to_queue to 1
         END IF
 
