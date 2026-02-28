@@ -21,12 +21,14 @@ FUNKTION main(int argc, char *argv[]){
     // initialize queue, parkhaus and statistics struct
     queue *parking_queue = init_queue()
     vehicle *parkhaus = init_parkhaus(inputs->max_parking_spaces)
-    stats *statistics = initialize_stats()
+    stats *statistics;
+
     fill the statistics struct with the initial values 
         (current_time = 0, parked_cars = 0, cars_in = 0, cars_out = 0, length_queue = 0, car_in_queue = 0, last_wait_time = 0)
 
+        
     // create file for running time statistics
-    statistics->running_time_stats_file = createRunnningTimeStatsFile()
+    createRunnningTimeStatsFile(statistics) //opens a new files and saves the pointer in the struct
 
     // main simulation loop
 
