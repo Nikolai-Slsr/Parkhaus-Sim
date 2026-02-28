@@ -21,7 +21,17 @@ FUNKTION int main(int argc, char *argv[]){
 
     // initialize queue, parkhaus and statistics struct
     queue *parking_queue = init_queue()
+    IF parking_queue is NULL THEN
+        PRINT "Error initializing the parking queue. \n"
+        RETURN 1
+    END IF
+
     vehicle *parkhaus = init_parkhaus(inputs->max_parking_spaces)
+    IF parkhaus is NULL THEN
+        PRINT "Error initializing the parking garage. \n"
+        RETURN 1
+    END IF
+    
     stats *statistics;
 
     fill the statistics struct with the initial values 
