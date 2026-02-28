@@ -26,7 +26,7 @@ FUNKTION main(int argc, char *argv[]){
     fill the statistics struct with the initial values 
         (current_time = 0, parked_cars = 0, cars_in = 0, cars_out = 0, length_queue = 0, car_in_queue = 0, last_wait_time = 0)
 
-        
+
     // create file for running time statistics
     createRunnningTimeStatsFile(statistics) //opens a new files and saves the pointer in the struct
 
@@ -41,7 +41,7 @@ FUNKTION main(int argc, char *argv[]){
 
         generate a random number between 0 and 1 
         set added_vehicle_to_queue to 0 // only 0 or 1, because only one car can arrive in one time step
-        IF the random number is greater OR equal to the arrival probability THEN
+        IF the random number is smaller OR equal to the arrival probability THEN
             enqueue(parking_queue, current_time, (random parking time between 1 and max_parking_time), current_time)
             set added_vehicle_to_queue to 1
         END IF
@@ -50,9 +50,8 @@ FUNKTION main(int argc, char *argv[]){
         IF the parking queue is not empty THEN
             vehicle_to_park = dequeue(parking_queue)
             IF vehicle_to_park is not NULL THEN
-                park_vehicle(parkhaus, vehicle_to_park, current_time)
+                park_Car(parkhaus, vehicle_to_park, current_time)
             END IF
-            park_Car(parkhaus, vehicle_to_park)
             parked_car = 1
         END IF
 
