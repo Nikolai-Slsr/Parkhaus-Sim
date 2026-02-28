@@ -2,6 +2,7 @@
 #include "../include/vehicle.h"
 #include "../include/parkhaus.h"
 #include "../include/statistics.h"
+#include "../include/sim_parameters.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -64,7 +65,7 @@ FUNKTION int main(int argc, char *argv[]){
     writeFinalStatsToFile(statistics)
 
     closeRunnningTimeStatsFile(statistics) //close the statistics file
-    
+
     RETURN 0
 }
 */
