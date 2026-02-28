@@ -80,8 +80,12 @@ void writeRunningTimeStatsToFile(const stats *pstats);
 
 /**
  * @brief   closes running time statistics file
+ * 
+ * @param[in]   stats               struct with dynmaic statistic values collected during simulation
+ * 
+ * @return      this function does not return a value
  */
-void closeRunnningTimeStatsFile();
+void closeRunnningTimeStatsFile(const stats *pstats);
 
 /**
  * @brief       prints final statistics
