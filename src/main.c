@@ -32,7 +32,7 @@ FUNKTION main(int argc, char *argv[]){
 
     // main simulation loop
 
-    FOR current_time FROM 0 TO inputs->time_steps DO
+    FOR current_time FROM 0 TO inputs->time_steps - 1 DO
 
         num_removed_cars = remove_finished_Cars(parkhaus, current_time)
         IF num_removed_cars is -1 THEN
@@ -55,7 +55,7 @@ FUNKTION main(int argc, char *argv[]){
             parked_car = 1
         END IF
 
-        updateStats(statistics, unsigned int parked_car, added_vehicle_to_queue, num_removed_cars, parking_queue->size, calculate waittime form the vehicle_to_park, current_time, unsigned int car_in_queue);
+        updateStats(statistics, vehivehicle_to_park, added_vehicle_to_queue, num_removed_cars, parking_queue->size, calculate waittime form the vehicle_to_park, current_time, unsigned int car_in_queue);
         // first update the statistics before stariting to print or write to the file.
         writeRunningTimeStatsToFile(statistics)
         printRuntimeStats(statistics) // 
