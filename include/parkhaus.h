@@ -4,7 +4,8 @@
 #include "vehicle.h"
 /**
  * @brief Initialize a parking garage with the given size
- *  The function creates and returns a NULL-initialized array of type struct Vehicle
+ * 
+ * The function creates and returns a NULL-initialized array of type struct Vehicle
  * with the length of the given number of parking spaces.
  * 
  * @param[in] int Anzahl_Parkplätze is used as the length of the array

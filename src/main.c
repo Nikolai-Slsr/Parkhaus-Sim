@@ -32,11 +32,7 @@ FUNKTION int main(int argc, char *argv[]){
         RETURN 1
     END IF
 
-    stats *statistics;
-
-    fill the statistics struct with the initial values 
-        (current_time = 0, parked_cars = 0, cars_in = 0, cars_out = 0, length_queue = 0, car_in_queue = 0, last_wait_time = 0)
-
+    stats statistics = {0}; // initialize the statistics struct with 0 values, this will be updated during the simulation
 
     // create file for running time statistics
     createRunnningTimeStatsFile(statistics) //opens a new files and saves the pointer in the struct
@@ -57,22 +53,24 @@ FUNKTION int main(int argc, char *argv[]){
             enqueue(parking_queue, current_time, random_park_time, current_time)
             set added_vehicle_to_queue to 1
         END IF
-
+        wait_time = -1 // initialize wait_time for the statistics update, it will be updated if a car is parked in this time step
         unsigned char parked_car = 0 // only 0 or 1, because only one car can park in one time step
         IF the parking queue is not empty THEN
             vehicle_to_park = dequeue(parking_queue)
             IF vehicle_to_park is not NULL THEN
                 park_Car(parkhaus, vehicle_to_park, current_time)
             END IF
+            wait_time = vehicle_to_park.time_of_entry - vehicle_to_park.time_of_arrival // calculate the waiting time of the parked car, if there is a parked car
             parked_car = 1
         END IF
-
-        updateStats(statistics, vehivehicle_to_park, added_vehicle_to_queue, num_removed_cars, parking_queue->size, calculate waittime form the vehicle_to_park, current_time, unsigned int car_in_queue);
-        // first update the statistics before stariting to print or write to the file.
+        
+        updateStats(statistics, vehivehicle_to_park, added_vehicle_to_queue, num_removed_cars, parking_queue->size, wait_time, current_time, unsigned int car_in_queue);
+        // first update the statistics before starting to print or write to the file.
         writeRunningTimeStatsToFile(statistics)
-        printRuntimeStats(statistics) // 
+        printRuntimeStats(statistics)
 
-    printFinalStats(statistics) //print and wirte final statistics
+    END FOR
+    printFinalStats(statistics) //print and write final statistics
     writeFinalStatsToFile(statistics)
 
     closeRunnningTimeStatsFile(statistics) //close the statistics file
