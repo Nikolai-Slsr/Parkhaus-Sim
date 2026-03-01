@@ -7,5 +7,5 @@ Länge Warteschlange Ø:              15 Autos<br/>
 Max. Länge Warteschlange:           33 Autos<br/>
 Wartezeit Ø:                        21 min.<br/>
 ges. Anzahl Fahrzeuge rein/raus:    +123/-95<br/>
-|==============================================================================|<br/>
+|=============================================================================|<br/>
 
