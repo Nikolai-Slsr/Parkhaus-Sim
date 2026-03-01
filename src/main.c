@@ -48,7 +48,7 @@ FUNCTION int main(int argc, char *argv[]){
             PRINT "Error removing finished cars from the parkhaus. \n"
         END IF
 
-        generate random_number between 0 and 1 //use % to cap the output to 10000 and then divide by 10000.0 to get a number between 0 and 1
+        generate random_number between 0 and 100 //use % to cap the output to 100
         set added_vehicle_to_queue to 0 // only 0 or 1, because only one car can arrive in one time step
         IF random_number <= inputs->arrival_probability THEN
             generate random_park_time between 1 and inputs->max_parking_time // use % to cap the output to max_parking_time and then add 1 to get a number between 1 and max_parking_time
@@ -67,7 +67,7 @@ FUNCTION int main(int argc, char *argv[]){
             parked_car = 1
         END IF
         
-        updateStats(statistics, vehivehicle_to_park, added_vehicle_to_queue, num_removed_cars, parking_queue->size, wait_time, current_time, unsigned int car_in_queue);
+        updateStats(statistics, vehicle_to_park, added_vehicle_to_queue, num_removed_cars, parking_queue->size, wait_time, current_time, unsigned int car_in_queue);
         // first update the statistics before starting to print or write to the file.
         writeRunningTimeStatsToFile(statistics)
         printRuntimeStats(statistics)

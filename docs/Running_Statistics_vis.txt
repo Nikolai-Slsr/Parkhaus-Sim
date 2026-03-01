@@ -1,5 +1,6 @@
 ## Visualisation of the Running Time Statistics File
 
+Simulation Parkhaus Rauenegg:
 ======================================================================================================
 Time stamp | Parked cars | New cars in | Cars out | Length queue | Cars in queue | Last wait time (s)
 ======================================================================================================

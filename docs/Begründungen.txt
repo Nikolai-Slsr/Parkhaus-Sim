@@ -1,0 +1,24 @@
+Begründungen für alle Punkte:
+
+Quellcode- und Header-Dateien:
+Wir haben uns dazu entschieden 5 Header-Dateien zu includieren. 
+Die wichtigsten Aufgaben des Programms sind in den Header- und Quell-Dateien:
+1. parkhaus.h und parkhaus.c
+    Organisiert das Parkhaus, sagt ob es leer oder voll ist, kümmert sich um das einparken und entfernen von Autos.
+2. queue.h und queue.c
+    Organisiert die Warteschlange, in der die Autos warten müssen, wenn das Parkhaus voll ist.
+3. statistics.h und statistics.c
+    ist für das Erstellen der Statistiken und Ausgeben der Daten im Terminal. Außerdem erstellt es noch Dateien, wo die statistiken reingeschrieben werden.
+4. sim_parameters.h und sim_parameters.c
+    ist für das Implementieren der Simulations Parametern, die man vorher eingibt.
+5. vehicle.h
+    ist ein struct, wo alle informationen zu Autos übergeben werden und aufgerufen werden können.
+
+Geplante Statistiken:
+Für die geplanten Statistiken haben wir jeweils Beispieldateien erstellt, die zeigen, wie die Statistiken ausgegeben werden sollen.
+Die running statistics werden nach jedem Zeitschritt angezeigt, wo aktueller Zeitschritt, Parkhausauslastung, Länge Warteschlange, wie viele Autos rein und 
+raus gefahren sind und wie lange das letzte Auto, das reingefahren ist, gewartet hat, angezeigt werden. 
+In der Text Datei werden die selben Informationen der Übersicht halber als Tabelle ausgegeben.
+Die End statistics werden am Ende im Terminal und als Text Datei gleich ausgegeben. 
+Für die End Statistiken haben wir uns für Simulationsdauer, durchschnittliche Auslastung des Parkhauses, durchschnittliche Warteschlangenlänge, maximale Warteschlangenlänge,
+durchschnittliche Wartezeit und gesamte Anzahl der Fahrzeuge, die in der Simulation ein und ausgefahren sind, entschieden.

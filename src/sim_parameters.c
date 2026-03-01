@@ -69,15 +69,15 @@ FUNCTION sim_parameters *get_inputs(){
     sim_parameters->time_steps = the converted integer value
 
 
-    PRINT "Enter the arrival probability (0-1): \n"
+    PRINT "Enter the arrival probability (0-100): \n"
     prompt the user for arrival_probability and save the input
-    convert the input string to a double // use strtod function to convert the string to a double
+    convert the input string to a integer
     IF the conversion fails THEN
         free the allocated sim_parameters struct to avoid memory leaks
         RETURN NULL
     END IF
-    IF arrival_probability is less than 0 OR greater than 1 THEN
-        PRINT "Arrival probability must be between 0 and 1. \n"
+    IF arrival_probability is less than 0 OR greater than 100 THEN
+        PRINT "Arrival probability must be between 0 and 100. \n"
         free the allocated sim_parameters struct to avoid memory leaks
         RETURN NULL
     END IF
