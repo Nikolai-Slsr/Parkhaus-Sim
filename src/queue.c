@@ -6,7 +6,7 @@
 node and queue structs are defined in include/queue.h, so we can use them here without redefining them
 vehicle struct is defined in include/vehicle.h, so we can use it here also
 
-FUNKTION struct queue *init_queue()
+FUNCTION queue *init_queue()
     allocate memory for a new queue
     IF memory allocation fails THEN
         RETURN NULL to indicate failure
@@ -14,9 +14,9 @@ FUNKTION struct queue *init_queue()
     set firstCar and lastCar to NULL
     set size to 0
     RETURN the initialized queue pointer
-END FUNKTION
+END FUNCTION
 
-FUNKTION int enqueue(struct queue *queue, int id, int parking_time, int current_time)
+FUNCTION int enqueue(queue *queue, int id, int parking_time, int current_time)
     if the queue pointer is NULL THEN
         RETURN -1 to indicate failure
     END IF
@@ -50,9 +50,9 @@ FUNKTION int enqueue(struct queue *queue, int id, int parking_time, int current_
         increment size
         RETURN 0 to indicate success
     END IF
-END FUNKTION
+END FUNCTION
 
-FUNKTION struct vehicle *dequeue(struct queue *queue)
+FUNCTION struct vehicle *dequeue(queue *queue)
     IF the queue->size is 0 OR queue ist NULL THEN
         RETURN -1
     END IF
@@ -71,9 +71,9 @@ FUNKTION struct vehicle *dequeue(struct queue *queue)
         decrement size
         RETURN pointer to saved vehicle
     END IF
-END FUNKTION
+END FUNCTION
 
-FUNKTION int print_queue(struct queue *queue)
+FUNCTION int print_queue(queue *queue)
     IF the queue is empty or NULL THEN
         RETURN -1
     ELSE
@@ -84,9 +84,9 @@ FUNKTION int print_queue(struct queue *queue)
         END WHILE
         RETURN 0
     END IF
-END FUNKTION
+END FUNCTION
 
-FUNKTION int free_queue(struct queue **queue)
+FUNCTION int free_queue(queue **queue)
     IF the queue pointer is NULL THEN
         RETURN -1 to indicate failure
     END IF
@@ -105,5 +105,5 @@ FUNKTION int free_queue(struct queue **queue)
         set the original queue pointer to NULL //to avoid dangling pointers; this is why we use a double pointer other wise the pinter to the original queue would still point to the now freed memory, wich could cause a segmentation fault IF we try to access it after freeing the memory
         RETURN 0
     END IF
-END FUNKTION
+END FUNCTION
 */
