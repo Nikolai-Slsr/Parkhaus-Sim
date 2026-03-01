@@ -39,6 +39,8 @@ FUNKTION int main(int argc, char *argv[]){
 
     // main simulation loop
 
+    int car_id_counter = 0 // this counter will be used to assign unique IDs to the cars
+
     FOR current_time FROM 0 TO inputs->time_steps - 1 DO
 
         num_removed_cars = remove_finished_Cars(parkhaus, current_time)
@@ -50,7 +52,8 @@ FUNKTION int main(int argc, char *argv[]){
         set added_vehicle_to_queue to 0 // only 0 or 1, because only one car can arrive in one time step
         IF random_number <= inputs->arrival_probability THEN
             generate random_park_time between 1 and inputs->max_parking_time // use % to cap the output to max_parking_time and then add 1 to get a number between 1 and max_parking_time
-            enqueue(parking_queue, current_time, random_park_time, current_time)
+            enqueue(parking_queue, car_id_counter, random_park_time, current_time)
+            incement car_id_counter by 1 
             set added_vehicle_to_queue to 1
         END IF
         wait_time = -1 // initialize wait_time for the statistics update, it will be updated if a car is parked in this time step
@@ -69,7 +72,7 @@ FUNKTION int main(int argc, char *argv[]){
         writeRunningTimeStatsToFile(statistics)
         printRuntimeStats(statistics)
     END FOR
-    
+
     printFinalStats(statistics) //print and write final statistics
     writeFinalStatsToFile(statistics)
 
