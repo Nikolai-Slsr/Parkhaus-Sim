@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 /*
-FUNKTION int main(int argc, char *argv[]){
+FUNCTION int main(int argc, char *argv[]){
     //inputs
     sim_parameters *inputs = get_inputs()
     
