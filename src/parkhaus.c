@@ -3,7 +3,7 @@ INCLUDE "vehicle.h"
 INCLUDE "parkhaus.h"
 
 FUNCTION struct vehicle *init(int Anzahl_Parkplätze)
-    CREATE *pArray TYPE struct vehicle SIZE Anzahl_Parkplätze + 1 
+    CREATE *pArray TYPE *struct vehicle SIZE Anzahl_Parkplätze + 1 
     Fill pArray with NULL              //either using calloc or with a for loop
     CREATE struct vehicle with vehicle_id of -1 and name "End_Point"
     save "End_Point" at the last Index of pParkhaus
