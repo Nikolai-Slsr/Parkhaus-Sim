@@ -48,7 +48,7 @@ FUNCTION int main(int argc, char *argv[]){
             PRINT "Error removing finished cars from the parkhaus. \n"
         END IF
 
-        generate random_number between 0 and 1 //use % to cap the output to 10000 and then divide by 10000.0 to get a number between 0 and 1
+        generate random_number between 0 and 100 //use % to cap the output to 100
         set added_vehicle_to_queue to 0 // only 0 or 1, because only one car can arrive in one time step
         IF random_number <= inputs->arrival_probability THEN
             generate random_park_time between 1 and inputs->max_parking_time // use % to cap the output to max_parking_time and then add 1 to get a number between 1 and max_parking_time
