@@ -1,6 +1,8 @@
 ## Visualisation of the Terminal Output at the End of the Simulation
 
 |=============================================================================|<br/>
+Simulation Parkhaus Rauenegg:
+
 Simulationsdauer:                   34 h 32 min<br/>
 Auslastung Parkhaus Ø:              95% <br/>
 Länge Warteschlange Ø:              15 Autos<br/>

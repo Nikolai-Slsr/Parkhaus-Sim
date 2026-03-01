@@ -16,9 +16,9 @@
     
     pstats -> sum_parkhaus_auslastung += parked_cars
     pstats -> sum_length_queue += length_queue
-   IF last_wait_time > 0{
-    pstats -> sum_wait_time += last_wait_time
-   }
+    IF last_wait_time > 0{
+        pstats -> sum_wait_time += last_wait_time
+    }
 
     pstats -> current_time = current_time
     pstats -> parked_cars = parked_cars
@@ -86,6 +86,7 @@ FUNCTION closeRunnningTimeStatsFile(stats *pstats){
 
 FUNCTION printFinalStats (const stats *pstats){
     PRINT:
+            Simulation Parkhaus Rauenegg:
             "Simulationsdauer:"                 SIMULATION_TIME
             "Auslastung Parkhaus Ø:"            pstats->sum_parkhaus_auslastung/SIMULATION_TIME
             "Länge Warteschlange Ø:"            pstats->sum_length_queue/SIMULATION_TIME
@@ -106,6 +107,7 @@ FUNCTION writeFinalStatsToFile (const stats *pstats){
     CREATE new file with filename
 
     WRITE final stats to file:
+            Simulation Parkhaus Rauenegg:
             "Simulationsdauer:"                 SIMULATION_TIME
             "Auslastung Parkhaus Ø:"            pstats->sum_parkhaus_auslastung/SIMULATION_TIME
             "Länge Warteschlange Ø:"            pstats->sum_length_queue/SIMULATION_TIME

@@ -10,7 +10,7 @@ typedef struct sim_parameters { // Struct to hold the simulation parameters that
 }sim_parameters;
 
 
-/**
+/**s
  * @brief Reads the simulation inputs from the user
  * 
  * Gets the simulation parameters from the user and returns it as a SimInputs struct. 
