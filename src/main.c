@@ -57,7 +57,7 @@ FUNKTION int main(int argc, char *argv[]){
         unsigned char parked_car = 0 // only 0 or 1, because only one car can park in one time step
         IF the parking queue is not empty THEN
             vehicle_to_park = dequeue(parking_queue)
-            IF vehicle_to_park is not NULL THEN
+            IF vehicle_to_park is not NULL THEN // check if the dequeue operation was successful 
                 park_Car(parkhaus, vehicle_to_park, current_time)
             END IF
             wait_time = vehicle_to_park.time_of_entry - vehicle_to_park.time_of_arrival // calculate the waiting time of the parked car, if there is a parked car
@@ -68,8 +68,8 @@ FUNKTION int main(int argc, char *argv[]){
         // first update the statistics before starting to print or write to the file.
         writeRunningTimeStatsToFile(statistics)
         printRuntimeStats(statistics)
-
     END FOR
+    
     printFinalStats(statistics) //print and write final statistics
     writeFinalStatsToFile(statistics)
 

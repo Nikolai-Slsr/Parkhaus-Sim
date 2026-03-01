@@ -49,7 +49,7 @@ int enqueue(queue *queue, int id, int parking_time, int current_time);
  * 
  * @return             returns a pointer to the removed vehicle, or NULL if the queue was empty or if the queue pointer was NULL.
  */
-struct vehicle *dequeue(queue *queue);
+vehicle *dequeue(queue *queue);
 
 /**
  * @brief Prints the queue for debugging purposes.
