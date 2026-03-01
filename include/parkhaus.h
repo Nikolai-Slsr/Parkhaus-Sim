@@ -4,7 +4,8 @@
 #include "vehicle.h"
 /**
  * @brief Initialize a parking garage with the given size
- *  The function creates and returns a NULL-initialized array of type struct Vehicle
+ *
+ * The function creates and returns a NULL-initialized array of type *struct Vehicle
  * with the length of the given number of parking spaces.
  * 
  * @param[in] int Anzahl_Parkplätze is used as the length of the array
@@ -45,10 +46,10 @@ int is_Full(const struct vehicle *Parkhaus[]);
 int remove_finished_Cars(struct vehicle *Parkhaus[], int current_time);
 
 /**
- * @brief Inserts a "Car" into the first free position of an array
+ * @brief Inserts a Pointer to a struct vehicle into the first free position of an array
  * 
  * The function iterates through each position of the array and stores the given 
- * "struct vehicle Car" at the first position that contains a NULL pointer. Afterwards, 
+ * "*struct vehicle Car" at the first position that contains a NULL pointer. Afterwards, 
  * the waiting time is calculated using Time_of_Arrival and the current time and returned.
  * 
  * @param[in, out] struct vehicle *Parkhaus[] Pointer to the array to be processed 
