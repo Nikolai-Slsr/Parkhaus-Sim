@@ -67,7 +67,7 @@ FUNCTION int main(int argc, char *argv[]){
             parked_car = 1
         END IF
         
-        updateStats(statistics, vehivehicle_to_park, added_vehicle_to_queue, num_removed_cars, parking_queue->size, wait_time, current_time, unsigned int car_in_queue);
+        updateStats(statistics, vehicle_to_park, added_vehicle_to_queue, num_removed_cars, parking_queue->size, wait_time, current_time, unsigned int car_in_queue);
         // first update the statistics before starting to print or write to the file.
         writeRunningTimeStatsToFile(statistics)
         printRuntimeStats(statistics)
