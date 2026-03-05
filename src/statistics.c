@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "../include/statistics.h"
 #include "../include/parkhaus.h"
+#include "../include/sim_parameters.h"
 
 
 /**
