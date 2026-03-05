@@ -178,5 +178,12 @@ void createRunnningTimeStatsFile(stats *pstats){
         counter ++;
     }
     pstats->running_stats_file = fopen(filename, "w");
+    fprintf(pstats->running_stats_file, "%-20s %-20s %-20s %-20s %-20s %-20s %-20s",
+        "Time stamp:", "Parked cars:", "new cars in:", "cars out:", "length queue:", "cars in queue:", "last wait time:");
     printf("Created file: %s", filename);
+}
+
+void writeRunningTimeStatsToFile(const stats *pstats){
+    fprintf(pstats->running_stats_file, "\n\n%-20u %-20u %-20u %-20u %-20u %-20u %-20u", 
+        pstats -> current_time, pstats -> parked_cars, pstats -> cars_in, pstats -> cars_out, pstats -> length_queue, pstats -> car_in_queue, pstats -> last_wait_time);
 }
