@@ -192,7 +192,7 @@ void writeRunningTimeStatsToFile(const stats *pstats){
 void closeRunnningTimeStatsFile(stats *pstats){
     if (pstats->running_stats_file != NULL){
         fclose(pstats->running_stats_file);
-        pstats->running_stats_file == NULL;
+        pstats->running_stats_file = NULL;
     }
 }
 
@@ -212,7 +212,7 @@ void printFinalStats (const stats *pstats){
     if (pstats->sum_cars_in > 0) {
         avg_wait_time = pstats->sum_wait_time/pstats->sum_cars_in;
     } else {
-        avg_wait_time == 0;
+        avg_wait_time = 0;
     }
     printf("\n%-35s %-40u minuten", "Wartezeit Ø:", avg_wait_time);
     printf("\n%-35s +%-40u/-%u", "ges. Anzahl Fahrzeuge rein/raus:", pstats->sum_cars_in, pstats->sum_cars_out);
