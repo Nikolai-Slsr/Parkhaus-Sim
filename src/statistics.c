@@ -187,3 +187,10 @@ void writeRunningTimeStatsToFile(const stats *pstats){
     fprintf(pstats->running_stats_file, "\n\n%-20u %-20u %-20u %-20u %-20u %-20u %-20u", 
         pstats -> current_time, pstats -> parked_cars, pstats -> cars_in, pstats -> cars_out, pstats -> length_queue, pstats -> car_in_queue, pstats -> last_wait_time);
 }
+
+void closeRunnningTimeStatsFile(stats *pstats){
+    if (pstats->running_stats_file != NULL){
+        fclose(pstats->running_stats_file);
+        pstats->running_stats_file == NULL;
+    }
+}
