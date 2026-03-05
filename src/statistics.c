@@ -119,10 +119,10 @@ FUNCTION writeFinalStatsToFile (const stats *pstats){
  */
 
  void updateStats (stats *pstats, unsigned int parked_cars, unsigned int cars_in, unsigned int cars_out, unsigned int length_queue, unsigned int last_wait_time, unsigned int current_time, unsigned int car_in_queue){
-    if last_wait_time > pstats -> max_wait_time{
+    if (last_wait_time > pstats -> max_wait_time){
         pstats -> max_wait_time = last_wait_time
     }
-    if length_queue > pstats -> max_length_queue {
+    if (length_queue > pstats -> max_length_queue) {
         pstats -> max_length_queue = length_queue
     }
     pstats -> sum_cars_in += cars_in
@@ -130,7 +130,7 @@ FUNCTION writeFinalStatsToFile (const stats *pstats){
     
     pstats -> sum_parkhaus_auslastung += parked_cars
     pstats -> sum_length_queue += length_queue
-    if last_wait_time > 0{
+    if (last_wait_time > 0){
         pstats -> sum_wait_time += last_wait_time
     }
 
@@ -153,13 +153,36 @@ void printRuntimeStats (const stats *pstats){
     }
 
     printf("\n\n%-30s %-70d", "Zeit seit Sim.Beginn:" pstats -> current_time);
-    printf("\n\n%-30s %-70d", "Zeit seit Sim.Beginn:" pstats -> current_time);
-    printf("\n\n%-30s %-70d", "Zeit seit Sim.Beginn:" pstats -> current_time);
-    printf("\n\n%-30s %-70d", "Zeit seit Sim.Beginn:" pstats -> current_time);
-    printf("\n\n%-30s %-70d", "Zeit seit Sim.Beginn:" pstats -> current_time);
-    
-    "Parkhausauslastung:"       pstats -> parked_cars "von" ANZAHL_STELLPLAETZE "Plaetze belegt"
-    "Autos rein/raus:"          pstats -> cars_in "/" pstats -> cars_out
-    "Laenge Warteschlange:"     pstats -> length_queue "Autos + " pstats -> car_in_queue "neue Autos"
-    "Letzte Wartezeit:"         pstats -> last_wait_time
+    printf("\n%-30s %-70d von %d Plaetze belegt", "Parkhausauslastung:", pstats -> parked_cars, ANZAHL_STELLPLAETZE);
+    printf("\n%-30s %-70d / %d", "Autos rein/raus:", pstats -> cars_in, pstats -> cars_out);
+    printf("\n%-30s %-70d Autos + %d neue Autos", "Laenge Warteschlange:", pstats -> length_queue, pstats -> car_in_queue);
+    printf("\n%-30s %-70d", "Letzte Wartezeit:", pstats -> last_wait_time);
+
+    printf ("\n||");
+    for (int i=0; i<100; i++){
+        printf("=");
+    }
+}
+
+void createRunnningTimeStatsFile(stats *pstats){
+    char filename [50];
+    int counter = 1;
+
+    while (1){
+        filename = "running_stats_%d.txt", counter;
+
+        if (filename == NULL){
+            break;
+        }
+        counter ++
+    }
+
+    FILE *running_stats_file = fopen("%s", filename, "w");
+
+    if (*running_stats_file == NULL){
+        printf ("Error: file not created.")
+        break;
+    }
+
+    printf("Created file: %s", filename);
 }
