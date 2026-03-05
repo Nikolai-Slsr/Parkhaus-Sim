@@ -169,12 +169,12 @@ void createRunnningTimeStatsFile(stats *pstats){
 
     while (1){
         sprintf(filename, "running_stats_%d.txt", counter);
-        FILE *running_stats_file = fopen(filename, "r");
+        FILE *checkfile = fopen(filename, "r");
     
-        if (running_stats_file == NULL){
+        if (checkfile == NULL){
             break;
         } else {
-            fclose (running_stats_file);
+            fclose (checkfile);
         }
         counter ++;
     }
@@ -208,17 +208,63 @@ void printFinalStats (const stats *pstats){
     printf("\n%-35s %-40u%c", "Auslastung Parkhaus Ø:", pstats->sum_parkhaus_auslastung/SIMULATION_TIME, '%');
     printf("\n%-35s %-40u Autos", "Länge Warteschlange Ø:", pstats->sum_length_queue/SIMULATION_TIME);
     printf("\n%-35s %-40u Autos", "Max. Laenge Warteschlange:", pstats->max_length_queue);
-    unsigned int temp_wait_time;
+    unsigned int avg_wait_time;
     if (pstats->sum_cars_in > 0) {
-        temp_wait_time = pstats->sum_wait_time/pstats->sum_cars_in;
+        avg_wait_time = pstats->sum_wait_time/pstats->sum_cars_in;
     } else {
-        temp_wait_time == 0;
+        avg_wait_time == 0;
     }
-    printf("\n%-35s %-40u minuten", "Wartezeit Ø:", temp_wait_time);
+    printf("\n%-35s %-40u minuten", "Wartezeit Ø:", avg_wait_time);
     printf("\n%-35s +%-40u/-%u", "ges. Anzahl Fahrzeuge rein/raus:", pstats->sum_cars_in, pstats->sum_cars_out);
 
     printf ("\n|");
     for (int i=0; i<100; i++){
         printf("=");
     }
+    printf ("|");
+}
+
+void writeFinalStatsToFile (const stats *pstats){
+    char filename [50];
+    int counter = 1;
+
+    while (1){
+        sprintf(filename, "final_stats_%d.txt", counter);
+        FILE *checkfile = fopen(filename, "r");
+    
+        if (checkfile == NULL){
+            break;
+        } else {
+            fclose (checkfile);
+        }
+        counter ++;
+    }
+    FILE *final_stats = fopen (filename, "w");
+
+    fprintf (final_stats,"\n\n|");
+    for (int i=0; i<100; i++){
+        fprintf(final_stats,"=");
+    }
+    fprintf (final_stats,"|");
+
+    fprintf(final_stats,"\n\n%-35s %-40u", "Simulationsdauer:", SIMULATION_TIME);
+    fprintf(final_stats,"\n%-35s %-40u%c", "Auslastung Parkhaus Ø:", pstats->sum_parkhaus_auslastung/SIMULATION_TIME, '%');
+    fprintf(final_stats,"\n%-35s %-40u Autos", "Länge Warteschlange Ø:", pstats->sum_length_queue/SIMULATION_TIME);
+    fprintf(final_stats,"\n%-35s %-40u Autos", "Max. Laenge Warteschlange:", pstats->max_length_queue);
+    unsigned int avg_wait_time;
+    if (pstats->sum_cars_in > 0) {
+        avg_wait_time = pstats->sum_wait_time/pstats->sum_cars_in;
+    } else {
+        avg_wait_time == 0;
+    }
+    fprintf(final_stats,"\n%-35s %-40u minuten", "Wartezeit Ø:", avg_wait_time);
+    fprintf(final_stats,"\n%-35s +%-40u/-%u", "ges. Anzahl Fahrzeuge rein/raus:", pstats->sum_cars_in, pstats->sum_cars_out);
+
+    fprintf (final_stats,"\n|");
+    for (int i=0; i<100; i++){
+        fprintf(final_stats,"=");
+    }
+    fprintf (final_stats,"|");
+
+    fclose(final_stats);
 }
