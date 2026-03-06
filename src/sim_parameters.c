@@ -98,3 +98,19 @@ FUNCTION sim_parameters *get_inputs(){
 }
 
 */
+
+sim_parameters *get_inputs(){
+    sim_parameters *p_inputs = malloc(sizeof(sim_parameters));
+    if (p_inputs == NULL) {
+        return NULL;
+    }
+    printf("Enter the maximum number of parking spaces: \n");
+    char input_buffer[100];
+    if (fgets(input_buffer, sizeof(input_buffer), stdin) == NULL) {
+        free(p_inputs);
+        return NULL;
+    }
+    
+    
+
+}
