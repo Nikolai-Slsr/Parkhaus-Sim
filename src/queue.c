@@ -5,17 +5,30 @@
 
 node and queue structs are defined in include/queue.h, so we can use them here without redefining them
 vehicle struct is defined in include/vehicle.h, so we can use it here also
+*/
+#include "../include/queue.h"
+#include <stdlib.h>
+#include "../include/vehicle.h"
 
-FUNCTION queue *init_queue()
-    allocate memory for a new queue
-    IF memory allocation fails THEN
-        RETURN NULL to indicate failure
-    END IF
-    set firstCar and lastCar to NULL
-    set size to 0
-    RETURN the initialized queue pointer
-END FUNCTION
+// FUNCTION queue *init_queue()
+//     allocate memory for a new queue
+//     IF memory allocation fails THEN
+//         RETURN NULL to indicate failure
+//     END IF
+//     set firstCar and lastCar to NULL
+//     set size to 0
+//     RETURN the initialized queue pointer
+// END FUNCTION
+queue *init_queue(){
+    queue *p_new_queue = calloc(1, sizeof(queue)); //use calloc to automatically initalize the queue with 0 and NULL
+    if (p_new_queue == NULL)
+    {
+        return NULL;
+    }
+    return p_new_queue;
+}
 
+/*
 FUNCTION int enqueue(queue *queue, int id, int parking_time, int current_time)
     if the queue pointer is NULL THEN
         RETURN -1 to indicate failure
@@ -51,7 +64,51 @@ FUNCTION int enqueue(queue *queue, int id, int parking_time, int current_time)
         RETURN 0 to indicate success
     END IF
 END FUNCTION
+*/
+int enqueue(queue *p_queue, int id, int parking_time, int current_time){
+    if (p_queue == NULL) //check for a valid queue
+    {
+        return -1;
+    }
 
+    vehicle *p_new_vehicle = calloc(1, sizeof(vehicle)); //Initialize with calloc to avoid accidentally accessing wrong data down the line.
+    if (p_new_vehicle == NULL)
+    {
+        return -1;
+    }
+
+    // Set the vehicle's parameters
+    p_new_vehicle->vehicle_id = id;
+    p_new_vehicle->time_of_entry = -1; //to show it hasn't entered the parking lot yet
+    p_new_vehicle->remaining_parktime = parking_time;
+    p_new_vehicle->time_of_arrival = current_time;
+    p_new_vehicle->random_park_duration = parking_time;
+
+    node *p_new_node = malloc(sizeof(node));
+    if (p_new_node == NULL)
+    {
+        free(p_new_vehicle); // Free the memory allocated for the vehicle to avoid memory leaks
+        return -1;
+    }
+    p_new_node->vehicle = p_new_vehicle;
+    p_new_node->next = NULL;
+
+    if (p_queue->size == 0)
+    {
+        p_queue->first_node = p_new_node;
+        p_queue->last_node = p_new_node;
+        p_queue->size++;
+        return 0;
+    }
+    else
+    {
+        p_queue->last_node->next = p_new_node;
+        p_queue->last_node = p_new_node;
+        p_queue->size++;
+        return 0;
+    }
+}
+/*
 FUNCTION struct vehicle *dequeue(queue *queue)
     IF the queue->size is 0 OR queue ist NULL THEN
         RETURN -1
