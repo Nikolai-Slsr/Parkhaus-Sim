@@ -11,7 +11,30 @@ ausprinten.*/
 #include <stdlib.h>
 
 void queue_test(){
+    queue *my_queue = init_queue();
+    if (my_queue == NULL) {
+        printf("Failed to initialize queue.\n");
+        return;
+    }
 
+    enqueue(my_queue, 1, 60, 0);
+    enqueue(my_queue, 2, 120, 5);
+    enqueue(my_queue, 3, 30, 10);
+
+    printf("Queue after enqueues:\n");
+    print_queue(my_queue);
+
+    vehicle *v = dequeue(my_queue);
+    if (v != NULL) {
+        printf("Dequeued vehicle ID: %d\n", v->vehicle_id);
+        free(v);
+    }
+
+    printf("Queue after dequeue:\n");
+    print_queue(my_queue);
+
+    free_queue(&my_queue);
+    printf("Queue freed.\n");
 }
 
 void parkhaus_test(){
@@ -26,7 +49,7 @@ void sim_parameters_test(){
 
 }
 int main(){
-    //queue_test();
+    queue_test();
     //parkhaus_test();
     //statistics_test();
     //sim_parameters_test();
