@@ -175,13 +175,16 @@ int print_queue(queue *p_queue){
         print_queue("The queue is empty. \n");
         return -1;
     }
-    node *p_current_node = p_queue->first_node;
-    while (p_current_node != NULL)
+    else
     {
-        printf("Vehicle ID: %d, Position in Queue: %d \n", p_current_node->vehicle->vehicle_id, p_queue->size);
-        p_current_node = p_current_node->next;
+        node *p_current_node = p_queue->first_node;
+        while (p_current_node != NULL)
+        {
+            printf("Vehicle ID: %d, Position in Queue: %d \n", p_current_node->vehicle->vehicle_id, p_queue->size);
+            p_current_node = p_current_node->next;
+        }
+        return 0;
     }
-    return 0;
 }
 /*
 FUNCTION int free_queue(queue **queue)
