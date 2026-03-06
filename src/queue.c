@@ -133,29 +133,29 @@ END FUNCTION
 */
 
 vehicle *dequeue(queue *p_queue){
-    if (p_queue == NULL || p_queue->size == 0) //chech for a valid queue and if the queue is not empty
+    if (p_queue == NULL || p_queue->size == 0)  //check for a valid queue and if the queue is not empty
     {
-        return NULL;                    //indicates a failure to dequeue
+        return NULL;                            //indicates a failure to dequeue
     }
 
-    if (p_queue->size == 1)             //special case for length = 1 because we also have to set first_node and last_node to NULL after freeing the node
+    if (p_queue->size == 1)                     //special case for length = 1 because we also have to set first_node and last_node to NULL after freeing the node
     {
         vehicle *p_removed_vehicle = p_queue->first_node->vehicle;
         p_queue->size--;
-        p_queue->first_node = NULL;     //makes sure that the queue is empty after removing the only node in the queue
+        p_queue->first_node = NULL;             //makes sure that the queue is empty after removing the only node in the queue
         p_queue->last_node = NULL;
 
-        free(p_queue->first_node);      //free the memory of the removed node, but not the vehicle because we need to return it
+        free(p_queue->first_node);              //free the memory of the removed node, but not the vehicle because we need to return it
         return p_removed_vehicle;
     }
-    else                                // else is not necessary, just for better readability
+    else                                        // else is not necessary, just for better readability
     {
         vehicle *p_removed_vehicle = p_queue->first_node->vehicle;
         node *p_removed_node = p_queue->first_node;
-        p_queue->size--;                //decrement the size of the queue
+        p_queue->size--;                        //decrement the size of the queue
         p_queue->first_node = p_removed_node->next;
 
-        free(p_removed_node);           //free the memory of the removed node, but not the vehicle because we need to return it
+        free(p_removed_node);                   //free the memory of the removed node, but not the vehicle because we need to return it
         return p_removed_vehicle;
     }
 }
@@ -186,8 +186,9 @@ int print_queue(queue *p_queue){
         int position = 1;                       //position in the queue, starting from 1 for better readability
         while (p_current_node != NULL)
         {
+            //print the vehicle's id and the position in the queue
             printf("Vehicle ID: %d, Position in Queue: %d \n", p_current_node->vehicle->vehicle_id, position);
-            position++;
+            position++;                         //increment the position for the next vehicle in the queue
             p_current_node = p_current_node->next;
         }
         return 0;                               //indicates a successful print
@@ -216,28 +217,28 @@ FUNCTION int free_queue(queue **queue)
 END FUNCTION
 */
 int free_queue(queue **p_queue){
-    if (p_queue == NULL || *p_queue == NULL)
+    if (p_queue == NULL || *p_queue == NULL)            //check for a valid queue pointer and a valid queue
     {
         return -1;
     }
-    if ((*p_queue)->size == 0)
+    if ((*p_queue)->size == 0)                          //if the queue is empty, only the queue struct itself has to be freed
     {
         free(*p_queue);
-        *p_queue = NULL; //set the original queue pointer to NULL to avoid dangling pointers
+        *p_queue = NULL;                                //set the original queue pointer to NULL to avoid dangling pointers
         return 0;
     }
     else
     {
         node *p_current_node = (*p_queue)->first_node;
-        while (p_current_node != NULL)
+        while (p_current_node != NULL)                  //iterate through the queue and free the memory of each node and its vehicle
         {
-            node *p_tmp_node = p_current_node->next; //save a tmp pointer to the next node before freeing the current node
-            free(p_current_node->vehicle);
-            free(p_current_node);
-            p_current_node = p_tmp_node; //move to the next node using the tmp pointer
+            node *p_tmp_node = p_current_node->next;    //save a tmp pointer to the next node before freeing the current node
+            free(p_current_node->vehicle);              //First free the vehicle otherwise, we lose access to the vehicle pointer --> memory leak
+            free(p_current_node);                       //free the memory of the current node
+            p_current_node = p_tmp_node;                //move to the next node using the tmp pointer
         }
-        free(*p_queue); //free the memory of the queue itself
-        *p_queue = NULL; //set the original queue pointer to NULL to avoid dangling pointers -> this is why I used a double pointer
+        free(*p_queue);                                 //free the memory of the queue itself
+        *p_queue = NULL;                                //set the original queue pointer to NULL to avoid dangling pointers -> this is why I used a double pointer
         return 0;
     }
 }
