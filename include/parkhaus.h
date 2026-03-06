@@ -56,9 +56,12 @@ int remove_finished_Cars(struct vehicle Parkhaus[], int current_time);
  * 
  * @param[in] struct vehicle Car car to be parked
  * 
+ * @param[in] int current_time Time since Simulation begin
+
+ * 
  * @return waitTime or Error(-1) if full
 */
-int park_Car(struct vehicle Parkhaus[], struct vehicle *Car);
+int park_Car(struct vehicle Parkhaus[], struct vehicle *Car, int current_time);
 
 /**
  * @brief Counts all occupied spaces in a parking garage array
