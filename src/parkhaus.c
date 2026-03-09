@@ -10,6 +10,7 @@ vehicle **init(int Anzahl_Parkplätze){
     }
     vehicle *End_Point = malloc(sizeof(vehicle));
     if(End_Point == NULL){
+        free(pParkhaus);
         return NULL;
     }
     End_Point->vehicle_id = -1; // CREATE struct vehicle with vehicle_id of -1 and name "End_Point"
@@ -19,6 +20,9 @@ vehicle **init(int Anzahl_Parkplätze){
 }
 
 int isFull(vehicle *pParkhaus[]){
+    if(pParkhaus == NULL){
+        return -1;
+    }
     int i = 0;
     while(pParkhaus[i] == NULL || pParkhaus[i]->vehicle_id != -1){//checks if the variable saved at Index[i] is not the End_Point or is NULL 
         if(pParkhaus[i] == NULL){ //check if no Car is present 
@@ -40,7 +44,7 @@ int remove_finished_Cars(vehicle *pParkhaus[], int current_time){
             if(pParkhaus[i]->random_park_duration <= current_time - (pParkhaus[i]->time_of_entry)){
                 free(pParkhaus[i]);
                 pParkhaus[i] = NULL;
-                num_removed_Cars = num_removed_Cars + 1;
+                num_removed_Cars++;
                 //Sollten die Cars mit Malloc initialisiert werden müssen diese hier wieder free() werden
             }   
         }   
@@ -83,6 +87,9 @@ int get_Used_Spots(vehicle *pParkhaus[]){
 }
 
 vehicle** free_Parkhaus(vehicle **pParkhaus){ //only frees the array and the end pointer, not the cars. Might change that
+    if(pParkhaus == NULL){
+        return NULL;
+    }
     int i = 0;
     while(pParkhaus[i] == NULL || pParkhaus[i]->vehicle_id != -1){
         i++;
