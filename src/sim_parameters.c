@@ -117,31 +117,33 @@ int get_int(const char *prompt, int min, int max) {
             continue;
         }
 
-        
-        if (min = -1)
+        if(min == -1 && max == -1)                              // If there is no minimum or maximum value, we can break the loop and return the value
+        {                            
+            continue;
+        }
+        else if (min == -1)                                     // If there is no minimum value, we only need to check if the value is less than the maximum value
         {
-            if (value > max) {                                   // Check if the value is in the valid range
+            if (value > max) {                                  // Check if the value is in the valid range
                 fprintf(stderr, "Input must be samller than %d. Please try again.\n", max);
                 continue;
             }
         }
-        else if (max = -1)
+        else if (max == -1)                                     // If there is no maximum value, we only need to check if the value is greater than the minimum value
         {
-            if (value < min) {                                   // Check if the value is in the valid range
+            if (value < min) {                                  // Check if the value is in the valid range
                 fprintf(stderr, "Input must be greater than %d. Please try again.\n", min);
                 continue;
             }
         }
         else
         {
-            if (value < min || value > max) {                                   // Check if the value is in the valid range
+            if (value < min || value > max) {                    // Check if the value is in the valid range
                 fprintf(stderr, "Input must be between %d and %d. Please try again.\n", min, max);
                 continue;
             }
         }
         break;
     }
-
     return value;
 }
 
