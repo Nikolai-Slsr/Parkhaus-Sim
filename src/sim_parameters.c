@@ -98,30 +98,47 @@ FUNCTION sim_parameters *get_inputs(){
 }
 
 */
-int get_int(const char *prompt, int min, int max) {
+int get_int(const char *prompt, int min, int max) { 
     char input_buffer[100];
     int value = 0;
 
     while (1) { // Loop until valid input is received
-        printf("%s", prompt); // Display the prompt to the user
-        if (fgets(input_buffer, sizeof(input_buffer), stdin) == NULL) { // Read input from the user
+        printf("%s", prompt);                                               // Display the prompt to the user
+        if (fgets(input_buffer, sizeof(input_buffer), stdin) == NULL) {     // Read input from the user
             fprintf(stderr, "Error reading input. Please try again.\n");
             continue;
         }
 
-        char *endptr;                           //pointer to the first character that could not be converted -> shoulf be \n if the entire input was a valid integer
+        char *endptr;                                                       //pointer to the first character that could not be converted -> shoulf be \n if the entire input was a valid integer
         value = strtol(input_buffer, &endptr, 10);
 
-        if (*endptr != '\n') {                  // Check if the conversion was successful and if the entire input was a valid integer
+        if (*endptr != '\n') {                                              // Check if the conversion was successful and if the entire input was a valid integer
             fprintf(stderr, "Invalid input. Please enter a valid integer.\n");
             continue;
         }
 
-        if (value < min || value > max) {      // Check if the value is in the valid range`
-            fprintf(stderr, "Input must be between %d and %d. Please try again.\n", min, max);
-            continue;
+        
+        if (min = -1)
+        {
+            if (value > max) {                                   // Check if the value is in the valid range
+                fprintf(stderr, "Input must be samller than %d. Please try again.\n", max);
+                continue;
+            }
         }
-
+        else if (max = -1)
+        {
+            if (value < min) {                                   // Check if the value is in the valid range
+                fprintf(stderr, "Input must be greater than %d. Please try again.\n", min);
+                continue;
+            }
+        }
+        else
+        {
+            if (value < min || value > max) {                                   // Check if the value is in the valid range
+                fprintf(stderr, "Input must be between %d and %d. Please try again.\n", min, max);
+                continue;
+            }
+        }
         break;
     }
 
@@ -136,95 +153,15 @@ sim_parameters *get_inputs(){
         return NULL;
     }
 
+    p_inputs->time_steps = get_int("Enter the total number of time steps for the simulation: \n", 1, -1); //max set to -1 to indicate that there is no maximum value for this parameter
 
+    p_inputs->max_parking_spaces = get_int("Enter the maximum number of parking spaces: \n", 1, -1); //max set to -1 to indicate that there is no maximum value for this parameter
 
-    printf("Enter the maximum number of parking spaces: \n");
-    char input_buffer[100];
-    if (fgets(input_buffer, sizeof(input_buffer), stdin) == NULL) 
-    {
-        free(p_inputs);
-        return NULL;
-    }
+    p_inputs->max_parking_time = get_int("Enter the maximum parking time for a vehicle: \n", 1, -1); //max set to -1 to indicate that there is no maximum value for this parameter
 
-    int max_parking_spaces = strtol(input_buffer, NULL, 10);
+    p_inputs->arrival_probability = get_int("Enter the arrival probability (0-100): \n", 0, 100); //min set to 0 and max set to 100 to indicate that the value must be between 0 and 100
 
-    if (max_parking_spaces <= 0) 
-    {
-        printf("Maximum number of parking spaces must be greater than 0. \n");
-        free(p_inputs);
-        return NULL;
-    }
-    p_inputs->max_parking_spaces = max_parking_spaces;
-
-    
-
-    printf("Enter the maximum parking time for a vehicle: \n");
-    if (fgets(input_buffer, sizeof(input_buffer), stdin) == NULL) 
-    {
-        free(p_inputs);
-        return NULL;
-    }
-
-    int max_parking_time = strtol(input_buffer, NULL, 10);
-
-    if (max_parking_time <= 0) 
-    {
-        printf("Maximum parking time must be greater than 0. \n");
-        free(p_inputs);
-        return NULL;
-    }
-    p_inputs->max_parking_time = max_parking_time;
-
-
-
-    printf("Enter the total number of time steps for the simulation: \n");
-    if (fgets(input_buffer, sizeof(input_buffer), stdin) == NULL) 
-    {
-        free(p_inputs);
-        return NULL;
-    }
-
-    int time_steps = strtol(input_buffer, NULL, 10);
-
-    if (time_steps <= 0) 
-    {
-        printf("Total number of time steps must be greater than 0. \n");
-        free(p_inputs);
-        return NULL;
-    }
-    p_inputs->time_steps = time_steps;
-
-
-
-    printf("Enter the arrival probability (0-100): \n");
-    if (fgets(input_buffer, sizeof(input_buffer), stdin) == NULL) 
-    {
-        free(p_inputs);
-        return NULL;
-    }
-
-    int arrival_probability = strtol(input_buffer, NULL, 10);
-
-    if (arrival_probability < 0 || arrival_probability > 100) 
-    {
-        printf("Arrival probability must be between 0 and 100. \n");
-        free(p_inputs);
-        return NULL;
-    }
-    p_inputs->arrival_probability = arrival_probability;
-
-
-
-    printf("Enter the random seed for the simulation: \n");
-    if (fgets(input_buffer, sizeof(input_buffer), stdin) == NULL) 
-    {
-        free(p_inputs);
-        return NULL;
-    }
-
-    int rand_seed = strtol(input_buffer, NULL, 10);
-
-    p_inputs->rand_seed = rand_seed;
+    p_inputs->rand_seed = get_int("Enter the random seed for the simulation: \n", -1, -1); //min and max set to -1 to indicate that there is no minimum or maximum value for this parameter
 
     return p_inputs;
 }
