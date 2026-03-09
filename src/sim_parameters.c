@@ -112,7 +112,7 @@ int get_int(const char *prompt, int min, int max) {
         char *endptr;                                                       //pointer to the first character that could not be converted -> shoulf be \n if the entire input was a valid integer
         value = strtol(input_buffer, &endptr, 10);
 
-        if (*endptr != '\n') {                                              // Check if the conversion was successful and if the entire input was a valid integer
+        if (*endptr != '\n' || *endptr == input_buffer[0]) {                                              // Check if the conversion was successful and if the entire input was a valid integer
             fprintf(stderr, "Invalid input. Please enter a valid integer.\n");
             continue;
         }
