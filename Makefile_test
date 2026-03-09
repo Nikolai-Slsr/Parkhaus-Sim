@@ -1,0 +1,44 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -I./include
+SRC_DIR = src
+OBJ_DIR = obj
+
+# Liste aller benötigten Quelldateien für die Test-Executable
+TEST_SRC = test/functions_test_file.c \
+           $(SRC_DIR)/queue.c \
+           $(SRC_DIR)/parkhaus.c \
+           $(SRC_DIR)/statistics.c \
+           $(SRC_DIR)/sim_parameters.c
+
+# Erzeuge Objektdateinamen
+TEST_OBJ = $(OBJ_DIR)/functions_test_file.o \
+           $(OBJ_DIR)/queue.o \
+           $(OBJ_DIR)/parkhaus.o \
+           $(OBJ_DIR)/statistics.o \
+           $(OBJ_DIR)/sim_parameters.o
+
+TARGET = test/functions_test_file
+
+# Standard-Ziel: Erstellt das Test-Programm
+all: $(OBJ_DIR) $(TARGET)
+
+$(TARGET): $(TEST_OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+# Regel zum Kompilieren der .c Dateien zu .o Dateien (aus src)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Regel für die Testdatei (aus test)
+$(OBJ_DIR)/functions_test_file.o: test/functions_test_file.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Erstelle das Verzeichnis für Objektdateien, falls es nicht existiert
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+# Bereinigung
+clean:
+	rm -rf $(OBJ_DIR) $(TARGET)
+
+.PHONY: all clean

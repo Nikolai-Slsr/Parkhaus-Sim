@@ -1,6 +1,7 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
 
+#include <stdio.h>
 /**
  * @struct
  * @brief stores statistic values
