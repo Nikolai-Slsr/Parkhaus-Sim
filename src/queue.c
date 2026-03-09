@@ -10,6 +10,7 @@ vehicle struct is defined in include/vehicle.h, so we can use it here also
 #include <stdlib.h>
 #include "../include/vehicle.h"
 #include <stdio.h>
+#include <assert.h>
 
 // FUNCTION queue *init_queue()
 //     allocate memory for a new queue
@@ -77,7 +78,12 @@ int enqueue(queue *p_queue, int id, int parking_time, int current_time){
     {
         return -1;
     }
-
+    // Check the validity of the input parameters for the vehicle
+    if (id < 0 || parking_time <= 0 || current_time < 0)
+    {
+        free(p_new_vehicle); // Free the memory allocated for the vehicle to avoid memory leaks
+        return -1; // Invalid input parameters
+    }
     // Set the vehicle's parameters
     p_new_vehicle->vehicle_id = id;
     p_new_vehicle->time_of_entry = -1; //to show it hasn't entered the parking lot yet
@@ -152,7 +158,7 @@ vehicle *dequeue(queue *p_queue){
     {
         vehicle *p_removed_vehicle = p_queue->first_node->vehicle;
         node *p_removed_node = p_queue->first_node;
-        p_queue->size--;                        //decrement the size of the queue
+        --p_queue->size;                        //decrement the size of the queue
         p_queue->first_node = p_removed_node->next;
 
         free(p_removed_node);                   //free the memory of the removed node, but not the vehicle because we need to return it
@@ -242,4 +248,3 @@ int free_queue(queue **p_queue){
         return 0;
     }
 }
-    
