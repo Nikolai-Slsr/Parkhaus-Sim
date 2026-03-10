@@ -10,6 +10,7 @@ ausprinten.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <math.h>
 
 /**
  * @brief Unit tests for the functions in queue.c
@@ -67,13 +68,13 @@ void updateStats_test(){
     assert(test_stats.sum_length_queue == 18);
 
     //small test for final stats
-    unsigned int avg_wait_time;
+    double avg_wait_time;
     if (test_stats.sum_cars_in > 0) {
-        avg_wait_time = test_stats.sum_wait_time / test_stats.sum_cars_in;
+        avg_wait_time = (double)test_stats.sum_wait_time / test_stats.sum_cars_in;
     } else {
-        avg_wait_time = 0;
+        avg_wait_time = 0.0;
     }
-    assert(avg_wait_time == 0);
+    assert(avg_wait_time == 0.0);
 
     //second update
     updateStats(&test_stats, 14, 55, 2, 5, 4, 33, 0);
@@ -88,11 +89,11 @@ void updateStats_test(){
 
     //small test for final stats
     if (test_stats.sum_cars_in > 0) {
-        avg_wait_time = test_stats.sum_wait_time / test_stats.sum_cars_in;
+        avg_wait_time = (double)test_stats.sum_wait_time / test_stats.sum_cars_in;
     } else {
-        avg_wait_time = 0;
+        avg_wait_time = 0.0;
     }
-    assert(avg_wait_time == 0.068965);
+    assert(fabs(avg_wait_time - 0.068965) < 1e-6);
 }
 
 

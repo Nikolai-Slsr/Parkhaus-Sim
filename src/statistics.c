@@ -209,7 +209,7 @@ void printFinalStats (const stats *pstats, const sim_parameters *pSim_parameters
     printf("\n%-35s %-40u%c", "Auslastung Parkhaus Ø:", pstats->sum_parkhaus_auslastung/pSim_parameters->time_steps, '%');
     printf("\n%-35s %-40u Autos", "Länge Warteschlange Ø:", pstats->sum_length_queue/pSim_parameters->time_steps);
     printf("\n%-35s %-40u Autos", "Max. Laenge Warteschlange:", pstats->max_length_queue);
-    unsigned int avg_wait_time;
+    double avg_wait_time;
     if (pstats->sum_cars_in > 0) {
         avg_wait_time = pstats->sum_wait_time/pstats->sum_cars_in;
     } else {
