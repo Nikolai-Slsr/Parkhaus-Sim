@@ -121,7 +121,7 @@ int get_int(const char *prompt, int min, int max) {
 
         if(min == -1 && max == -1)                              // If there is no minimum or maximum value, we can break the loop and return the value
         {                            
-            continue;
+            break; // No need to check if the value is in the valid range since there is no range
         }
         else if (min == -1)                                     // If there is no minimum value, we only need to check if the value is less than the maximum value
         {
