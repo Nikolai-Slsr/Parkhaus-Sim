@@ -210,8 +210,8 @@ void printFinalStats (const stats *pstats, const sim_parameters *pSim_parameters
         printf("\n%-35s %-40u%c", "Auslastung Parkhaus Ø:", pstats->sum_parkhaus_auslastung/pSim_parameters->time_steps, '%');
         printf("\n%-35s %-40u Autos", "Länge Warteschlange Ø:", pstats->sum_length_queue/pSim_parameters->time_steps);
     }else {
-        printf("Auslastung Parkhaus Ø: 0");
-        printf("Länge Warteschlange Ø: 0 Autos");
+        printf("\n%-35s %-40u%c", "Auslastung Parkhaus Ø:", '0', '%');
+        printf("\n%-35s %-40u Autos", "Länge Warteschlange Ø:", '0');
     }
     printf("\n%-35s %-40u Autos", "Max. Laenge Warteschlange:", pstats->max_length_queue);
     double avg_wait_time;
@@ -255,8 +255,11 @@ void writeFinalStatsToFile (const stats *pstats, const sim_parameters *pSim_para
 
     fprintf(final_stats,"\n\n%-35s %-40u", "Simulationsdauer:", pSim_parameters->time_steps);
     if (pSim_parameters->time_steps != 0){
-    fprintf(final_stats,"\n%-35s %-40u%c", "Auslastung Parkhaus Ø:", pstats->sum_parkhaus_auslastung/pSim_parameters->time_steps, '%');
-    fprintf(final_stats,"\n%-35s %-40u Autos", "Länge Warteschlange Ø:", pstats->sum_length_queue/pSim_parameters->time_steps);   
+        fprintf(final_stats,"\n%-35s %-40u%c", "Auslastung Parkhaus Ø:", pstats->sum_parkhaus_auslastung/pSim_parameters->time_steps, '%');
+        fprintf(final_stats,"\n%-35s %-40u Autos", "Länge Warteschlange Ø:", pstats->sum_length_queue/pSim_parameters->time_steps);   
+    }else {
+        fprintf(final_stats,"\n%-35s %-40u%c", "Auslastung Parkhaus Ø:", '0', '%');
+        fprintf(final_stats,"\n%-35s %-40u Autos", "Länge Warteschlange Ø:", '0'); 
     }
     fprintf(final_stats,"\n%-35s %-40u Autos", "Max. Laenge Warteschlange:", pstats->max_length_queue);
     unsigned int avg_wait_time;
