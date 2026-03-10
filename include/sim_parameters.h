@@ -16,14 +16,14 @@ typedef struct sim_parameters { // Struct to hold the simulation parameters that
  * Prompts the user for input and validates that it is an integer within the specified range. 
  * If the input is invalid, it will continue to prompt the user until a valid input is received.
  * 
- * @param prompt The message to display to the user when asking for input
- * @param min The minimum valid value for the input (inclusive), set to -1 if there is no minimum
- * @param max The maximum valid value for the input (inclusive), set to -1 if there is no maximum
+ * @param[in] prompt The message to display to the user when asking for input
+ * @param[in] min The minimum valid value for the input (inclusive), set to -1 if there is no minimum
+ * @param[in] max The maximum valid value for the input (inclusive), set to -1 if there is no maximum
  * @return int The validated integer input from the user
  */
 int get_int(const char *prompt, int min, int max); 
 
-/**s
+/**
  * @brief Gets the simulation inputs from the user
  * 
  * Gets the sim_parameters from the user. If the user enters an invalid parameter, it will keep retrying to get a valid parameter.
