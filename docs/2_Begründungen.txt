@@ -5,13 +5,13 @@ Begründungen und Erklärungen für unser Projekt:
 bevor wir beginnen konnten wirklich autonom zu arbeiten, haben wir folgendes noch in Zusammenarbeit erledigt:
     - am Anfang haben wir uns zusammengesetzt und gemeinsam einen Plan erstellt
     - wir haben alle Issues im GitHub repo gesammelt um einen Überblick zu bekommen 
-    - ein gesamtes Flowchart erstellt, das alle Funktionen und Logiken des Programms beinhaltet
+    - ein grundlegendes Flowchart für main erstellt, das alle Funktionen und Logiken des Programms beinhaltet
     - fesgelegt, dass die Haupt Header-Files sind Parkhaus, Queue und statistics 
     - dann haben wir aufgeteilt, dass Nikolai die Queue, Julius das Parkhaus und Esther die Statistiken macht
 dann konnte jeder von uns an dem Pseudocode seiner Header Datei arbeiten.
 
 Für die schnelle Kommunikation haben wir auch eine WhatsApp Gruppe erstellt und uns ggf darüber informiert und Fragen gestellt.
-Wir haben darauf geachtet, dass jeder Merge request von mindestens einer anderen Person (bei wichtigen Merges beide anderen) reviewed und gemerged wird.
+Wir haben darauf geachtet, dass jeder Merge request von mindestens einer anderen Person (bei wichtigen Merges beide anderen) reviewed und erst dann gemerged wird.
 Wenn wir zusammen an Funktionen und Issues gearbeitet haben, haben wir das größtenteils in den commit messages dazu geschreiben.
 
 Während der Arbeit an unseren Header-Dateien fiel uns auf, dass uns einiges strukturell noch fehlt, wie z.B:
@@ -21,9 +21,17 @@ Während der Arbeit an unseren Header-Dateien fiel uns auf, dass uns einiges str
     haben wir diesen struct auch ausgelagert
 
 Unsere Arbeitsweise im zweiten Teil der Aufgabe lief deutlich einfacher, da wir schon Plan und Pseudocode hatten.
-Nachdem wir alle unsere Dateien und Funktionen implementiert waren, mussten wir auch die assert-tests erstellen. 
-die Tests haben wir in einem gemeinsamen Treffen durchgeführt und konnten so auch noch mehrere Fehler in unserem Code erkennen und korrigieren.
-Zum Schluss haben wir uns auch an die Implementierung von der main.c gesetzt.
+Da wir die verschiedenen Teile des Programms gut aufgeteilt hatten, konnten wir queue.c, parkhaus.c, sim_parameters.c und
+statistics.c gut in Einzelarbeit implementieren.
+So konnten wir asynchron arbeiten und uns dann mit Reviews gegenseitig korrigieren,
+sodass wir die Grundlagen sicher hatten. 
+
+Jeder hat für seine Funktionen die nötigen Unit-Tests geschrieben und war dafür verantwortlich, dass die Einzelteile schon funktionsfähig waren.
+
+So konnten wir uns dann gemeinsam daran setzen, 
+die main zu implementieren, was durch die selbstständige Vorarbeit deutlich vereinfacht wurde. 
+Mit der vorerst fertigen main haben wir dann das Programm endlich zusammengesetzt testen können. 
+Dabei sind uns dann, wie zu erwarten, noch weitere Fehler aufgefallen, die wir dann zusammen fixen konnten.
 
 2. Welche anderen Optionen hatten Sie im Team hinsichtlich der Struktur oder Umsetzung gehabt?
 
@@ -35,22 +43,26 @@ Andere Optionen waren:
 
 3. Warum haben Sie sich gegen die anderen Optionen entschieden bzw. für die gewählte Variante gemeinsam entschieden?
 
-    1. Warum wir uns für die Datenstrukturen entschieden haben:
-        - für das Parkhaus haben wir ein Array genommen, weil es eine feste Anzahl an Parkplätzen gibt 
+    1. Warum wir uns für das Array entschieden haben:
+        Arrays haben eine feste größe so wie unser Parkhaus auch somit wäre der vorteil der Linked list nicht relvant.
         und weil wir so auf jeden Index in o(1) zugreifen können. Bei der linked list könnte man auf die Indices nur in o(n) zugreifen
 
 
 4. Gab es Schwierigkeiten, Herausforderungen bei der Zusammenarbeit?
 
-Eine Herausforderung bei der Zusammenarbeit war, die Aufgaben fair und gleichmäßig zu versteilen, 
-da wir innerhalb der Gruppe unterschiedlich schenell und gut im Programmieren sind.
+Eine Herausforderung bei der Zusammenarbeit war, die Aufgaben fair und gleichmäßig zu verteilen, 
+da wir innerhalb der Gruppe unterschiedlich schnell waren und unterschiedliche Vorkenntnisse mitbrachten.
 Durch den Unterschied an Programmierfähigkeiten, hat sich auch das gegenseitige reviewen als kleine Herausforderung dargestellt, weil die meisten Fehler
 meistens von der selben Person erkannt und kommentiert wurden.
-
-Wir hatten auch in GitHub die Herausforderung, dass branches Lokal und remote andere Namen bekommen haben, weil beispielsweise Groß- und Kleinbuchstabe vertauscht wurden.
 
 
 5. Was ist Ihnen im Team einfach gefallen bzw. sehr gut gelungen?
 Aus dem Grund, dass wir nicht alle gleich gut programmieren können, haben wir noch mehr darauf geachtet, 
 dass jeder trotzdem ähnlich komlexe Aufgaben bekommt und bearbeitet.
 Wenn jemand Fragen hatte oder nicht verstanden hat, wie etwas funktioniert o.ä., lief es sehr gut, dass man sich das gegenseitig erklären konnte.
+
+6. Technische Schwierigkeiten
+
+Wir hatten auch mit Git das ein oder andere Problem. Z. B. ist es uns passiert, dass wir zwei Branches hatten, welche sich nur durch Groß- und Kleinschreibung unterschieden. 
+Dadurch konnten wir lokal nicht mehr pullen, da das Filesystem auf unseren Rechnern case-insensitive ist und somit zwischen den Branches nicht unterscheiden konnte.
+Dies konnten wir lösen, indem wir auf dem Remote den fehlerhaften Branch gelöscht haben und dann mit dem Befehl "git fetch --prune" die gelöschten Branches des Origins synchronisiert haben.
