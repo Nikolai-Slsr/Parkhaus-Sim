@@ -48,8 +48,8 @@ void queue_test(){
     my_queue = NULL;
     assert(free_queue(&my_queue) == -1);            //test for invalid queue pointer, should return -1
 }
-//---------------------------------------------------------
-//functions for parkhaus_test
+//--------------------------------------------------------- 
+//functions for parkhaus_test; because we have to test quite a lot for some functions to ensure correct functionality, I wrote the tests for all Functions in their own Test_Function
 void test_init(void){
     vehicle **parkhaus = init(10);
 
