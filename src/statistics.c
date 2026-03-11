@@ -173,7 +173,7 @@ void createRunningTimeStatsFile(stats *pstats){
     int counter = 1;
 
     while (1){
-        sprintf(filename, "running_stats_%d.txt", counter);
+        sprintf(filename, "outputs/running_stats_%d.txt", counter);
         FILE *checkfile = fopen(filename, "r");
     
         if (checkfile == NULL){
@@ -239,7 +239,7 @@ void writeFinalStatsToFile (const stats *pstats, const sim_parameters *pSim_para
     int counter = 1;
 
     while (1){
-        sprintf(filename, "final_stats_%d.txt", counter);
+        sprintf(filename, "outputs/final_stats_%d.txt", counter);
         FILE *checkfile = fopen(filename, "r");
     
         if (checkfile == NULL){
