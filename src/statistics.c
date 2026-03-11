@@ -232,7 +232,7 @@ void printFinalStats (const stats *pstats, const sim_parameters *pSim_parameters
     printf("\n%-35s %d Autos", "Max. Laenge Warteschlange:", pstats->max_length_queue);
     double avg_wait_time;
     if (pstats->sum_cars_in > 0) {
-        avg_wait_time = pstats->sum_wait_time/pstats->sum_cars_in;
+        avg_wait_time = (double)pstats->sum_wait_time/pstats->sum_cars_in;
     } else {
         avg_wait_time = 0.0;
     }
@@ -283,7 +283,7 @@ void writeFinalStatsToFile (const stats *pstats, const sim_parameters *pSim_para
     fprintf(final_stats,"\n%-35s %d Autos", "Max. Laenge Warteschlange:", pstats->max_length_queue);
     double avg_wait_time;
     if (pstats->sum_cars_in > 0) {
-        avg_wait_time = pstats->sum_wait_time/pstats->sum_cars_in;
+        avg_wait_time = (double)pstats->sum_wait_time/pstats->sum_cars_in;
     } else {
         avg_wait_time = 0;
 
