@@ -9,7 +9,8 @@
 #include <stdlib.h>
 
 
-vehicle **init_parkhaus(int number_of_parking_spaces){
+vehicle **init_parkhaus(int number_of_parking_spaces)
+{
     vehicle **p_parkhaus = calloc(number_of_parking_spaces + 1, sizeof(struct vehicle*)); //    CREATE *pArray TYPE *struct vehicle SIZE Anzahl_Parkplätze + 1 
     if(p_parkhaus == NULL)
     {

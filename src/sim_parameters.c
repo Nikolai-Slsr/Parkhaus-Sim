@@ -24,14 +24,17 @@
  * @param[out] stopped Pointer to a flag that is set to 1 if the user wants to stop the input process
  * @return int The validated integer input from the user
  */
-static int get_int(const char *prompt, int min, int max, char *stopped) { //static because this function should not be called by other files
+static int get_int(const char *prompt, int min, int max, char *stopped) //static because this function should not be called by other files
+{ 
     char input_buffer[100];
     int value = 0;
     *stopped = 0; //initialize error to 0
 
-    while (1) {                                                             // Loop until valid input is received
+    while (1)                                                               // Loop until valid input is received
+    {                                                             
         printf("%s", prompt);                                               // Display the prompt to the user
-        if (fgets(input_buffer, sizeof(input_buffer), stdin) == NULL) {     // Read input from the user
+        if (fgets(input_buffer, sizeof(input_buffer), stdin) == NULL)       // Read input from the user
+        { 
             fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Error reading input. Please try again.\n" ANSI_COLOR_RESET);    // I read that fprintf is better to print error messages, this is why we use it here
             continue;
         }
@@ -46,7 +49,8 @@ static int get_int(const char *prompt, int min, int max, char *stopped) { //stat
         char *endptr;                                                       // pointer to the first character that could not be converted -> shoulf be \n if the entire input was a valid integer
         value = strtol(input_buffer, &endptr, 10);
 
-        if (*endptr != '\n' || *endptr == input_buffer[0]) {                // Check if the conversion was successful and if the entire input was a valid integer
+        if (*endptr != '\n' || *endptr == input_buffer[0])                  // Check if the conversion was successful and if the entire input was a valid integer
+        {
             if (*endptr == 'q' || *endptr == 'Q')                           // If the user entered 'q' or 'Q', we exit the program so that so we dont have to use Strc + C to stop the program if the user is stuck in an infinite loop of invalid input
             {                                           
                 fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Exiting the program.\n" ANSI_COLOR_RESET);
@@ -64,21 +68,24 @@ static int get_int(const char *prompt, int min, int max, char *stopped) { //stat
         }
         else if (min == -1)                                     // If there is no minimum value, we only need to check if the value is less than the maximum value
         {
-            if (value > max) {                                  // Check if the value is in the valid range
+            if (value > max)                                    // Check if the value is in the valid range
+            {
                 fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Input must be smaller than %d. Please try again.\n" ANSI_COLOR_RESET, max);
                 continue;
             }
         }
         else if (max == -1)                                     // If there is no maximum value, we only need to check if the value is greater than the minimum value
         {
-            if (value < min) {                                  // Check if the value is in the valid range
+            if (value < min)                                    // Check if the value is in the valid range
+            {
                 fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Input must be greater than %d. Please try again.\n" ANSI_COLOR_RESET, min);
                 continue;
             }
         }
         else
         {
-            if (value < min || value > max) {                    // Check if the value is in the valid range
+            if (value < min || value > max)                     // Check if the value is in the valid range
+            {
                 fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Input must be between %d and %d. Please try again.\n" ANSI_COLOR_RESET, min, max);
                 continue;
             }
@@ -88,7 +95,8 @@ static int get_int(const char *prompt, int min, int max, char *stopped) { //stat
     return value;
 }
 
-sim_parameters *get_inputs(){
+sim_parameters *get_inputs()
+{
 
     printf("Please enter the simulation parameters. Enter '" ANSI_BOLD ANSI_COLOR_RED "q" ANSI_COLOR_RESET "' to exit the program. \n"); // Nice Header and instruction on how to exit entering the parameters
 
