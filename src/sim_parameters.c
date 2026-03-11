@@ -117,6 +117,13 @@ int get_int(const char *prompt, int min, int max) {
             fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Error reading input. Please try again.\n" ANSI_COLOR_RESET);    // I read that fprintf is better to print error messages, this is why we use it here
             continue;
         }
+        if (strchr(input_buffer, '\n') == NULL) //this searches for the newline character in the input, if it is not found, it means that the user entered more characters than the buffer can hold --> we have to clear the input buffer and print an error message
+        {
+            while (getchar() != '\n'); //clear the input buffer by reading characters until we find the newline character
+            fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Input too long. Please enter a shorter value.\n" ANSI_COLOR_RESET);
+            continue;
+        }
+        
 
         char *endptr;                                                       // pointer to the first character that could not be converted -> shoulf be \n if the entire input was a valid integer
         value = strtol(input_buffer, &endptr, 10);
