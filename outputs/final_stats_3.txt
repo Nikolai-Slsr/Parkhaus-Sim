@@ -1,0 +1,11 @@
+
+
+|====================================================================================================|
+
+Simulationsdauer:                   100                                     
+Auslastung Parkhaus Ø:             1                                       %
+Länge Warteschlange Ø:            35                                       Autos
+Max. Laenge Warteschlange:          68                                       Autos
+Wartezeit Ø:                       35                                       minuten
+ges. Anzahl Fahrzeuge rein/raus:    +24                                      /-23
+|====================================================================================================|

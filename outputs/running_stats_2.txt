@@ -1,0 +1,2 @@
+Time stamp: |  Parked cars: |  new cars in: |  cars out: |  length queue: |  cars in queue: |  last wait time: | 
+0           |  0            |  0            |  0         |  0             |  0              |  4294967295      | 
