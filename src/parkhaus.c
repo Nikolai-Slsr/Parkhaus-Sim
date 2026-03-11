@@ -19,7 +19,7 @@ vehicle **init_parkhaus(int Anzahl_Parkplätze){
 
 }
 
-int isFull(vehicle *pParkhaus[]){
+int parkhaus_is_Full(vehicle *pParkhaus[]){
     if(pParkhaus == NULL){ //checks if the given array is initialised
         return -1;
     }
@@ -39,7 +39,7 @@ int remove_finished_Cars(vehicle *pParkhaus[], int current_time){
     }
     int num_removed_Cars = 0;
     int i = 0;
-    while(pParkhaus[i] == NULL || pParkhaus[i]->vehicle_id != -1){ //full explanation in 'isFull' Function
+    while(pParkhaus[i] == NULL || pParkhaus[i]->vehicle_id != -1){ //full explanation in 'parkhaus_is_Full' Function
         if(pParkhaus[i] != NULL){
             if(pParkhaus[i]->random_park_duration <= current_time - (pParkhaus[i]->time_of_entry)){ //if the park duration is smaller than the time parked the car gets removed
                 free(pParkhaus[i]); //frees the memory of the removed Car and replaces its Spot with NULL
@@ -58,7 +58,7 @@ int park_Car(vehicle *pParkhaus[], vehicle *pCar, int current_time){
         return -1;
     }
     int i = 0;
-    while(pParkhaus[i] == NULL || pParkhaus[i]->vehicle_id != -1){ //full explanation in 'isFull' Function
+    while(pParkhaus[i] == NULL || pParkhaus[i]->vehicle_id != -1){ //full explanation in 'Parkhaus_is_Full' Function
         if(pParkhaus[i] == NULL){ //checks for the first empty Spot in the Array
             pParkhaus[i] = pCar;
             pCar->time_of_entry = current_time; //saves the Time the Car was parked
@@ -76,7 +76,7 @@ int get_Used_Spots(vehicle *pParkhaus[]){
     }
     int used_spaces = 0;
     int i = 0;
-    while(pParkhaus[i] == NULL || pParkhaus[i]->vehicle_id != -1){ //full explanation in 'isFull' Function
+    while(pParkhaus[i] == NULL || pParkhaus[i]->vehicle_id != -1){ //full explanation in 'Parkhaus_is_Full' Function
         if(pParkhaus[i] != NULL){
             used_spaces++; //for every Spot which isnt empty the counter increases by one
         }
@@ -90,7 +90,7 @@ vehicle** free_Parkhaus(vehicle **pParkhaus){ //only frees the array and the end
         return NULL;
     }
     int i = 0;
-    while(pParkhaus[i] == NULL || pParkhaus[i]->vehicle_id != -1){ //full explanation in 'isFull' Function
+    while(pParkhaus[i] == NULL || pParkhaus[i]->vehicle_id != -1){ //full explanation in 'Parkhaus_is_Full' Function
         if(pParkhaus[i] != NULL){
             free(pParkhaus[i]);     //frees the memory of every Car that is still parked
             pParkhaus[i] = NULL;

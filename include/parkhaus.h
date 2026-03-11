@@ -12,7 +12,7 @@
  * 
  * @return *Parkhaus(struct vehicle array) Pointer to the created array
 */
-vehicle* init_parkhaus(int Anzahl_Parkplätze);
+vehicle** init_parkhaus(int Anzahl_Parkplätze);
 
 /** 
  * @brief Checks whether the given parking garage has free spaces
@@ -26,7 +26,7 @@ vehicle* init_parkhaus(int Anzahl_Parkplätze);
  * 
  * @return 0/-1 Returns 0 for true (is full) or -1 for false (is not full)
 */
-int is_Full(vehicle *pParkhaus[]);
+int parkhaus_is_Full(vehicle *pParkhaus[]);
     
 /**
  * @brief Removes all cars that have exceeded their maximum parking duration
@@ -73,7 +73,7 @@ int park_Car(vehicle *pParkhaus[], vehicle *pCar, int current_time);
  * 
  * @return used_spaces Number of occupied spaces
 */
-int get_Used_Spots(vehicle *pParkhaus[]);
+int parkhaus_get_used_Spots(vehicle *pParkhaus[]);
 
 /**
  * @brief Frees the memory for the Parkhaus array
