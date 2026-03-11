@@ -98,7 +98,7 @@ void updateStats_test(){
 
 
 void sim_parameters_test(){
-
+    //sim_parameters can really only be tested manually because it requires user input
 }
 int main(){
     queue_test();
