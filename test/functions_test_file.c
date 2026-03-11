@@ -10,6 +10,7 @@ ausprinten.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <math.h>
 
 /**
  * @brief Unit tests for the functions in queue.c
@@ -52,9 +53,49 @@ void parkhaus_test(){
 
 }
 
-void statistics_test(){
+void updateStats_test(){
+    stats test_stats = {0};
 
+    //first update
+    updateStats (&test_stats, 4, 0, 3, 18, 0, 25, 46);
+
+    assert(test_stats.max_wait_time == 0);
+    assert(test_stats.max_length_queue == 18);
+    assert(test_stats.sum_cars_in == 0);
+    assert(test_stats.sum_cars_out == 3);
+    assert(test_stats.sum_parkhaus_auslastung == 4);
+    assert(test_stats.sum_wait_time == 0);
+    assert(test_stats.sum_length_queue == 18);
+
+    //small test for final stats
+    double avg_wait_time;
+    if (test_stats.sum_cars_in > 0) {
+        avg_wait_time = (double)test_stats.sum_wait_time / test_stats.sum_cars_in;
+    } else {
+        avg_wait_time = 0.0;
+    }
+    assert(avg_wait_time == 0.0);   //because sum_cars_in is 0
+
+    //second update
+    updateStats(&test_stats, 14, 55, 2, 5, 4, 33, 0);
+
+    assert(test_stats.max_wait_time == 4);
+    assert(test_stats.max_length_queue == 18);
+    assert(test_stats.sum_cars_in == 58);
+    assert(test_stats.sum_cars_out == 5);
+    assert(test_stats.sum_parkhaus_auslastung == 18);
+    assert(test_stats.sum_wait_time == 4);
+    assert(test_stats.sum_length_queue == 23);
+
+    //small test for final stats
+    if (test_stats.sum_cars_in > 0) {
+        avg_wait_time = (double)test_stats.sum_wait_time / test_stats.sum_cars_in;
+    } else {
+        avg_wait_time = 0.0;
+    }
+    assert(fabs(avg_wait_time - 0.068965) < 1e-6); //assertion with double: difference must be over the tolerance of 1e-6
 }
+
 
 void sim_parameters_test(){
 

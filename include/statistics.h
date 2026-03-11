@@ -57,7 +57,7 @@ void updateStats(stats *pstats, unsigned int parked_cars, unsigned int cars_in, 
  * 
  * @return      this function does not return a value
 */
-void printRuntimeStats(const stats *pstats);
+void printRuntimeStats(const stats *pstats, const sim_parameters *pSim_parameters);
 
 /**
  * @brief       creates file to write runnning time stats into it
@@ -65,7 +65,7 @@ void printRuntimeStats(const stats *pstats);
  * this function creates a new .txt file in which the running time statistics can be written into
  * the file is stored 
  */
-void createRunnningTimeStatsFile(stats *pstats);
+void createRunningTimeStatsFile(stats *pstats);
 
 /**
  * @brief       writes running statistics to file
@@ -86,7 +86,7 @@ void writeRunningTimeStatsToFile(const stats *pstats);
  * 
  * @return      this function does not return a value
  */
-void closeRunnningTimeStatsFile(const stats *pstats);
+void closeRunningTimeStatsFile(const stats *pstats);
 
 /**
  * @brief       prints final statistics
@@ -98,7 +98,7 @@ void closeRunnningTimeStatsFile(const stats *pstats);
  * 
  * @return      this function does not return a value
  */
-void printFinalStats(const stats *pstats);
+void printFinalStats(const stats *pstats, const sim_parameters *pSim_parameters);
 
 /**
  * @brief       writes final statistics to file
@@ -111,6 +111,6 @@ void printFinalStats(const stats *pstats);
  * 
  * return       this function does not return a value
  */
-void writeFinalStatsToFile(const stats *pstats);
+void writeFinalStatsToFile(const stats *pstats, const sim_parameters *pSim_parameters);
 
 #endif 
