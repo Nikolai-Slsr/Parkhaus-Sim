@@ -71,11 +71,13 @@ vehicle *dequeue(queue *p_queue){
     if (p_queue->size == 1)                     //special case for length = 1 because we also have to set first_node and last_node to NULL after freeing the node
     {
         vehicle *p_removed_vehicle = p_queue->first_node->vehicle;
+
+        free(p_queue->first_node);              //free the memory of the removed node, but not the vehicle because we need to return it
+        
         p_queue->size--;
         p_queue->first_node = NULL;             //makes sure that the queue is empty after removing the only node in the queue
         p_queue->last_node = NULL;
 
-        free(p_queue->first_node);              //free the memory of the removed node, but not the vehicle because we need to return it
         return p_removed_vehicle;
     }
     else                                        // else is not necessary, just for better readability
