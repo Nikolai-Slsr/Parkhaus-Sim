@@ -39,7 +39,7 @@ void queue_test(){
     enqueue(my_queue, 1, 5, 1);
     assert(dequeue(my_queue)->vehicle_id == 1);     //test for correct dequeue
 
-    //print_queue test will not be tested here because it only prints the queue and does not return any value, so we would have to check the output manually, which is not ideal for automated testing. (Was manualy tested and works as expected)
+    //print_queue will not be tested here because it only prints the queue and does not return any value (Was manualy tested and works as expected)
 
     //test freeing the queue
     assert(free_queue(&my_queue) == 0);             //test for successful freeing
