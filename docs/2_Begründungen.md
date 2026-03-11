@@ -1,6 +1,6 @@
-Begründungen und Erklärungen für unser Projekt:
+# Begründungen und Erklärungen für unser Projekt
 
-1. Wie haben Sie die Aufgabenstellung gelöst?
+## 1. Wie haben Sie die Aufgabenstellung gelöst?
 
 Bevor wir beginnen konnten, wirklich autonom zu arbeiten, haben wir Folgendes noch in Zusammenarbeit erledigt:
     - am Anfang haben wir uns zusammengesetzt und gemeinsam einen Plan erstellt
@@ -33,23 +33,27 @@ die main zu implementieren, was durch die selbstständige Vorarbeit deutlich ver
 Mit der vorerst fertigen main haben wir dann das Programm endlich zusammengesetzt testen können. 
 Dabei sind uns dann, wie zu erwarten, noch weitere Fehler aufgefallen, die wir dann zusammen fixen konnten.
 
-2. Welche anderen Optionen hatten Sie im Team hinsichtlich der Struktur oder Umsetzung gehabt?
+## 2. Welche anderen Optionen hatten Sie im Team hinsichtlich der Struktur oder Umsetzung gehabt?
 
 Andere Optionen waren:
-    1. Wir haben überlegt, andere Datenstrukturen zu verwenden z.B.:
-        - für das Parkhaus eine linked list anstelle eines Arrays
-    2. Wir haben überlegt die Simloop auszulagern um die main noch kürzer zu halten
+1. Wir haben überlegt, andere Datenstrukturen zu verwenden z.B.:
+    - Für das Parkhaus haben wir uns zwischen einem Array und eine Linkedlist für ein Array entscheide.
+    - Teilweise hatten wir überlegt, kleinere Datentypen zu verwenden um Speicher zu sparen.
+2. Wir haben überlegt die Simloop auszulagern um die main noch kürzer zu halten
 
-3. Warum haben Sie sich gegen die anderen Optionen entschieden bzw. für die gewählte Variante gemeinsam entschieden?
+## 3. Warum haben Sie sich gegen die anderen Optionen entschieden bzw. für die gewählte Variante gemeinsam entschieden?
 
-    1. Warum wir uns für das Array entschieden haben:
-        Arrays haben eine feste größe so wie unser Parkhaus auch somit wäre der vorteil der Linked list nicht relvant.
-        und weil wir so auf jeden Index in o(1) zugreifen können. Bei der linked list könnte man auf die Indices nur in o(n) zugreifen
-    2. Warum wir uns gegen ein extra file für Simloop entschieden haben:
-        Wir waren der meinung, dass die extra modularisierung keinen wirkliche mehrwert gebrcaht hätte, und ehr dazu geführt hätte, dass die strukut komplexer und damit 
+1. Warum wir uns für das Array entschieden haben:
+    - Unser Parkhaus hat eine feste Größe, daher passt ein Array perfekt, da es ebenfalls eine feste Größe hat.
+    Der Vorteil einer Linked List wäre daher nicht relevant. Zusätzlich können wir mit einem Array auf jeden Index in O(1) zugreifen,
+    während der Zugriff bei einer Linked List O(n) dauern würde.
+    - Die Verwendung von kleineren Datentypen hätte zu viel Komplexität und potenzielle Fehlerquellen hinzugefügt, was unserer Meinung nach nicht der geringfügigen Menge an gespartem Speicher entspricht.
+
+2. Warum wir uns gegen ein extra file für Simloop entschieden haben:
+Wir waren der meinung, dass die extra modularisierung keinen wirkliche mehrwert gebrcaht hätte, und ehr dazu geführt hätte, dass die strukut komplexer und damit 
 
 
-4. Gab es Schwierigkeiten, Herausforderungen bei der Zusammenarbeit?
+## 4. Gab es Schwierigkeiten, Herausforderungen bei der Zusammenarbeit?
 
 Eine Herausforderung bei der Zusammenarbeit war, die Aufgaben fair und gleichmäßig zu verteilen, 
 da wir innerhalb der Gruppe unterschiedlich schnell waren und unterschiedliche Vorkenntnisse mitbrachten.
@@ -57,24 +61,25 @@ Durch den Unterschied an Programmierfähigkeiten, hat sich auch das gegenseitige
 meistens von der selben Person erkannt und kommentiert wurden.
 
 
-5. Was ist Ihnen im Team einfach gefallen bzw. sehr gut gelungen?
+## 5. Was ist Ihnen im Team einfach gefallen bzw. sehr gut gelungen?
 
 Aus dem Grund, dass wir nicht alle gleich gut programmieren können, haben wir noch mehr darauf geachtet, 
 dass jeder trotzdem ähnlich komplexe Aufgaben bekommt und bearbeitet.
 
-Wenn jemand Fragen hatte oder nicht verstanden hat, wie etwas funktioniert o.ä., lief es sehr gut, dass man sich das gegenseitig erklären konnte.
+Wenn jemand Fragen hatte oder die Funktionsweise nicht verstand, konnten wir uns alles gegenseitig gut erklären. 
 
 Auch hatten wir das Gefühl, dass die Arbeitsteilung sehr gut gelaufen ist und niemand über-/unterfordert war.
-Wir konnten uns gut auf Lösungen einigen und haben die wichtigen Entscheidungen immer zusammen getroffen. 
-Generell war die Zusammenarbeit sehr harmonisch, wir hatten keine großen Meinungsverschiedenheiten und sind immer schnell auf einen Nenner gekommen.
+Wir konnten uns gut auf Lösungen einigen und haben die wichtigen Entscheidungen immer zusammen getroffen. Generell war die Zusammenarbeit sehr harmonisch, wir hatten keine großen Meinungsverschiedenheiten und sind immer schnell auf einen Nenner gekommen.
 
 Wir haben uns oft zusammengesetzt, um an den Aufgaben zu arbeiten. 
 Das hat sehr geholfen, dass wir alle am selben Strang ziehen. 
 Aus diesem Grund gab es auch mehrere Branches, die in Zusammenarbeit, aber eben von einem Account committet und gemerget wurden. 
 Dazu sollten aber Anmerkungen in den Commits stehen, damit klar ist, was wir zusammen gemacht haben.
 
-6. Technische Schwierigkeiten
+## 6. Technische Schwierigkeiten
 
 Wir hatten auch mit Git das ein oder andere Problem. Z. B. ist es uns passiert, dass wir zwei Branches hatten, welche sich nur durch Groß- und Kleinschreibung unterschieden. 
 Dadurch konnten wir lokal nicht mehr pullen, da das Filesystem auf unseren Rechnern case-insensitive ist und somit zwischen den Branches nicht unterscheiden konnte.
 Dies konnten wir lösen, indem wir auf dem Remote den fehlerhaften Branch gelöscht haben und dann mit dem Befehl "git fetch --prune" die gelöschten Branches des Origins synchronisiert haben.
+
+//@Julius explain solution for end element in Array
