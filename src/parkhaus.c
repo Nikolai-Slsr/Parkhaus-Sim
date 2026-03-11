@@ -70,7 +70,7 @@ int park_Car(vehicle *pParkhaus[], vehicle *pCar, int current_time){
     return -1; //if no free slot was found then return -1 to indicate failure
 }
 
-int get_Used_Spots(vehicle *pParkhaus[]){
+int parkhaus_get_used_Spots(vehicle *pParkhaus[]){
     if(pParkhaus == NULL){
         return -1;
     }

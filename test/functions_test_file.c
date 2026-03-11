@@ -88,20 +88,20 @@ void test_park_Car(void){
     assert(park_Car(parkhaus, Car1, 0) == -1); //Testing if Function recognises empty array as Error
     return;
 }
-void test_isFull(void){
+void test_parkhaus_is_Full(void){
     vehicle **parkhaus = init_parkhaus(10);
-    assert(isFull(parkhaus) == -1);
+    assert(parkhaus_is_Full(parkhaus) == -1);
     for(int i=0; i<10; i++){
         vehicle *Car = malloc(sizeof(vehicle));
         Car->vehicle_id = i;
         park_Car(parkhaus, Car, 1);
     }
-    assert(isFull(parkhaus) == 0);
+    assert(parkhaus_is_Full(parkhaus) == 0);
 
     parkhaus = free_Parkhaus(parkhaus);
 
 }
-void test_get_Used_Spots(void){
+void test_parkhaus_get_Used_Spots(void){
     vehicle **parkhaus;
     parkhaus = init_parkhaus(10);
     vehicle *Car1 = malloc(sizeof(vehicle));
@@ -109,16 +109,16 @@ void test_get_Used_Spots(void){
     vehicle *Car2 = malloc(sizeof(vehicle));
     Car2->vehicle_id = 2;
     
-    assert(get_Used_Spots(parkhaus) == 0); //Testing with no Cars
+    assert(parkhaus_get_Used_Spots(parkhaus) == 0); //Testing with no Cars
     park_Car(parkhaus, Car1, 1);
     
-    assert(get_Used_Spots(parkhaus) == 1); //Testing with one Car
+    assert(parkhaus_get_Used_Spots(parkhaus) == 1); //Testing with one Car
     park_Car(parkhaus, Car2, 2);
     
-    assert(get_Used_Spots(parkhaus) == 2); //Testing with two Cars
+    assert(parkhaus_get_Used_Spots(parkhaus) == 2); //Testing with two Cars
 
     parkhaus = free_Parkhaus(parkhaus);
-    assert(get_Used_Spots(parkhaus) == -1); //Testing if Function recognises empty array as Error
+    assert(parkhaus_get_Used_Spots(parkhaus) == -1); //Testing if Function recognises empty array as Error
     return;
 }
 void test_remove_finished_cars(void){
@@ -137,10 +137,10 @@ void test_remove_finished_cars(void){
     assert(remove_finished_Cars(parkhaus, 2) == 0); //Testing if no Car was removed at Time 2
     assert(remove_finished_Cars(parkhaus, 6) == 2); //Testing if both Cars were removed at Time 6
 
-    assert(get_Used_Spots(parkhaus) == 0); //Testing if the Cars really were removed
+    assert(parkhaus_get_Used_Spots(parkhaus) == 0); //Testing if the Cars really were removed
 
     parkhaus = free_Parkhaus(parkhaus);
-    assert(get_Used_Spots(parkhaus) == -1); //Testing if Function recognises empty array as Error
+    assert(parkhaus_get_Used_Spots(parkhaus) == -1); //Testing if Function recognises empty array as Error
     
     return;
 }
@@ -159,8 +159,8 @@ void parkhaus_test(){
     test_init_parkhaus();
     test_free_Parkhaus();
     test_park_Car();
-    test_isFull();
-    test_get_Used_Spots();
+    test_parkhaus_is_Full();
+    test_parkhaus_get_Used_Spots();
     test_remove_finished_cars();
 }
 
