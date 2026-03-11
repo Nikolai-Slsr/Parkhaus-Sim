@@ -100,6 +100,13 @@ FUNCTION sim_parameters *get_inputs(){
 //The following implementation doesn't 100% follow the pseudocode: We created an extra function to get inputs from the user, so get_inputs just calls get_int. This is a much better solution because it avoids a lot of repetative code and can be extended more easily.
 
 */
+
+//define Colors and formating for the error messages in get_int
+
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+#define ANSI_BOLD          "\x1b[1m"
+
 int get_int(const char *prompt, int min, int max) { 
     char input_buffer[100];
     int value = 0;
@@ -107,7 +114,7 @@ int get_int(const char *prompt, int min, int max) {
     while (1) {                                                             // Loop until valid input is received
         printf("%s", prompt);                                               // Display the prompt to the user
         if (fgets(input_buffer, sizeof(input_buffer), stdin) == NULL) {     // Read input from the user
-            fprintf(stderr, "Error reading input. Please try again.\n");
+            fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Error reading input. Please try again.\n" ANSI_COLOR_RESET);    // I read that fprintf is better to print error messages, this is why we use it here
             continue;
         }
 
@@ -117,11 +124,11 @@ int get_int(const char *prompt, int min, int max) {
         if (*endptr != '\n' || *endptr == input_buffer[0]) {                // Check if the conversion was successful and if the entire input was a valid integer
             if (*endptr == 'q' || *endptr == 'Q')                           // If the user entered 'q' or 'Q', we exit the program so that so we dont have to use Strc + C to stop the program if the user is stuck in an infinite loop of invalid input
             {                                           
-                fprintf(stderr, "Exiting the program.\n");
+                fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Exiting the program.\n" ANSI_COLOR_RESET);
                 exit(0);
             }
             
-            fprintf(stderr, "Invalid input. Please enter a valid integer.\n");
+            fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Invalid input. Please enter a valid integer.\n" ANSI_COLOR_RESET);
             continue;
         }
 
@@ -132,21 +139,21 @@ int get_int(const char *prompt, int min, int max) {
         else if (min == -1)                                     // If there is no minimum value, we only need to check if the value is less than the maximum value
         {
             if (value > max) {                                  // Check if the value is in the valid range
-                fprintf(stderr, "Input must be smaller than %d. Please try again.\n", max);
+                fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Input must be smaller than %d. Please try again.\n" ANSI_COLOR_RESET, max);
                 continue;
             }
         }
         else if (max == -1)                                     // If there is no maximum value, we only need to check if the value is greater than the minimum value
         {
             if (value < min) {                                  // Check if the value is in the valid range
-                fprintf(stderr, "Input must be greater than %d. Please try again.\n", min);
+                fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Input must be greater than %d. Please try again.\n" ANSI_COLOR_RESET, min);
                 continue;
             }
         }
         else
         {
             if (value < min || value > max) {                    // Check if the value is in the valid range
-                fprintf(stderr, "Input must be between %d and %d. Please try again.\n", min, max);
+                fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Input must be between %d and %d. Please try again.\n" ANSI_COLOR_RESET, min, max);
                 continue;
             }
         }
