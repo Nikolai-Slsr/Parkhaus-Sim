@@ -115,6 +115,12 @@ int get_int(const char *prompt, int min, int max) {
         value = strtol(input_buffer, &endptr, 10);
 
         if (*endptr != '\n' || *endptr == input_buffer[0]) {                // Check if the conversion was successful and if the entire input was a valid integer
+            if (*endptr == 'q' || *endptr == 'Q')                           // If the user entered 'q' or 'Q', we exit the program so that so we dont have to use Strc + C to stop the program if the user is stuck in an infinite loop of invalid input
+            {                                           
+                fprintf(stderr, "Exiting the program.\n");
+                exit(0);
+            }
+            
             fprintf(stderr, "Invalid input. Please enter a valid integer.\n");
             continue;
         }
