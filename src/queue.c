@@ -5,7 +5,7 @@
 #include <assert.h>
 
 queue *init_queue(){
-    queue *p_new_queue = calloc(1, sizeof(queue)); //use calloc to automatically initalize the queue with 0 and NULL
+    queue *p_new_queue = calloc(1, sizeof(queue));                      //use calloc to automatically initalize the queue with 0 and NULL
     if (p_new_queue == NULL)
     {
         return NULL;
@@ -14,12 +14,12 @@ queue *init_queue(){
 }
 
 int enqueue(queue *p_queue, int id, int parking_time, int current_time){
-    if (p_queue == NULL) //check for a valid queue
+    if (p_queue == NULL)                                                //check for a valid queue
     {
         return -1;
     }
 
-    vehicle *p_new_vehicle = calloc(1, sizeof(vehicle)); //Initialize with calloc to avoid accidentally accessing wrong data down the line.
+    vehicle *p_new_vehicle = calloc(1, sizeof(vehicle));                //Initialize with calloc to avoid accidentally accessing wrong data down the line.
     if (p_new_vehicle == NULL)
     {
         return -1;
@@ -27,12 +27,12 @@ int enqueue(queue *p_queue, int id, int parking_time, int current_time){
     // Check the validity of the input parameters for the vehicle
     if (id < 0 || parking_time <= 0 || current_time < 0)
     {
-        free(p_new_vehicle); // Free the memory allocated for the vehicle to avoid memory leaks
-        return -1; // Invalid input parameters
+        free(p_new_vehicle);                                            // Free the memory allocated for the vehicle to avoid memory leaks
+        return -1;                                                      // Invalid input parameters
     }
     // Set the vehicle's parameters
     p_new_vehicle->vehicle_id = id;
-    p_new_vehicle->time_of_entry = -1; //to show it hasn't entered the parking lot yet
+    p_new_vehicle->time_of_entry = -1;                                  //to show it hasn't entered the parking lot yet
     p_new_vehicle->remaining_parktime = parking_time;
     p_new_vehicle->time_of_arrival = current_time;
     p_new_vehicle->random_park_duration = parking_time;
@@ -40,13 +40,13 @@ int enqueue(queue *p_queue, int id, int parking_time, int current_time){
     node *p_new_node = malloc(sizeof(node));
     if (p_new_node == NULL)
     {
-        free(p_new_vehicle); // Free the memory allocated for the vehicle to avoid memory leaks
+        free(p_new_vehicle);                                            // Free the memory allocated for the vehicle to avoid memory leaks
         return -1;
     }
     p_new_node->vehicle = p_new_vehicle;
     p_new_node->next = NULL;
 
-    if (p_queue->size == 0) //special case for length = 0 because first_node has to also be set to the new node.
+    if (p_queue->size == 0)                                             //special case for length = 0 because first_node has to also be set to the new node.
     {
         p_queue->first_node = p_new_node;
         p_queue->last_node = p_new_node;
