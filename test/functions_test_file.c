@@ -48,9 +48,117 @@ void queue_test(){
     my_queue = NULL;
     assert(free_queue(&my_queue) == -1);            //test for invalid queue pointer, should return -1
 }
+//--------------------------------------------------------- 
+//functions for parkhaus_test; because we have to test quite a lot for some functions to ensure correct functionality, I wrote the tests for all Functions in their own Test_Function
+void test_init_parkhaus(void){
+    vehicle **parkhaus = init_parkhaus(10);
+
+    assert(parkhaus[10]->vehicle_id == -1);
+    assert(parkhaus[9] == NULL);
+    parkhaus = free_Parkhaus(parkhaus);
+}
+void test_park_Car(void){
+    vehicle **parkhaus;
+    parkhaus = init_parkhaus(10);
+    vehicle *Car1 = malloc(sizeof(vehicle));
+    Car1->vehicle_id = 1;
+    Car1->time_of_arrival = 1;
+    vehicle *Car2 = malloc(sizeof(vehicle));
+    Car2->vehicle_id = 2;
+    Car2->time_of_arrival = 2;
+
+    assert(parkhaus[0] == NULL); //Testing if the first Spot is empty
+    
+    assert(park_Car(parkhaus, Car1, 2) == 1); //Testing if the waitTime is correct
+    assert(parkhaus[0] != NULL);
+    assert(parkhaus[0]->vehicle_id == 1); //Testing if the first Spot isnt empty and if it contains the right Car
+    assert(parkhaus[0]->time_of_entry == 2);
+
+    assert(park_Car(parkhaus, Car2, 4) == 2); //Testing if the waitTime is correct
+    assert(parkhaus[1] != NULL);
+    assert(parkhaus[1]->vehicle_id == 2); //Testing if the second Spot isnt empty and if it contains the right Car
+    assert(parkhaus[1]->time_of_entry == 4);
+
+    assert(parkhaus[0]->vehicle_id == 1); //Testing that nothing has changed with the first Spot
+
+    parkhaus = free_Parkhaus(parkhaus);
+    assert(park_Car(parkhaus, Car1, 0) == -1); //Testing if Function recognises empty array as Error
+    return;
+}
+void test_isFull(void){
+    vehicle **parkhaus = init_parkhaus(10);
+    assert(isFull(parkhaus) == -1);
+    for(int i=0; i<10; i++){
+        vehicle *Car = malloc(sizeof(vehicle));
+        Car->vehicle_id = i;
+        park_Car(parkhaus, Car, 1);
+    }
+    assert(isFull(parkhaus) == 0);
+
+    parkhaus = free_Parkhaus(parkhaus);
+
+}
+void test_get_Used_Spots(void){
+    vehicle **parkhaus;
+    parkhaus = init_parkhaus(10);
+    vehicle *Car1 = malloc(sizeof(vehicle));
+    Car1->vehicle_id = 1;
+    vehicle *Car2 = malloc(sizeof(vehicle));
+    Car2->vehicle_id = 2;
+    
+    assert(get_Used_Spots(parkhaus) == 0); //Testing with no Cars
+    park_Car(parkhaus, Car1, 1);
+    
+    assert(get_Used_Spots(parkhaus) == 1); //Testing with one Car
+    park_Car(parkhaus, Car2, 2);
+    
+    assert(get_Used_Spots(parkhaus) == 2); //Testing with two Cars
+
+    parkhaus = free_Parkhaus(parkhaus);
+    assert(get_Used_Spots(parkhaus) == -1); //Testing if Function recognises empty array as Error
+    return;
+}
+void test_remove_finished_cars(void){
+    vehicle **parkhaus;
+    parkhaus = init_parkhaus(10);
+    vehicle *Car1 = malloc(sizeof(vehicle));
+    Car1->vehicle_id = 1;
+    Car1->random_park_duration = 5;
+    vehicle *Car2 = malloc(sizeof(vehicle));
+    Car2->random_park_duration = 5;
+    Car2->vehicle_id = 2;
+
+    park_Car(parkhaus, Car1, 1); //Parking both Cars at Time 1
+    park_Car(parkhaus, Car2, 1); 
+
+    assert(remove_finished_Cars(parkhaus, 2) == 0); //Testing if no Car was removed at Time 2
+    assert(remove_finished_Cars(parkhaus, 6) == 2); //Testing if both Cars were removed at Time 6
+
+    assert(get_Used_Spots(parkhaus) == 0); //Testing if the Cars really were removed
+
+    parkhaus = free_Parkhaus(parkhaus);
+    assert(get_Used_Spots(parkhaus) == -1); //Testing if Function recognises empty array as Error
+    
+    return;
+}
+void test_free_Parkhaus(void){
+    vehicle **parkhaus;
+    parkhaus = init_parkhaus(10);
+
+    parkhaus = free_Parkhaus(parkhaus);
+    assert(parkhaus == NULL);
+    assert(free_Parkhaus(parkhaus) == NULL);
+    return;
+}
+//---------------------------------------------------------
 
 void parkhaus_test(){
-
+    test_init_parkhaus();
+    test_free_Parkhaus();
+    test_park_Car();
+    test_isFull();
+    test_get_Used_Spots();
+    test_remove_finished_cars();
 }
 
 void updateStats_test(){
@@ -101,8 +209,10 @@ void sim_parameters_test(){
     //sim_parameters can really only be tested manually because it requires user input
 }
 int main(){
+    printf("\n[*]Running Test...");
     queue_test();
-    //parkhaus_test();
-    //statistics_test();
+    parkhaus_test();
+    statistics_test();
     //sim_parameters_test();
+    printf("\n[*]Passed all Tests!");
 }
