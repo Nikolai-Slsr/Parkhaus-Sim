@@ -5,16 +5,16 @@
 
 ### 1.1 Aufgabenteil 1
 Bevor wir beginnen konnten, wirklich autonom zu arbeiten, haben wir Folgendes noch in Zusammenarbeit erledigt:
-- am Anfang haben wir uns zusammengesetzt und gemeinsam einen Gesamtplan erstellt
-- wir haben alle Issues im GitHub repo gesammelt um einen Überblick zu bekommen 
-- ein grundlegendes Flowchart für main erstellt, das alle Funktionen und Logiken des Programms beeinhaltet
-- festgelegt, dass die Haupt Header-Files Parkhaus, Queue und statistics sind
-- dann haben wir aufgeteilt, dass Nikolai Schlosser die Queue, Julius Faustmann das Parkhaus und Esther Birngruber die Statistiken macht
+- Gemeinsam einen Gesamtplan erstellt.
+- Alle Issues im GitHub Repo gesammelt um einen Überblick zu bekommen.
+- Ein grundlegendes Flowchart für main erstellt, das alle grundlegenden Funktionen und Logiken des Programms beinhaltet.
+- Die grundlegende Modulstruktur mit Parkhaus, Queue und Statistik festgelegt.
+- Dann haben wir aufgeteilt, dass Nikolai Schlosser die Queue, Julius Faustmann das Parkhaus und Esther Birngruber die Statistiken macht
 Somit konnte jeder von uns mit dem Pseudocode und seiner Header Datei starten.
 
 Für die schnelle Kommunikation haben wir auch eine WhatsApp Gruppe erstellt und uns ggf darüber informiert und Fragen gestellt.
 Wir haben darauf geachtet, dass jeder Merge-Request von mindestens einer anderen Person (bei wichtigen Merges auch von beiden) reviewed und erst dann gemerged wurde.
-Wenn wir zusammen an Funktionen und Issues gearbeitet haben, haben wir das Größtenteils in den commit messages dazu geschreiben.
+Wenn wir zusammen an Funktionen und Issues gearbeitet haben, haben wir das Größtenteils in den commit messages dazu geschrieben.
 
 Während der Arbeit an unseren Header-Dateien fiel uns auf, dass uns einiges strukturell noch fehlt, wie z.B:
 - sim_parameters.h und sim_parameters.c : um die eingegebenen Simulationsparameter mehrmals zu nutzen, haben wir das Lesen und speichern dieser Parameter in einer eigenen Datei ausgelagert
@@ -44,7 +44,7 @@ So in der Form haben wir beide Aufgabenteile gelöst.
 
 Andere Optionen waren:
 1. Wir haben überlegt, andere Datenstrukturen zu verwenden z.B.:
-    - Für das Parkhaus haben wir uns zwischen einem Array und einer Linkedlist für ein Array entscheide.
+    - Für das Parkhaus haben wir uns zwischen einem Array und einer Linkedlist für das Array entschieden.
     - Teilweise hatten wir überlegt, kleinere Datentypen zu verwenden um Speicher zu sparen.
     - Wir hatten überlegt die Fahrzeug structs direkt im Array zu speichern
 2. Wir haben überlegt die Simloop auszulagern um die main noch kürzer zu halten
@@ -55,7 +55,7 @@ Andere Optionen waren:
 1. Warum wir uns für das Array entschieden haben:
     - Unser Parkhaus hat eine festgelegte Größe, die sich im Programmverlauf nicht ändert. Hierfür ist ein Array perfekt geeignet, da es einmal mit dieser Größe initialisiert werden kann.
     Der Vorteil einer Linked List wäre daher nicht relevant. Zusätzlich können wir mit einem Array auf jeden Index in O(1) zugreifen, während der Zugriff bei einer Linked List O(n) dauern würde.
-    - Für die Datentypen haben wir so gut es geht versucht die Speicherschonenste Option zu wählen. Trotzdem gab es Situationen wo wir lieber auf nochmal sicher gegagen sind und die paar verlorenen Bits in Kauf genommen haben um einen Fehlerfreien Code garantieren zu können. Hier war immer eine Risikoabwägung unsererseits nötig. 
+    - Für die Datentypen haben wir so gut es geht versucht die speicherschonendste Option zu wählen. Trotzdem gab es Situationen wo wir lieber auf nochmal sicher gegangen sind und die paar verlorenen Bits in Kauf genommen haben um einen fehlerfreien Code garantieren zu können. Hier war immer eine Risikoabwägung unsererseits nötig. 
     - Wir haben uns recht schnell dafür entschieden das Parkhaus als Array, welches Pointer auf die Fahrzeuge enthält zu erstellen. Dies hat den Vorteil, dass nicht für jede Operation ein ganzes Struct ins Array kopiert und an die Funktionen übergeben werden muss, sondern eben nur Pointer auf diese. Das führt zu einer effizienteren Speichernutzung und schnellere Laufzeit. Um einen leeren Platz darstellen zu können, haben wir NULL Pointer benutzt. In der Praxis hat sich dieser Ansatz als gute Entscheidung herausgestellt.
 
 2. Warum wir uns gegen ein extra file für Simloop entschieden haben:
@@ -70,9 +70,9 @@ da wir innerhalb der Gruppe unterschiedlich schnell waren und unterschiedliche V
 Durch den Unterschied an Programmierfähigkeiten, hat sich auch das gegenseitige reviewen als kleine Herausforderung dargestellt, weil die meisten Fehler
 meistens von der selben Person erkannt und kommentiert wurden. Mit der Zeit hat sich das aber deutlich verbessert, da man gelernt hat, worauf man achten muss und wie man Code am besten lesen kann und da unsere Programmierkentnisse sich ständig verbessert haben.
 
-- Zeitmanagment war für uns auch eine Herausforderung, da wir nebenbei auch viel Zeit in die Anderen Fächer investieren mussten. Auch haben wir am Anfang unterschätzt wie lange es dauert, alles richtig zu testen, GitHub zu pflegen und die Dokumentation zu schreiben.
+- Zeitmanagement war für uns auch eine Herausforderung, da wir nebenbei auch viel Zeit in die anderen Fächer investieren mussten. Auch haben wir am Anfang unterschätzt wie lange es dauert, alles richtig zu testen, GitHub zu pflegen und die Dokumentation zu schreiben.
 
-- Auch mussten wir lernen wie man Online Recourcen und KI, sinnvoll nutzt ohne sich zu sehr darauf zu verlassen oder den code einfach zu kopieren. Wir haben KI zur Wissensaneignung und Recherche von Funktionen und Algorithmen genutzt, aber immer darauf geachtet, dass wir den Code selbst schreiben und verstehen.
+- Auch mussten wir lernen wie man Online Ressourcen und KI, sinnvoll nutzt ohne sich zu sehr darauf zu verlassen oder den Code einfach zu kopieren. Wir haben KI zur Wissensaneignung und Recherche von Funktionen und Algorithmen genutzt, aber immer darauf geachtet, dass wir den Code selbst schreiben und verstehen.
 
 
 
@@ -100,7 +100,7 @@ Dies konnten wir lösen, indem wir auf dem Remote den fehlerhaften Branch gelös
  die gelöschten Branches des Origins synchronisiert haben.
 
 ### 6.2 Iteration über das Parkhaus-Array
-Eine andere Schwierigkeit, die wir am Anfang überkommen mussten, war die Frage wie wir durch das Parkhaus Array durchlaufen können. Da die Anzahl der Parkplätze in der main.c gespeichert ist, hätten wir bei jedem Aufruf von Funktionen aus parkhaus.c diesen Wert übergeben müssen. Wir haben uns von Anfang an dagegen entschieden, da dies nur zu einer höheren Komplexität in der Implementierung führt. Wir wollten eine Lösung, die Seperat, nur lokal in parkhaus.c funktioniert, aber trotzdem Arrays jeglicher Größe durchlaufen kann.
+Eine andere Schwierigkeit, die wir am Anfang überkommen mussten, war die Frage wie wir durch das Parkhaus Array durchlaufen können. Da die Anzahl der Parkplätze in der main.c gespeichert ist, hätten wir bei jedem Aufruf von Funktionen aus parkhaus.c diesen Wert übergeben müssen. Wir haben uns von Anfang an dagegen entschieden, da dies nur zu einer höheren Komplexität in der Implementierung führt. Wir wollten eine Lösung, die seperat, nur lokal in parkhaus.c funktioniert, aber trotzdem Arrays jeglicher Größe durchlaufen kann.
 
 
 So kamen wir auf die Idee einen "End_Point" einzubauen. Dieser hat die einzigartige `vehicle_id = -1` und wird beim initialisieren des Arrays im Index[Anzahl_Parkplätze], also im letzten Parkplatz + 1 gespeichert.
