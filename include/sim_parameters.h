@@ -9,26 +9,12 @@ typedef struct sim_parameters { // Struct to hold the simulation parameters that
     int rand_seed; // Random seed for generating random numbers, to allow for reproducibility of the simulation results
 }sim_parameters;
 
-
-/** 
- * @brief Reads an integer input from the user with validation
- * 
- * Prompts the user for input and validates that it is an integer within the specified range. 
- * If the input is invalid, it will continue to prompt the user until a valid input is received.
- * 
- * @param[in] prompt The message to display to the user when asking for input
- * @param[in] min The minimum valid value for the input (inclusive), set to -1 if there is no minimum
- * @param[in] max The maximum valid value for the input (inclusive), set to -1 if there is no maximum
- * @return int The validated integer input from the user
- */
-int get_int(const char *prompt, int min, int max); 
-
 /**
  * @brief Gets the simulation inputs from the user
  * 
  * Gets the sim_parameters from the user. If the user enters an invalid parameter, it will keep retrying to get a valid parameter.
  * 
- * @return SimInputs Pointer to the struct containing the simulation parameters.
+ * @return sim_parameters* Pointer to the struct containing the simulation parameters, or NULL if the user cancelled.
  */
 sim_parameters *get_inputs();
 
