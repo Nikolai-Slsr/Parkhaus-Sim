@@ -26,21 +26,24 @@ void queue_test(){
     //init_queue test
     queue *my_queue = init_queue();
     assert(my_queue != NULL);
+    assert(my_queue->size == 0);
+    assert(my_queue->first_node == NULL);
+    assert(my_queue->last_node == NULL);
     
-    //enqueue test
+    //enqueue() test
     assert(enqueue(my_queue, 1, 5, 1) == 0);
     assert(enqueue(my_queue, -100, 5, -1) == -1);   //test invalid input parameters, should return -1
-    my_queue = NULL;                                 //reset the queue for the next test
+    my_queue = NULL;                                //reset the queue for the next test
     assert(enqueue(my_queue, 2, 3, 3) == -1);       //test for invalid queue pointer
 
-    //dequeue test
+    //dequeue() test
     assert(dequeue(my_queue) == NULL);              //test for NULL queue pointer, should return NULL
     my_queue = init_queue();
     assert(dequeue(my_queue) == NULL);              //test for empty queue, should return NULL
     enqueue(my_queue, 1, 5, 1);
     assert(dequeue(my_queue)->vehicle_id == 1);     //test for correct dequeue
 
-    //print_queue will not be tested here because it only prints the queue and does not return any value (Was manualy tested and works as expected)
+    //print_queue() will not be tested here because it only prints the queue and does not return any value (Was manualy tested and works as expected)
 
     //test freeing the queue
     assert(free_queue(&my_queue) == 0);             //test for successful freeing
@@ -53,7 +56,8 @@ void parkhaus_test(){
 
 }
 
-void updateStats_test(){
+void updateStats_test()
+{
     stats test_stats = {0};
 
     //first update
