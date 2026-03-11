@@ -149,7 +149,7 @@ int main()
             vehicle *vehicle_to_park = dequeue(parking_queue);
             if (vehicle_to_park != NULL)
             {
-                int wait_time = park_Car(parkhaus, vehicle_to_park, current_time);
+                wait_time = park_Car(parkhaus, vehicle_to_park, current_time);
                 if(wait_time == -1)
                 {
                     printf("Error parking the car. \n");
