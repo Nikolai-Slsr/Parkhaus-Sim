@@ -1,3 +1,9 @@
+/*
+ * File: queue.c
+ * Description: Implements the vehicle waiting queue as a linked list.
+ * Provides queue initialization, enqueue, dequeue, printing, and cleanup.
+ */
+
 #include "../include/queue.h"
 #include <stdlib.h>
 #include "../include/vehicle.h"
