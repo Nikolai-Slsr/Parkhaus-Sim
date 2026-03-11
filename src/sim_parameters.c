@@ -164,6 +164,8 @@ int get_int(const char *prompt, int min, int max) {
 
 sim_parameters *get_inputs(){
 
+    printf("Please enter the simulation parameters. Enter '" ANSI_BOLD ANSI_COLOR_RED "q" ANSI_COLOR_RESET "' to exit the program. \n"); // Nice Header and instruction on how to exit entering the parameters
+
     sim_parameters *p_inputs = malloc(sizeof(sim_parameters));
     if (p_inputs == NULL) 
     {
