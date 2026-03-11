@@ -42,23 +42,20 @@ Auf diese Weise haben wir beide Aufgabenteile strukturiert und effizient gelöst
 ## 2.0 Alternative Optionen
 >Welche anderen Optionen hatten wir hinsichtlich der Struktur oder Umsetzung?
 
-Andere Optionen waren:
-1. Wir haben überlegt, andere Datenstrukturen zu verwenden z.B.:
-    - Für das Parkhaus haben wir zwischen einem Array und einer Linked List abgewogen und uns schließlich für das Array entschieden.
-    - Teilweise hatten wir überlegt, kleinere Datentypen zu verwenden um Speicher zu sparen.
-    - Wir hatten außerdem überlegt, die Fahrzeug-Structs direkt im Array zu speichern.
-2. Wir haben auch überlegt die Simulationsschleife auszulagern, um die main noch kürzer zu halten.
+Bei der Planung unseres Programms haben wir auch andere Möglichkeiten für die Struktur und Umsetzung in Betracht gezogen:
+1. Für das Parkhaus haben wir überlegt, statt eines Arrays eine Linked List zu verwenden.
+2. Teilweise hatten wir überlegt, kleinere Datentypen zu verwenden um Speicher zu sparen.
+3. Wir hatten außerdem überlegt, die Fahrzeug-Structs direkt im Array zu speichern.
+4. Zusätzlich haben wir darüber nachgedacht, die Simulationsschleife auszulagern, damit die main noch kürzer wird.
 
 ## 3.0 Begründung der Entscheidungen
 >Warum haben wir uns gegen die anderen Optionen entschieden bzw. für die gewählte Variante gemeinsam entschieden?
 
-1. Warum wir uns für das Array entschieden haben:
-    - Unser Parkhaus hat eine festgelegte Größe, die sich im Programmverlauf nicht ändert. Hierfür ist ein Array perfekt geeignet, da es einmal mit dieser Größe initialisiert werden kann.
-    Der Vorteil einer Linked List wäre daher nicht relevant. Zusätzlich können wir mit einem Array auf jeden Index in O(1) zugreifen, während der Zugriff bei einer Linked List O(n) dauern würde.
-    - Für die Datentypen haben wir so gut es geht versucht die speicherschonendste Option zu wählen. Trotzdem gab es Situationen wo wir lieber auf nochmal sicher gegangen sind und die paar verlorenen Bits in Kauf genommen haben um einen fehlerfreien Code garantieren zu können. Hier war immer eine Risikoabwägung unsererseits nötig. 
-    - Wir haben uns recht schnell dafür entschieden das Parkhaus als Array, welches Pointer auf die Fahrzeuge enthält zu erstellen. Dies hat den Vorteil, dass nicht für jede Operation ein ganzes Struct ins Array kopiert und an die Funktionen übergeben werden muss, sondern eben nur Pointer auf diese. Das führt zu einer effizienteren Speichernutzung und schnellere Laufzeit. Um einen leeren Platz darstellen zu können, haben wir NULL Pointer benutzt. In der Praxis hat sich dieser Ansatz als gute Entscheidung herausgestellt.
+1. Unser Parkhaus hat eine festgelegte Größe, die sich im Programmverlauf nicht ändert. Hierfür ist ein Array perfekt geeignet, da es einmal mit dieser Größe initialisiert werden kann. Der Vorteil einer Linked List wäre daher nicht relevant. Zusätzlich können wir mit einem Array auf jeden Index in O(1) zugreifen, während der Zugriff bei einer Linked List O(n) dauern würde.
+2. Für die Datentypen haben wir so gut es geht versucht die speicherschonendste Option zu wählen. Trotzdem gab es Situationen wo wir lieber auf nochmal sicher gegangen sind und die paar verlorenen Bits in Kauf genommen haben um einen fehlerfreien Code garantieren zu können. Hier war immer eine Risikoabwägung unsererseits nötig. 
+3. Wir haben uns recht schnell dafür entschieden das Parkhaus als Array, welches Pointer auf die Fahrzeuge enthält zu erstellen. Dies hat den Vorteil, dass nicht für jede Operation ein ganzes Struct ins Array kopiert und an die Funktionen übergeben werden muss, sondern eben nur Pointer auf diese. Das führt zu einer effizienteren Speichernutzung und schnellere Laufzeit. Um einen leeren Platz darstellen zu können, haben wir NULL Pointer benutzt. In der Praxis hat sich dieser Ansatz als gute Entscheidung herausgestellt.
 
-2. Warum wir uns gegen ein extra file für Simloop entschieden haben:
+4. Warum wir uns gegen ein extra file für Simloop entschieden haben:
 Wir waren der Meinung, dass die extra Modularisierung keinen wirkliche Mehrwert gebracht hätte, und eher dazu geführt hätte, dass die Struktur komplexer und damit unleserlicher geworden wäre. Da der Simloop auch nicht sehr lange ist, wird die main.c damit auch nicht unnötig lang.
 
 
@@ -68,7 +65,7 @@ Wir waren der Meinung, dass die extra Modularisierung keinen wirkliche Mehrwert 
 - Eine Herausforderung bei der Zusammenarbeit war, die Aufgaben fair und gleichmäßig zu verteilen, 
 da wir innerhalb der Gruppe unterschiedlich schnell waren und unterschiedliche Vorkenntnisse mitbrachten.
 Durch den Unterschied an Programmierfähigkeiten, hat sich auch das gegenseitige reviewen als kleine Herausforderung dargestellt, weil die meisten Fehler
-meistens von der selben Person erkannt und kommentiert wurden. Mit der Zeit hat sich das aber deutlich verbessert, da man gelernt hat, worauf man achten muss und wie man Code am besten lesen kann und da unsere Programmierkentnisse sich ständig verbessert haben.
+meistens von der selben Person erkannt und kommentiert wurden. Mit der Zeit hat sich das aber deutlich verbessert, da man gelernt hat, worauf man achten muss und wie man Code am besten lesen kann und da unsere Programmierkenntnisse sich ständig verbessert haben.
 
 - Zeitmanagement war für uns auch eine Herausforderung, da wir nebenbei auch viel Zeit in die anderen Fächer investieren mussten. Auch haben wir am Anfang unterschätzt wie lange es dauert, alles richtig zu testen, GitHub zu pflegen und die Dokumentation zu schreiben.
 
