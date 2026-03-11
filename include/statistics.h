@@ -2,6 +2,7 @@
 #define STATISTICS_H
 
 #include <stdio.h>
+#include "sim_parameters.h"
 /**
  * @struct
  * @brief stores statistic values
@@ -86,7 +87,7 @@ void writeRunningTimeStatsToFile(const stats *pstats);
  * 
  * @return      this function does not return a value
  */
-void closeRunningTimeStatsFile(const stats *pstats);
+void closeRunningTimeStatsFile(stats *pstats);
 
 /**
  * @brief       prints final statistics
