@@ -8,22 +8,22 @@
  * @brief stores statistic values
  */
 typedef struct {
-    FILE *running_stats_file;                     //pointer to a FILE
+    FILE *p_running_stats_file;                   //pointer to a FILE
 
     int max_wait_time;                   //maximum wait time for a car before it could park
-    int sum_parkhaus_auslastung;   //sum of occupancy of the parking garage. Needed for calculations of average
-    int sum_length_queue;          //sum of queue length to calclulate average queue length
-    int max_length_queue;                //maximum queue length
+    int sum_parking_occupancy;     //sum of occupancy of the parking garage. Needed for calculations of average
+    int sum_queue_length;          //sum of queue length to calclulate average queue length
+    int max_queue_length;                //maximum queue length
     int sum_wait_time;             //sum of all waiting times of the cars in queue to calculate average
-    int sum_cars_in;                     //sum of all cars that drove into the garage
-    int sum_cars_out;                    //sum of all cars that left the garage
+    int sum_cars_entered;                //sum of all cars that drove into the garage
+    int sum_cars_exited;                 //sum of all cars that left the garage
 
     int current_time;                    //current simulation time step since start of the simulation
-    int parked_cars;                     //Number of currently parked cars
-    int cars_in;                         //Number of cars that entered the parking garage during the current time step
-    int cars_out;                        //Number of cars that left the parking garage during the current time step
-    int length_queue;                    //Current number of cars waiting in the queue
-    int car_in_queue;                    //Number of newly arrived cars added to the queue during this time step
+    int parked_car_count;                //Number of currently parked cars
+    int cars_entered;                    //Number of cars that entered the parking garage during the current time step
+    int cars_exited;                     //Number of cars that left the parking garage during the current time step
+    int queue_length;                    //Current number of cars waiting in the queue
+    int new_cars_in_queue;               //Number of newly arrived cars added to the queue during this time step
     int last_wait_time;                  //Waiting time of the car that parked during this time step
 
 }stats;
@@ -35,18 +35,18 @@ typedef struct {
  * this funtion updates a max value if the new value is higher than the max value.
  * it also calculates the sums of every important statistics parameter and saves it to a struct via pointer
  * 
- * @param[in]   pstats              pointer to struct stats that stores statistic values
- * @param[in]   parked_cars         Number of currently parked cars
- * @param[in]   cars_in             Number of cars that entered the parking garage during the current time step
- * @param[in]   cars_out            Number of cars that left the parking garage during the current time step
- * @param[in]   length_queue        Current number of cars waiting in the queue
+ * @param[in]   p_stats             pointer to struct stats that stores statistic values
+ * @param[in]   parked_car_count    Number of currently parked cars
+ * @param[in]   cars_entered        Number of cars that entered the parking garage during the current time step
+ * @param[in]   cars_exited         Number of cars that left the parking garage during the current time step
+ * @param[in]   queue_length        Current number of cars waiting in the queue
  * @param[in]   last_wait_time      Waiting time of the car that parked during this time step, 0 if no car drove into Parkhaus
  * @param[in]   current_time        current simulation time step since start of the simulation
- * @param[in]   car_in_queue        Number of newly arrived cars added to the queue during this time step
+ * @param[in]   new_cars_in_queue   Number of newly arrived cars added to the queue during this time step
  * 
  * @return       this function does not return a value
  */
-void updateStats(stats *pstats, int parked_cars, int cars_in, int cars_out, int length_queue, int last_wait_time, int current_time, int car_in_queue);
+void updateStats(stats *p_stats, int parked_car_count, int cars_entered, int cars_exited, int queue_length, int last_wait_time, int current_time, int new_cars_in_queue);
 
 
 /**
@@ -58,7 +58,7 @@ void updateStats(stats *pstats, int parked_cars, int cars_in, int cars_out, int 
  * 
  * @return      this function does not return a value
 */
-void printRuntimeStats(const stats *pstats, const sim_parameters *pSim_parameters);
+void printRuntimeStats(const stats *p_stats, const sim_parameters *p_sim_parameters);
 
 /**
  * @brief       creates file to write runnning time stats into it
@@ -66,7 +66,7 @@ void printRuntimeStats(const stats *pstats, const sim_parameters *pSim_parameter
  * this function creates a new .txt file in which the running time statistics can be written into
  * the file is stored 
  */
-void createRunningTimeStatsFile(stats *pstats);
+void createRunningTimeStatsFile(stats *p_stats);
 
 /**
  * @brief       writes running statistics to file
@@ -78,7 +78,7 @@ void createRunningTimeStatsFile(stats *pstats);
  * 
  * @return      this function does not return a value
  */
-void writeRunningTimeStatsToFile(const stats *pstats);
+void writeRunningTimeStatsToFile(const stats *p_stats);
 
 /**
  * @brief   closes running time statistics file
@@ -87,7 +87,7 @@ void writeRunningTimeStatsToFile(const stats *pstats);
  * 
  * @return      this function does not return a value
  */
-void closeRunningTimeStatsFile(stats *pstats);
+void closeRunningTimeStatsFile(stats *p_stats);
 
 /**
  * @brief       prints final statistics
@@ -99,7 +99,7 @@ void closeRunningTimeStatsFile(stats *pstats);
  * 
  * @return      this function does not return a value
  */
-void printFinalStats(const stats *pstats, const sim_parameters *pSim_parameters);
+void printFinalStats(const stats *p_stats, const sim_parameters *p_sim_parameters);
 
 /**
  * @brief       writes final statistics to file
@@ -112,6 +112,6 @@ void printFinalStats(const stats *pstats, const sim_parameters *pSim_parameters)
  * 
  * return       this function does not return a value
  */
-void writeFinalStatsToFile(const stats *pstats, const sim_parameters *pSim_parameters);
+void writeFinalStatsToFile(const stats *p_stats, const sim_parameters *p_sim_parameters);
 
 #endif 

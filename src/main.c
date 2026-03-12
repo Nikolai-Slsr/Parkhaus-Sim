@@ -50,7 +50,7 @@ int main()
 
     //create file for stats
     createRunningTimeStatsFile(&statistics);
-    if(statistics.running_stats_file == NULL)
+    if(statistics.p_running_stats_file == NULL)
     {
         fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Error creating RunningTimeStats File. \n" ANSI_COLOR_RESET);
         free_Parkhaus(p_parkhaus);
@@ -77,13 +77,13 @@ int main()
             return -1;
         }
         
-        unsigned char random_arrival = rand() % 100;
+        unsigned char random_arrival = rand() % 100 + 1;
 
         unsigned char added_vehicle_to_queue = 0;                       // This value stores whether a car arrived or not. It can either be 0 or 1 because only one car can arrive at the Parkhaus per time step.
 
         if (random_arrival <= p_inputs->arrival_probability)
         {
-            int random_park_time = rand() % p_inputs->max_parking_time; // Generate a random number between 0 and max_parking_time.
+            int random_park_time = rand() % p_inputs->max_parking_time + 1; // Generate a random number between 0 and max_parking_time.
             enqueue(p_parking_queue, car_id_counter, random_park_time, current_time);
             car_id_counter++;
             added_vehicle_to_queue = 1;
