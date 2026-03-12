@@ -172,36 +172,36 @@ void updateStats_test()
     updateStats (&test_stats, 4, 0, 3, 18, 0, 25, 46);
 
     assert(test_stats.max_wait_time == 0);
-    assert(test_stats.max_length_queue == 18);
-    assert(test_stats.sum_cars_in == 0);
-    assert(test_stats.sum_cars_out == 3);
-    assert(test_stats.sum_parkhaus_auslastung == 4);
+    assert(test_stats.max_queue_length == 18);
+    assert(test_stats.sum_cars_entered == 0);
+    assert(test_stats.sum_cars_exited == 3);
+    assert(test_stats.sum_parking_occupancy == 4);
     assert(test_stats.sum_wait_time == 0);
-    assert(test_stats.sum_length_queue == 18);
+    assert(test_stats.sum_queue_length == 18);
 
     //small test for final stats
     double avg_wait_time;
-    if (test_stats.sum_cars_in > 0) {
-        avg_wait_time = (double)test_stats.sum_wait_time / test_stats.sum_cars_in;
+    if (test_stats.sum_cars_entered > 0) {
+        avg_wait_time = (double)test_stats.sum_wait_time / test_stats.sum_cars_entered;
     } else {
         avg_wait_time = 0.0;
     }
-    assert(avg_wait_time == 0.0);   //because sum_cars_in is 0
+    assert(avg_wait_time == 0.0);   //because sum_cars_entered is 0
 
     //second update
     updateStats(&test_stats, 14, 55, 2, 5, 4, 33, 0);
 
     assert(test_stats.max_wait_time == 4);
-    assert(test_stats.max_length_queue == 18);
-    assert(test_stats.sum_cars_in == 55);
-    assert(test_stats.sum_cars_out == 5);
-    assert(test_stats.sum_parkhaus_auslastung == 18);
+    assert(test_stats.max_queue_length == 18);
+    assert(test_stats.sum_cars_entered == 55);
+    assert(test_stats.sum_cars_exited == 5);
+    assert(test_stats.sum_parking_occupancy == 18);
     assert(test_stats.sum_wait_time == 4);
-    assert(test_stats.sum_length_queue == 23);
+    assert(test_stats.sum_queue_length == 23);
 
     //small test for final stats
-    if (test_stats.sum_cars_in > 0) {
-        avg_wait_time = (double)test_stats.sum_wait_time / test_stats.sum_cars_in;
+    if (test_stats.sum_cars_entered > 0) {
+        avg_wait_time = (double)test_stats.sum_wait_time / test_stats.sum_cars_entered;
     } else {
         avg_wait_time = 0.0;
     }

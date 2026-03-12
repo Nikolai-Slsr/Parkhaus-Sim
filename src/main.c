@@ -50,7 +50,7 @@ int main()
 
     //create file for stats
     createRunningTimeStatsFile(&statistics);
-    if(statistics.running_stats_file == NULL)
+    if(statistics.p_running_stats_file == NULL)
     {
         fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED "Error creating RunningTimeStats File. \n" ANSI_COLOR_RESET);
         free_Parkhaus(p_parkhaus);
