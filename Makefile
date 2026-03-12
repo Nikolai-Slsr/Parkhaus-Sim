@@ -1,45 +1,36 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude
-SRC_DIR = src
-OBJ_DIR = obj
 
-# Die Dateien, die wir fuer Main brauchen
-MAIN_OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/queue.o $(OBJ_DIR)/parkhaus.o $(OBJ_DIR)/statistics.o $(OBJ_DIR)/sim_parameters.o
+test_objs = obj/queue.o obj/parkhaus.o obj/statistics.o obj/sim_parameters.o obj/functions_test_file.o
 
-# Die Dateien, die wir fuer Tests brauchen
-TEST_OBJS = $(OBJ_DIR)/functions_test_file.o $(OBJ_DIR)/queue.o $(OBJ_DIR)/parkhaus.o $(OBJ_DIR)/statistics.o $(OBJ_DIR)/sim_parameters.o
+main_objs = obj/main.o obj/queue.o obj/parkhaus.o obj/statistics.o obj/sim_parameters.o	
 
-# Ziel-Dateien
-MAIN_TARGET = main
-TEST_TARGET = functions_test
+all: main
 
-.PHONY: all clean run-test run-main
+main: $(main_objs)
+	gcc -Wall -Wextra -Iinclude -o main $(main_objs)
 
-all: $(MAIN_TARGET) $(TEST_TARGET)
+main.o: src/main.c
+	gcc -Wall -Wextra -Iinclude -c src/main.c -o obj/main.o
 
-# Kompiliere das Hauptprogramm
-$(MAIN_TARGET): $(OBJ_DIR) $(MAIN_OBJS)
-	$(CC) $(CFLAGS) -o $@ $(MAIN_OBJS)
+queue.o: src/queue.c
+	gcc -Wall -Wextra -Iinclude -c src/queue.c -o obj/queue.o
 
-# Kompiliere die Funktionstests
-$(TEST_TARGET): $(OBJ_DIR) $(TEST_OBJS)
-	$(CC) $(CFLAGS) -o $@ $(TEST_OBJS)
+parkhaus.o: src/parkhaus.c
+	gcc -Wall -Wextra -Iinclude -c src/parkhaus.c -o obj/parkhaus.o
 
-# Regel zum Erzeugen der .o Dateien im obj Verzeichnis
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+statistics.o: src/statistics.c
+	gcc -Wall -Wextra -Iinclude -c src/statistics.c -o obj/statistics.o
 
-# Erstelle den obj Ordner
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+sim_parameters.o: src/sim_parameters.c
+	gcc -Wall -Wextra -Iinclude -c src/sim_parameters.c -o obj/sim_parameters.o
 
-# Hilfsbefehle zum schnellen Ausfuhren
-run-main: $(MAIN_TARGET)
-	./$(MAIN_TARGET)
+obj/functions_test_file.o: test/functions_test_file.c
+    gcc -Wall -Wextra -Iinclude -c test/functions_test_file.c -o obj/functions_test_file.o
 
-run-test: $(TEST_TARGET)
-	./$(TEST_TARGET)
+test: $(test_objs)
+	gcc -Wall -Wextra -o tests/functions_test $(test_objs)
 
-# Aufraeumen
 clean:
-	rm -rf $(OBJ_DIR) $(MAIN_TARGET) $(TEST_TARGET) Makefile_test
+	rm -rf obj main tests/functions_test
+
+deepclean: clean
+	rm -rf outputs/
