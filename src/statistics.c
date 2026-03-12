@@ -47,7 +47,7 @@ void printRuntimeStats (const stats *p_stats, const sim_parameters *p_sim_parame
     printf ("|");
 
     printf("\n\n%-25s %-d Minuten", "Zeit seit Sim.Beginn:", p_stats -> current_time);
-    printf("\n%-25s" ANSI_BOLD" %-d" ANSI_COLOR_RESET " von " ANSI_BOLD "%d" ANSI_COLOR_RESET " Plaetze belegt", "Parkhausauslastung:", p_stats -> parked_car_count, p_sim_parameters->max_parking_spaces);
+    printf("\n%-25s" ANSI_BOLD" %-d" ANSI_COLOR_RESET " von " ANSI_BOLD "%d" ANSI_COLOR_RESET " belegt", "Parkhausauslastung:", p_stats -> parked_car_count, p_sim_parameters->max_parking_spaces);
     printf("\n%-25s" ANSI_COLOR_GREEN " +%-d" ANSI_COLOR_RESET "/" ANSI_COLOR_RED"-%d" ANSI_COLOR_RESET, "Autos rein/raus: ", p_stats -> cars_entered, p_stats -> cars_exited);
     printf("\n%-25s %-d Autos + %u neue Autos", "Laenge Warteschlange:", p_stats -> queue_length, p_stats -> new_cars_in_queue);
     if(p_stats->last_wait_time == -1){
@@ -79,19 +79,19 @@ void createRunningTimeStatsFile(stats *p_stats){
         file_counter ++;
     }
     p_stats->p_running_stats_file = fopen(filename, "w");
-    fprintf(p_stats->p_running_stats_file, "%-18s %-15s %-15s %-12s %-16s %-17s %-18s",
-        "|  Time stamp: |", "Parked cars: |", "new cars in: |", "cars out: |", "length queue: |", "cars in queue: |", "last wait time: |");
+    fprintf(p_stats->p_running_stats_file, "%-18s %-15s %-15s %-12s %-16s %-15s %-18s",
+        "|  Time stamp: |", "Parked cars: |", "new cars in: |", "cars out: |", "length queue: |", "car enqueued: |", "last wait time: |");
 
     printf("Created file: %s", filename);
     }
 
 void writeRunningTimeStatsToFile(const stats *p_stats){
-    fprintf(p_stats->p_running_stats_file, "\n%-3c%-12d%-2c %-14d%-2c %-13d%-2c %-10d%-2c %-14d%-2c %-15d%-3c", 
+    fprintf(p_stats->p_running_stats_file, "\n%-3c%-12d%-2c %-14d%-2c %-13d%-2c %-10d%-2c %-14d%-2c %-14d%-3c", 
         '|', p_stats -> current_time, '|', p_stats -> parked_car_count, '|', p_stats -> cars_entered, '|', p_stats -> cars_exited, '|', p_stats -> queue_length, '|', p_stats -> new_cars_in_queue, '|');
     if (p_stats->last_wait_time == -1){
-        fprintf(p_stats->p_running_stats_file, "%-16c%-2c", '-', '|');
+        fprintf(p_stats->p_running_stats_file, "%-15d%-2c", '-', '|');
     }else{
-        fprintf(p_stats->p_running_stats_file, "%-16d%-2c", p_stats -> last_wait_time, '|');
+        fprintf(p_stats->p_running_stats_file, "%-15d%-2c", p_stats -> last_wait_time, '|');
     }
 }
 
