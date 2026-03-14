@@ -118,9 +118,9 @@ void writeRunningTimeStatsToFile(const stats *p_stats){
     fprintf(p_stats->p_running_stats_file, "\n%-3c%-12d%-2c %-14d%-2c %-13d%-2c %-10d%-2c %-2d %c%+d%-8c%-3c", 
         '|', p_stats -> current_time, '|', p_stats -> parked_car_count, '|', p_stats -> cars_entered, '|', p_stats -> cars_exited, '|', p_stats -> queue_length, '(', p_stats -> new_cars_in_queue,')', '|');
     if (p_stats->last_wait_time == -1){
-        fprintf(p_stats->p_running_stats_file, "%-15c%-2c", '-', '|');
+        fprintf(p_stats->p_running_stats_file, "%-16c%-2c", '-', '|');
     }else{
-        fprintf(p_stats->p_running_stats_file, "%-15d%-2c", p_stats -> last_wait_time, '|');
+        fprintf(p_stats->p_running_stats_file, "%-16d%-2c", p_stats -> last_wait_time, '|');
     }
 }
 

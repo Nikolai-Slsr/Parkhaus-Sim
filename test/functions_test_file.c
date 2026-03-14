@@ -7,6 +7,8 @@ ausprinten.*/
 #include "../include/parkhaus.h"
 #include "../include/statistics.h"
 #include "../include/sim_parameters.h"
+#include "../include/format_def.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -23,6 +25,8 @@ ausprinten.*/
  * 
  */
 void queue_test(){
+    printf("\n[*]Running queue_test...");
+
     //init_queue test
     queue *my_queue = init_queue();
     assert(my_queue != NULL);
@@ -156,6 +160,8 @@ void test_free_Parkhaus(void){
 //---------------------------------------------------------
 
 void parkhaus_test(){
+    printf("\n[*]Running parkhaus_test...");
+
     test_init_parkhaus();
     test_free_Parkhaus();
     test_park_Car();
@@ -166,6 +172,8 @@ void parkhaus_test(){
 
 void updateStats_test()
 {
+    printf("\n[*]Running statistics_test...");
+
     stats test_stats = {0};
 
     //first update
@@ -213,16 +221,13 @@ void sim_parameters_test(){
     //sim_parameters can really only be tested manually because it requires user input
 }
 int main(){
-    printf("\n[*]Running Test...");
-    printf("\n[*]Running queue_test...");
+    printf("\n[*]Running Test...\n");
     queue_test();
     printf("\n[*]queue_test passed!");
-    printf("\n[*]Running parkhaus_test...");
     parkhaus_test();
     printf("\n[*]parkhaus_test passed!");
-    printf("\n[*]Running updateStats_test...");
     updateStats_test();
-    printf("\n[*]updateStats_test passed!");
+    printf("\n[*]statistics_test passed!\n");
     //sim_parameters_test();
-    printf("\n[*]Passed all Tests!");
+    printf(ANSI_BOLD ANSI_COLOR_GREEN "\n[*]Passed all Tests!\n\n" ANSI_COLOR_RESET);
 }
