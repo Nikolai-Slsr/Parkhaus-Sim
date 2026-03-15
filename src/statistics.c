@@ -109,7 +109,7 @@ void createRunningTimeStatsFile(stats *p_stats)
 
     while (1)
     {
-        sprintf(filename, "outputs/running_stats_%d.txt", file_counter);
+        sprintf(filename, "outputs/running_stats_%d.txt", file_counter);        //opens a check file to see if a file with the same name already exists
         FILE *p_check_file = fopen(filename, "r");
     
         if (p_check_file == NULL)
@@ -132,7 +132,7 @@ void writeRunningTimeStatsToFile(const stats *p_stats)
 {
     fprintf(p_stats->p_running_stats_file, "\n%-3c%-12d%-2c %-14d%-2c %-13d%-2c %-10d%-2c %-2d %c%+d%-8c%-3c", 
         '|', p_stats -> current_time, '|', p_stats -> parked_car_count, '|', p_stats -> cars_entered, '|', p_stats -> cars_exited, '|', p_stats -> queue_length, '(', p_stats -> new_cars_in_queue,')', '|');
-    if (p_stats->last_wait_time == -1)
+    if (p_stats->last_wait_time == -1)      //if no car entered, there was no wait time, so we print a '-' instead of a number
     {
         fprintf(p_stats->p_running_stats_file, "%-16c%-2c", '-', '|');
     }else
