@@ -70,6 +70,7 @@ void printRuntimeStats(const stats *p_stats, const sim_parameters *p_sim_paramet
  * 
  * this function creates a new .txt file in which the running time statistics can be written into
  * the file is stored 
+ * @return      this function does not return a value
  */
 void createRunningTimeStatsFile(stats *p_stats);
 
