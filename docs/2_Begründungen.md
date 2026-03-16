@@ -71,6 +71,7 @@ meistens von der selben Person erkannt und kommentiert wurden. Mit der Zeit hat 
 
 - Auch mussten wir lernen wie man Online Ressourcen und KI, sinnvoll nutzt ohne sich zu sehr darauf zu verlassen oder den Code einfach zu kopieren. Wir haben KI zur Wissensaneignung und Recherche von Funktionen und Algorithmen genutzt, aber immer darauf geachtet, dass wir den Code selbst schreiben und verstehen.
 
+- bei manchen Funktionen haben wir uns auch schwer getan, die Länge der Funktion zu begrenzen, da beispielsweise die write_to_file Funktionen sehr viele Informationen in die Datei schreiben müssen, was zu einer langen Funktion führt. Hier haben wir dann versucht die Funktion so gut es geht zu strukturieren und mit Kommentaren zu versehen, damit sie trotzdem übersichtlich bleibt. Da bei dieser Funktion aber die Logik nicht komplex ist, haben wir uns entschieden sie nicht weiter aufzuteilen, da dies die Übersicht eher verschlechtert hätte.
 
 
 ## 5.0 Positive Erfahrungen in der Teamarbeit
@@ -105,3 +106,7 @@ So kamen wir auf die Idee einen "End-Point" einzubauen. Dieser hat die einzigart
 
 So müssen wir zum durchlaufen des Arrays nur schauen, ob der aktuelle Wert die Eigenschaft `vehicle_id != -1` hat. Hier ist es wichtig, dass die leeren Plätze mit NULL belegt sind und eine Abfrage `NULL->vehicle.id` nicht möglich ist. Deshalb wird in der while-Schleife erst geprüft, ob der aktuelle Wert == NULL ist und erst wenn dies nicht der Fall wird er dereferenziert. 
 So haben wir eine wie wir finden elegante und vor allem autonome Methode das Array durchzulaufen.
+
+### 6.3 Off-by-one-Fehler beim Generieren von Zufallszahlen
+Ein weiterer Fehler, der uns zum Glück noch aufgefallen ist, ist, dass wir zur Begrenzung der Randomzahlen auf `max_value` `random_number % max_value` benutzt haben, was zu einem „off-by-one“-Fehler geführt hat, da die generierten Zahlen von 0 bis max_value-1 gehen.
+Dies konnten wir lösen, indem wir einfach `random_number % (max_value + 1)` benutzt haben, um die generierten Zahlen von 0 bis max_value zu bekommen.
