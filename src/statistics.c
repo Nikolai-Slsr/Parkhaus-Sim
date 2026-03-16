@@ -191,13 +191,10 @@ void printFinalStats (const stats *p_stats, const sim_parameters *p_sim_paramete
         printf("\n%-37s %d Autos", "Länge Warteschlange Ø:", 0);
     }
     printf("\n%-36s %d Autos", "Max. Länge Warteschlange:", p_stats->max_queue_length);
-    double avg_wait_time;
+    double avg_wait_time = 0.0;
     if (p_stats->sum_cars_entered > 0)
     {
         avg_wait_time = (double)p_stats->sum_wait_time / p_stats->sum_cars_entered;
-    }else
-    {
-        avg_wait_time = 0.0;
     }
     printf("\n%-36s %.2f Minuten", "Wartezeit Ø:", avg_wait_time);
     printf("\n%-35s" ANSI_COLOR_GREEN " +%d"ANSI_COLOR_RESET "/" ANSI_COLOR_RED"-%d"ANSI_COLOR_RESET, "ges. Anzahl Fahrzeuge rein/raus:", p_stats->sum_cars_entered , p_stats->sum_cars_exited);
