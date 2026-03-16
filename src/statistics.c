@@ -104,7 +104,7 @@ void createRunningTimeStatsFile(stats *p_stats)
 
     if (stat("outputs", &output_directory_status) == -1) //check if folder 'Outputs' exists. If not create the folder
     {
-        mkdir("outputs", 0777);
+        mkdir("outputs", 0777);     //0777 gives read, write and execute permissions to everyone
     }
 
     while (1)
