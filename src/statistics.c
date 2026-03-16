@@ -163,9 +163,10 @@ void printFinalStats (const stats *p_stats, const sim_parameters *p_sim_paramete
         printf("=");
     }
     printf ("|");
-    printf("\n\n%-36s %d", "Parkplätze", p_sim_parameters->max_parking_spaces);
-    printf("\n%-35s %d Minuten", "Max. Parkzeit", p_sim_parameters->max_parking_time);
-    printf("\n%-35s %d%%", "Ankunfts-Wahrscheinlichkeit", p_sim_parameters->arrival_probability);
+    printf("\n\n%-36s %d", "Anzahl Parkplätze:", p_sim_parameters->max_parking_spaces);
+    printf("\n%-35s %d Minuten", "Max. Parkzeit:", p_sim_parameters->max_parking_time);
+    printf("\n%-35s %d%%", "Ankunfts-Wahrscheinlichkeit:", p_sim_parameters->arrival_probability);
+    printf("\n%-35s %d", "Seed:", p_sim_parameters->rand_seed);
     printf ("\n\n|");
     for (int i=0; i<16; i++)
     {
@@ -245,9 +246,10 @@ void writeFinalStatsToFile (const stats *p_stats, const sim_parameters *p_sim_pa
     }
     fprintf (p_final_stats,"|");
 
-    fprintf(p_final_stats,"\n\n%-36s %d", "Parkplätze", p_sim_parameters->max_parking_spaces);
-    fprintf(p_final_stats,"\n%-35s %d Minuten", "Max. Parkzeit", p_sim_parameters->max_parking_time);
-    fprintf(p_final_stats,"\n%-35s %d%%", "Ankunfts-Wahrscheinlichkeit", p_sim_parameters->arrival_probability);
+    fprintf(p_final_stats,"\n\n%-36s %d", "Anzahl Parkplätze:", p_sim_parameters->max_parking_spaces);
+    fprintf(p_final_stats,"\n%-35s %d Minuten", "Max. Parkzeit:", p_sim_parameters->max_parking_time);
+    fprintf(p_final_stats,"\n%-35s %d%%", "Ankunfts-Wahrscheinlichkeit:", p_sim_parameters->arrival_probability);
+    fprintf(p_final_stats,"\n%-35s %d", "Seed:", p_sim_parameters->rand_seed);
 
     fprintf (p_final_stats,"\n\n|");
     for (int i=0; i<16; i++)
