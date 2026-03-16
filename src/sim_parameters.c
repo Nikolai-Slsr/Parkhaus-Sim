@@ -22,6 +22,7 @@
  * @param[in] min The minimum valid value for the input (inclusive), set to -1 if there is no minimum
  * @param[in] max The maximum valid value for the input (inclusive), set to -1 if there is no maximum
  * @param[out] p_stopped Pointer to a flag that is set to 1 if the user wants to stop the input process
+ * 
  * @return int The validated integer input from the user
  */
 static int get_int(const char *prompt, int min, int max, char *p_stopped) //static because this function should not be called by other files

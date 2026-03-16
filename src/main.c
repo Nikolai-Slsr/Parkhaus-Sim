@@ -21,7 +21,7 @@ int main()
     
     if (p_inputs == NULL)
     {
-        return 0; // Exit cleanly if user cancelled input or allocation failed
+        return 1; // Exit cleanly if user cancelled input or allocation failed
     }
     
     // Note: Due to changes diverging from the pseudocode in sim_parameters.c, get_inputs() handles the repeated input, and we don't have to do that in main.
@@ -77,13 +77,13 @@ int main()
             return -1;
         }
         
-        unsigned char random_arrival = rand() % 100 + 1;
+        unsigned char random_arrival = rand() % (100 + 1);
 
         signed int added_vehicle_to_queue = 0;                       // This value stores whether a car arrived or not. It can either be 0 or 1 because only one car can arrive at the Parkhaus per time step.
 
         if (random_arrival <= p_inputs->arrival_probability)
         {
-            int random_park_time = rand() % p_inputs->max_parking_time + 1; // Generate a random number between 0 and max_parking_time.
+            int random_park_time = rand() % (p_inputs->max_parking_time + 1); // Generate a random number between 0 and max_parking_time.
             enqueue(p_parking_queue, car_id_counter, random_park_time, current_time);
             car_id_counter++;
             added_vehicle_to_queue++;

@@ -4,14 +4,14 @@
 #include "vehicle.h"
 
 typedef struct node {
-    struct vehicle *vehicle; //pointer to the vehicle stored in this node
-    struct node *next; //pointer to the next node in the queue
+    struct vehicle *vehicle;    //pointer to the vehicle stored in this node
+    struct node *next;          //pointer to the next node in the queue
 } node;
 
 typedef struct queue {
-    node *first_node; //pointer to the first node in the queue
-    node *last_node; //additional pointer to the last node(by extention the car) in the queue to make adding cars more efficient {O(1) instead of O(n)}
-    int size; //store the number of cars in the queue because this information is accessed often
+    node *first_node;           //pointer to the first node in the queue
+    node *last_node;            //additional pointer to the last node(by extention the car) in the queue to make adding cars more efficient {O(1) instead of O(n)}
+    int size;                   //store the number of cars in the queue because this information is accessed often
 } queue;
 
 /**
@@ -36,6 +36,7 @@ queue *init_queue();
  * @param[in]     id            The ID of the vehicle to be added.
  * @param[in]     parking_time  The parking time of the vehicle to be added.
  * @param[in]     current_time  The current time when the vehicle is added to the queue.
+ *
  * @return                      returns 0 if the vehicle was successfully added to the queue, or -1 
  */
 int enqueue(queue *queue, int id, int parking_time, int current_time);

@@ -12,7 +12,7 @@
  * 
  * @return *Parkhaus(struct vehicle array) Pointer to the created array
 */
-vehicle** init_parkhaus(int number_of_parking_spaces);
+vehicle** init_parkhaus(const int number_of_parking_spaces);
 
 /** 
  * @brief Checks whether the given parking garage has free spaces
@@ -85,4 +85,5 @@ int parkhaus_get_used_Spots(vehicle *p_parkhaus[]);
  * @return the Parkhaus Array set to NULL, or NULL for error
 */
 vehicle** free_Parkhaus(vehicle **p_parkhaus);
+
 #endif
