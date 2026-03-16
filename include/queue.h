@@ -3,11 +3,19 @@
 
 #include "vehicle.h"
 
+/**
+ * @struct node
+ * @brief Node for a singly linked list representing a vehicle.
+ */
 typedef struct node {
     struct vehicle *vehicle;    //pointer to the vehicle stored in this node
     struct node *next;          //pointer to the next node in the queue
 } node;
 
+/**
+ * @struct queue
+ * @brief FIFO queue managing vehicles waiting for parking.
+ */
 typedef struct queue {
     node *first_node;           //pointer to the first node in the queue
     node *last_node;            //additional pointer to the last node(by extention the car) in the queue to make adding cars more efficient {O(1) instead of O(n)}
